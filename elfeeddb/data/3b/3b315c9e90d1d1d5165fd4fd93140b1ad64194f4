@@ -1,0 +1,8 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+<p><a href='elisp_copy-paste_register_1.html'>Emacs: 1 Key to Copy/Paste from Register</a></p>
+
+<p>after a decade of back and forth about using this command vs <code class='elisp-ƒ'>copy-to-register</code>, i think this is far better.</p>
+
+</div>
+ 

@@ -1,0 +1,28 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<p>〔<cite>Bye Bye Emojis: Emacs Hates MacOS</cite> <time>2016-11-21</time> By Sebastian Wiesner. @ <a class='sorc' href='http://www.lunaryorn.com/posts/bye-bye-emojis-emacs-hates-macos.html' data-accessed='2016-11-21'>http://www.lunaryorn.com/posts/bye-bye-emojis-emacs-hates-macos.html</a>〕</p>
+
+<p>reddit discussion
+<a class='sorc' href='https://www.reddit.com/r/emacs/comments/5e3xpu/emojis_in_emacs_intentionally_disabled_for_osx/' data-accessed='2016-11-21'>https://www.reddit.com/r/emacs/comments/5e3xpu/emojis_in_emacs_intentionally_disabled_for_osx/</a></p>
+
+<p>see what the current leader jwiegley has to say, in comment above.</p>
+
+<blockquote>
+<p>jwiegley wrote:</p>
+
+<p>This decision wasn&apos;t something “I approved of”, in the sense you&apos;re thinking. I do use a Mac, and I do miss my color emojis.</p>
+
+<p>GNU Emacs is a project of the Free Software Foundation, and when they deem an issue as relating to their political agenda, it trumps the technical purview of the project maintainer. I keep Emacs going from a software point of view; they keep the FSF going as a movement.</p>
+
+<p>If RMS says that such a change relates to freedom, I can either acquiesce or walk away. I didn&apos;t think color emojis were important enough to walk away. The gcc/clang dispute was part of the reason the last maintainer walked away.</p>
+
+<p>It&apos;s a free project. If a group of people is willing to put in the effort, you could fork Emacs and make it into something better, freed from the FSF&apos;s policies. Until that happens, expecting them to change by writing blog posts, or commenting on Reddit, is not going to have any effect whatsoever.</p>
+</blockquote>
+
+<p>by the way, it has always been like that. Every few years, major things like this happen got into news.</p>
+
+<p>See also:
+<a href='gnu_emacs_xemacs_schism_Ben_Wing.html'>GNU Emacs and XEmacs Schism</a></p>
+</div>
+ 

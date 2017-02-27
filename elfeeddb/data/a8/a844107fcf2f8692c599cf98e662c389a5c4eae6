@@ -1,0 +1,1 @@
+Some time ago I decided to bind f6 to other-window. I lived happily with that binding, but then something struck me. My f6 key was completely useless when I had only one window in the current frame. What a waste! So, I decided to code this.

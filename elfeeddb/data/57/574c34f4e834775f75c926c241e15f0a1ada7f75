@@ -1,0 +1,18 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<h3>emacs, real auto save, and auto save when you call M-x</h3>
+
+<p>there&apos;s a package called real-auto-save, on melpa. It does “real” save periodically.</p>
+
+<p>i was temped to write my own, but my current solution is that
+in
+<a href='../misc/ergoemacs_vi_mode.html'>Emacs: Xah Fly Keys</a>
+, a modal key mode, everytime i switch to command mode, it also does a save.</p>
+
+<p>you could do the same. For example, everytimes you call M-x, it does a save then M-x. Just write a short elisp command wrapper like “save-buffer-then-execute-extended-command”. If you want and don&apos;t know how, ask, many or i can show you how.</p>
+
+<p>reddit comment at <a class='sorc' href='https://www.reddit.com/r/emacs/comments/5h7k1r/undo_lost_hours_of_work/dazcpjq/' data-accessed='2016-12-09'>https://www.reddit.com/r/emacs/comments/5h7k1r/undo_lost_hours_of_work/dazcpjq/</a></p>
+
+</div>
+ 

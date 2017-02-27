@@ -1,0 +1,3 @@
+<p>We are currently looking to roll out Kernel 4.8 and I’d love to get some informal testing done first. Everyone who wants to help with testing the 4.8 Kernel please install and reboot afterward:</p>
+<p><code>pkcon refresh; pkcon install linux-generic-hwe-16.04 xserver-xorg-hwe-16.04</code></p>
+<p>Once you are on 4.8, please let me know if you have any problems or if everything is fine <img alt="🙂" class="wp-smiley" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" style="height: 1em;" /></p><img alt="" border="0" height="1" src="https://pixel.wp.com/b.gif?host=apachelog.wordpress.com&amp;blog=12425881&amp;post=1625&amp;subd=apachelog&amp;ref=&amp;feed=1" width="1" />

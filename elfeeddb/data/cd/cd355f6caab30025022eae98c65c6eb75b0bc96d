@@ -1,0 +1,5 @@
+<p> Via <a href="https://www.reddit.com/r/orgmode/comments/5u8z2e/obasync_asynchronous_srcblock_execution_for/">here</a>: </p>
+<blockquote>
+<p> <a href="https://github.com/astahlman/ob-async">ob-async</a> enables asynchronous execution of org-babel src blocks </p>
+</blockquote>
+<p> It works for <b>any</b> language. </p>

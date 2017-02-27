@@ -1,0 +1,1 @@
+<p>Getting the patched version in the repos is unlikely. One option is to open a bug report against arpwatch on our bug tracker and explain the situation there. If the maintainer agrees, then you are in luck. Otherwise it should be easy enough to maintain a patched version in the AUR.</p>

@@ -1,0 +1,69 @@
+<div class="KonaBody"><p>If you forget the root password for an SRX firewall device, you can use the password recovery procedure to reset the root password. This procedure also involves disabling the watchdog functionality to allow the system to properly boot into single-user mode<br />
+<span id="more-4560"></span></p>
+<p><strong>Procedure to follow</strong></p>
+<p>Power on the device by pressing the power button on the front panel. Verify that the POWER LED on the front panel turns green.The device’s boot sequence on your management device appears on the terminal emulation screen.</p>
+<p>When the autoboot completes, press the Spacebar a few times to access the bootstrap loader prompt.</p>
+<p>In operational mode, disable the watchdog functionality and enter boot -s to start up the system in single-user mode.</p>
+<blockquote><p>loader>boot -s</p></blockquote>
+<p>The SRX firewall device will start up in single-user mode.</p>
+<p>Enter recovery to start the root password recovery procedure.</p>
+<blockquote><p>System watchdog timer disabled.<br />
+Enter full pathname of shell or &#8216;recovery' for root password recovery or RETURN for /bin/sh: recovery</p></blockquote>
+<p>Enter configuration mode in the CLI.<br />
+<center><h9>Sponsored Link</h9></center>
+<center>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-3561711309083119";
+    google_ad_slot = "2438909791";
+    google_ad_width = 336;
+    google_ad_height = 280;
+</script>
+<!-- debian336x280 -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center></p>
+<p>Set the root password.</p>
+<blockquote><p>[edit]<br />
+user@host# set system root-authentication plain-text-password</p></blockquote>
+<p>Enter the new root password.</p>
+<blockquote><p>New password: juniper1<br />
+Retype new password:</p></blockquote>
+<p>At the second prompt, reenter the new root password.</p>
+<p>If you are finished configuring the network, commit the configuration.</p>
+<blockquote><p>root@host# commit</p></blockquote>
+<p>commit complete</p>
+<p>Exit from configuration mode and Exit from operational mode.</p>
+<p>Enter y to reboot the device.</p>
+<p>Reboot the system? [y/n] y</p>
+<p>The start up messages display on the screen.</p>
+<p>Once again, press the Spacebar a few times to access the bootstrap loader prompt.</p>
+<p>In operational mode, enable the watchdog functionality and enter boot to start up the system.</p>
+<blockquote><p>loader>watchdog enable</p>
+<p>loader>boot</p></blockquote>
+<p>The SRX firewall device starts up again and prompts you to enter a user name and password. Enter the newly configured password:</p>
+<blockquote><p>Deviceabc (ttyu0)<br />
+login: root<br />
+Password: juniper1	</p></blockquote>
+<p><center><h9>Sponsored Link</h9></center>
+<center>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-3561711309083119";
+    google_ad_slot = "2438909791";
+    google_ad_width = 336;
+    google_ad_height = 280;
+</script>
+<!-- debian336x280 -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center></p>
+<div class="betterrelated"><p><strong>Related content:</strong></p>
+<ol><li> <a href="http://www.debianadmin.com/nexus-7000-series-issu-upgrade-part-2.html" title="Permanent link to Nexus 7000 Series ISSU Upgrade (Part 2)">Nexus 7000 Series ISSU Upgrade (Part 2)</a>  </li>
+<li> <a href="http://www.debianadmin.com/how-to-enable-jumbo-frame-support-on-juniper-screenos-firewalls.html" title="Permanent link to How to enable Jumbo frame support on Juniper ScreenOS firewalls">How to enable Jumbo frame support on Juniper ScreenOS firewalls</a>  </li>
+<li> <a href="http://www.debianadmin.com/nexus-7000-series-issu-upgrade-part1.html" title="Permanent link to Nexus 7000 Series ISSU Upgrade (Part1)">Nexus 7000 Series ISSU Upgrade (Part1)</a>  </li>
+<li> <a href="http://www.debianadmin.com/how-to-download-the-accesslog-files-from-bluecoat-proxysg-device-without-using-ftp.html" title="Permanent link to How to download the accesslog files from bluecoat proxySG device without using FTP">How to download the accesslog files from bluecoat proxySG device without using FTP</a>  </li>
+<li> <a href="http://www.debianadmin.com/copy-the-visual-policy-vpm-policies-from-one-bluecoat-proxysg-to-another.html" title="Permanent link to Copy the visual policy (VPM) policies from one bluecoat ProxySG to another">Copy the visual policy (VPM) policies from one bluecoat ProxySG to another</a>  </li>
+</ol></div></div><!-- KonaBody --><div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=PM1oHL4vJfU:izwVLD8UyRs:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=PM1oHL4vJfU:izwVLD8UyRs:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?i=PM1oHL4vJfU:izwVLD8UyRs:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=PM1oHL4vJfU:izwVLD8UyRs:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=PM1oHL4vJfU:izwVLD8UyRs:l6gmwiTKsz0"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=l6gmwiTKsz0" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=PM1oHL4vJfU:izwVLD8UyRs:gIN9vFwOqvQ"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?i=PM1oHL4vJfU:izwVLD8UyRs:gIN9vFwOqvQ" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=PM1oHL4vJfU:izwVLD8UyRs:TzevzKxY174"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=TzevzKxY174" border="0"></img></a>
+</div>

@@ -1,0 +1,79 @@
+<p><img alt="A Debian LTS logo" class="alignright size-full wp-image-3226" height="128" src="https://raphaelhertzog.com/files/2015/03/Debian-LTS-2-small.png" width="128" />Like <a href="https://raphaelhertzog.com/tag/Freexian+LTS/">each month</a>, here comes a report about the work of <a href="http://www.freexian.com/services/debian-lts.html">paid contributors</a> to <a href="https://wiki.debian.org/LTS">Debian LTS</a>.</p>
+<h3>Individual reports</h3>
+<p>In January, about 159 work hours have been dispatched among 13 paid contributors. Their reports are available:</p>
+<ul>
+<li><a href="https://anarc.at/blog/2017-01-31-free-software-activities-january-2017/">Antoine Beaupré</a> did 12.75 hours.</li>
+<li><a href="https://lists.debian.org/debian-lts/2017/02/msg00036.html">Balint Reczey</a> did 14 hours (out of 12.75 hours allocated + 2.5 hours remaining, thus keeping 1.25 hours for February).</li>
+<li><a href="https://www.decadent.org.uk/ben/blog/debian-lts-work-january-2017.html">Ben Hutchings</a> did 3 hours (out of 12.75 hours allocated + 5.5 hours remaining, thus keeping 15.25 extra hours for February).</li>
+<li><a href="https://chris-lamb.co.uk/posts/free-software-activities-in-january-2017">Chris Lamb</a> did 12.75 hours.</li>
+<li><a href="https://lists.debian.org/debian-lts/2017/01/msg00149.html">Emilio Pozuelo Monfort</a> did 15.25 hours (out of 12.75 hours allocated + 2.5 hours remaining).</li>
+<li><a href="http://honk6.sigxcpu.org/con/Debian_Fun_in_January_2017.html">Guido Günther</a> did 8 hours.</li>
+<li><a href="https://lists.debian.org/debian-lts/2017/02/msg00034.html">Hugo Lefeuvre</a> did 15.25 hours (out of 12.75 hours allocated + 2.5 hours remaining).</li>
+<li><a href="https://blog.freesources.org/posts/2017/02/debian_lts_report_2017.01/">Jonas Meurer</a> did 9 hours (out of 12 hours allocated + 6.75 hours remaining, thus keeping 9.75 extra hours for February).</li>
+<li><a href="https://gambaru.de/blog/2017/02/04/my-free-software-activities-in-january-2017/">Markus Koschany</a> did 12.75 hours.</li>
+<li><a href="http://inguza.com/report/debian-long-term-support-work-2017-january">Ola Lundqvist</a> did 12.75 hours.</li>
+<li><a href="https://raphaelhertzog.com/2017/01/31/my-free-software-activities-in-january-2017/">Raphaël Hertzog</a> did 10 hours.</li>
+<li><a href="https://lists.debian.org/debian-lts/2017/02/msg00006.html">Roberto C. Sanchez</a> did 12.5 hours (out of 12.75 hours allocated, thus keeping 0.25 hours for February).</li>
+<li><a href="http://blog.alteholz.eu/2017/02/my-debian-activities-in-january-2017/">Thorsten Alteholz</a> did 12.75 hours.</li>
+</ul>
+<h3>Evolution of the situation</h3>
+<p>The <a href="https://www.freexian.com/services/debian-lts.html">number of sponsored hours</a> increased slightly thanks to <a href="https://www.exonet.nl">Exonet</a> joining us.</p>
+<p>The <a href="https://security-tracker.debian.org/tracker/status/release/oldstable">security tracker</a> currently lists 37 packages with a known CVE and the <a href="https://anonscm.debian.org/viewvc/secure-testing/data/dla-needed.txt?view=markup">dla-needed.txt file</a> 36. The situation is roughly similar to last month even though the number of open issues increased slightly.</p>
+<h3>Thanks to our sponsors</h3>
+<p>New sponsors are in bold.</p>
+<ul>
+<li>Platinum sponsors:</li>
+<ul>
+<li><a href="http://www.toshiba.co.jp/worldwide/index.html">TOSHIBA</a> (for 16 months)</li>
+<li><a href="https://github.com">GitHub</a> (for 7 months)</li>
+</ul>
+<li>Gold sponsors:</li>
+<ul>
+<li><a href="http://www.positive-internet.com">The Positive Internet</a> (for 32 months)</li>
+<li><a href="http://www.blablacar.fr">Blablacar</a> (for 31 months)</li>
+<li><a href="http://www.linode.com">Linode LLC</a> (for 21 months)</li>
+<li><a href="http://www.babiel.com">Babiel GmbH</a> (for 10 months)</li>
+<li><a href="https://www.plathome.com">Plat’Home</a> (for 10 months)</li>
+</ul>
+<li>Silver sponsors:</li>
+<ul>
+<li><a href="http://www.domainnameshop.com">Domeneshop AS</a> (for 31 months)</li>
+<li><a href="http://www.univ-lille3.fr">Université Lille 3</a> (for 31 months)</li>
+<li><a href="http://trollweb.no">Trollweb Solutions</a> (for 29 months)</li>
+<li><a href="http://www.nantesmetropole.fr/">Nantes Métropole</a> (for 25 months)</li>
+<li><a href="http://hpc.uni.lu/">University of Luxembourg</a> (for 23 months)</li>
+<li><a href="https://www.dalenys.com">Dalenys</a> (for 22 months)</li>
+<li><a href="http://www.univention.de">Univention GmbH</a> (for 17 months)</li>
+<li><a href="http://portail.univ-st-etienne.fr/">Université Jean Monnet de St Etienne</a> (for 17 months)</li>
+<li><a href="https://www.sonusnet.com">Sonus Networks</a> (for 11 months)</li>
+<li><a href="https://www.ur.nl">UR Communications BV</a> (for 5 months)</li>
+<li><a href="https://maxcluster.de">maxcluster GmbH</a> (for 5 months)</li>
+<li><strong><a href="https://www.exonet.nl">Exonet B.V.</a></strong></li>
+</ul>
+<li>Bronze sponsors:</li>
+<ul>
+<li><a href="http://www.intars.at">David Ayers – IntarS Austria</a> (for 32 months)</li>
+<li><a href="http://www.evolix.fr">Evolix</a> (for 32 months)</li>
+<li><a href="http://www.offensive-security.com">Offensive Security</a> (for 32 months)</li>
+<li><a href="http://www.seznam.cz">Seznam.cz, a.s.</a> (for 32 months)</li>
+<li><a href="http://freeside.biz">Freeside Internet Service</a> (for 31 months)</li>
+<li><a href="http://www.mytux.fr">MyTux</a> (for 31 months)</li>
+<li><a href="http://linuxhotel.de">Linuxhotel GmbH</a> (for 29 months)</li>
+<li><a href="http://intevation.de">Intevation GmbH</a> (for 28 months)</li>
+<li><a href="https://daevel.fr">Daevel SARL</a> (for 27 months)</li>
+<li><a href="http://bitfolk.com">Bitfolk LTD</a> (for 26 months)</li>
+<li><a href="http://www.megaspace.de">Megaspace Internet Services GmbH</a> (for 26 months)</li>
+<li><a href="http://www.greenbone.net">Greenbone Networks GmbH</a> (for 25 months)</li>
+<li><a href="http://numlog.fr">NUMLOG</a> (for 25 months)</li>
+<li><a href="http://www.wingo.ch/">WinGo AG</a> (for 24 months)</li>
+<li><a href="http://lheea.ec-nantes.fr">Ecole Centrale de Nantes – LHEEA</a> (for 21 months)</li>
+<li><a href="http://sig-io.nl">Sig-I/O</a> (for 18 months)</li>
+<li><a href="https://www.entrouvert.com/">Entr’ouvert</a> (for 16 months)</li>
+<li><a href="https://adfinis-sygroup.ch">Adfinis SyGroup AG</a> (for 13 months)</li>
+<li><a href="http://www.legi.grenoble-inp.fr">Laboratoire LEGI – UMR 5519 / CNRS</a> (for 8 months)</li>
+<li><a href="https://quarantainenet.nl">Quarantainenet BV</a> (for 8 months)</li>
+<li><a href="http://www.allogarage.fr">GNI MEDIA</a> (for 7 months)</li>
+<li><a href="https://www.rhx.it">RHX Srl</a> (for 5 months)</li>
+</ul>
+</ul>
+<p style="font-size: smaller;"><a href="https://raphaelhertzog.com/2017/02/13/freexians-report-about-debian-long-term-support-january-2017/#comments">No comment</a> | Liked this article? <a href="http://raphaelhertzog.com/support-my-work/">Click here</a>. | My blog is <a href="http://flattr.com/thing/26545/apt-get-install-debian-wizard">Flattr-enabled</a>.</p>

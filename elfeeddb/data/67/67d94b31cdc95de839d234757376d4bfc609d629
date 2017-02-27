@@ -1,0 +1,39 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<h3>reddit discussion, on emacs naming convention</h3>
+
+<p><a class='sorc' href='https://www.reddit.com/r/emacs/comments/5pcvmt/when_naming_an_emacs_function_why_is_the_package/' data-accessed='2017-01-22'>https://www.reddit.com/r/emacs/comments/5pcvmt/when_naming_an_emacs_function_why_is_the_package/</a></p>
+
+<p>it&apos;s the convention of the mothership.</p>
+
+<p>many of these conventions, are kinda vague, some are out-dated, some are ill-designed.</p>
+
+<p>many packages outside GNU emacs do not adhere to them, but are tolerated. For example, the most popular packages on MELPA, dash, s, break these conventions.</p>
+
+<p>it&apos;s a gray area, between conservative and progressive.</p>
+
+<p>if you chose progressive, the problem is that huge amounts of existing lisp code are not gonna change (lots work, risking bug to fix but little benefit, or packages not maintained but still used, etc.), you end up with inconsistency.</p>
+
+<p>if you chose conservative, then you reduce progress and adoptation.</p>
+
+<p>For example, let&apos;s say the naming convention. Besides the prefix:</p>
+
+<p>• predicate could end in ? (as in Scheme/Racket Lisp, ruby, clojure) instead of p. Since question mark is more intuitive, is easier to identify, and can be syntactically verified by machine. (p can&apos;t because not all functions ending in p is a predicate.)</p>
+
+<p>• the double dash for internal methods (aka auxiliary functions) is kinda unsaid convention, and code out there may or may not conform. (if we go strict about this, i think one&apos;ll find huge amount of functions need to be renamed.)</p>
+
+<p>• variable beginning with low line _ as form-filler unused var is another unsaid convention. It kinda came from modern (say after 2010) practices in other langs (i think python ruby).</p>
+
+<p>• in function doc string, it&apos;s GNU emacs convention to use ALLCAPS for parameters. This is also not a perfect convention, since elisp is case sensitive. This make it hard to actually have parameters that&apos;s ALLCAP or camelCase or single capital letter such as Z. Also, using ALLCAPS is a weak, ambiguous markup, since it prevents the normal English convention of using ALLCAPS for emphasis.</p>
+
+<p>but as most coding convention goes, they are not systematically designed. They came by-and-by via practice and evolution. It&apos;d be nice if the language enforce syntactic conventions. For example, var of ALLCAPS has semantics of global var. (sigils in perl, ruby, golang, and other lang feature these) An extreme case would be syntax algebra, where the syntax alone is the semantics and can be processed/manipulated (like highschool algebra). Formal Languages are such case.</p>
+
+<ul>
+<li><a href='../misc/an_eulogy_to_sigils_xi_phi.html'>The Sigils WAR ξ φ, Ξblood of the Φsigils, an Eulogy to Sigils * -</a></li>
+<li><a href='http://xahlee.info/comp/python_vs_elisp_docstring_convention.html'>Docstring Convention: Python vs Emacs Lisp</a></li>
+<li><a href='http://xahlee.info/comp/sigil_for_function_parameter_names.html'>Sigil for Function Parameter Names</a></li>
+</ul>
+
+</div>
+ 

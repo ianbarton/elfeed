@@ -1,0 +1,1 @@
+<p>Yes, very bad idea.</p><p>&quot;emulate sh -c &#039;source /etc/profile&#039;&quot; is the typical content of /etc/zsh/zprofile and in /etc/profile causes a recursion.<br />Get rid of that and replace it with the version of the filesystem packake (you can simply download the package, extract it and copy the file there; root:root, 644)</p>

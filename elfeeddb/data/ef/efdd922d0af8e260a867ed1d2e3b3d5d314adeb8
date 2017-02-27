@@ -1,0 +1,2 @@
+<p>The release of pacman-5.0 brought support for transactional hooks.  These will allow us to (e.g.) run font cache updates a single time during an update rather than after each font package installation.  This will both speed up the update process, but also reduce packaging burden for the Developers and Trusted Users.</p>
+<p>In order for the use of hooks to be started, we require all users to have updated to at least pacman-5.0.1 before 2016-04-23. Pacman-5.0.1 was released on 2016-02-23, so this will have given everyone two months  to update their system.</p>

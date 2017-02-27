@@ -1,0 +1,7 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<a href='emacs_delete_backward_char_or_bracket_text.html'>Emacs: Delete Backward Char or Bracket Text</a> (fixed bug. now if there&apos;s a region, just delete it.)
+
+</div>
+ 

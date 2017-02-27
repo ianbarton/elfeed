@@ -1,0 +1,9 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<p><a href='elisp_copy-paste_register_1.html'>Emacs: 1 Key to Copy/Paste from Register</a></p>
+
+<p>new command <code class='elisp-ƒ'>xah-append-to-register-1</code> and <code class='elisp-ƒ'>xah-clear-register-1</code></p>
+
+</div>
+ 

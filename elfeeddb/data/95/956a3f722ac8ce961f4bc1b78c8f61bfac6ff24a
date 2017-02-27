@@ -1,0 +1,30 @@
+<div class="KonaBody"><p>This tutorial explains how to return the configuration on a SRX firewall to the factory default version.<br />
+<span id="more-4558"></span></p>
+<p><strong>Solution 1</strong></p>
+<p><strong>Using the Reset Config Button</strong></p>
+<p>You can use the Reset Config button on the front panel of the SRX firewall device to reset the device to its factory default configuration. The Reset Config button is recessed to prevent it from being pressed accidentally; so you need to insert a small probe (for example, a straightened paper clip) to press the button.</p>
+<p><strong>Solution 2</strong></p>
+<p><strong>Using the load factory-default Command</strong></p>
+<p>If you are still able to logon to the device via the CLI, you can use the load factory-default command to return the device to its factory default configuration. This command loads and commits the factory configuration; but this command does not delete other configuration files on the device.</p>
+<p>Type the load factory-default command:</p>
+<blockquote><p>root@host# load factory-default</p></blockquote>
+<p>Use the set system root-authentication plain-text-password command to set a new root password for the device:</p>
+<blockquote><p>root@host# set system root-authentication plain-text-password</p></blockquote>
+<p>Type the root password and retype it to confirm it:</p>
+<p>New password:<br />
+Retype new password:</p>
+<p> Caution: Prior to committing the changes, if an IP address is not assigned for the &#8216;ge-0/0/0' interface, create a local user account and type the routing information; either via the CLI configuration or DHCP. The SRX device will no longer be remotely accessible.</p>
+<p>To manage the SRX firewall device, you must connect a PC or laptop to the physical console or attach the PC or laptop to a subnet that is directly connected to the ge-0/0/0 interface, which is assigned an IP address of &#8216;192.168.2.1'. </p>
+<p>Use the commit and-quit command to commit the configuration and exit the configuration mode, if the configuration contains no errors and the commit is successful</p>
+<blockquote><p>root@host# commit and-quit</p></blockquote>
+<p>After the commit, the factory default configuration will be the running configuration.</p>
+<p><!--adsense#new--></p>
+<div class="betterrelated"><p><strong>Related content:</strong></p>
+<ol><li> <a href="http://www.debianadmin.com/how-to-erase-the-juniper-firewall-system-configuration-using-the-cli.html" title="Permanent link to How to Erase the Juniper firewall System Configuration Using the CLI">How to Erase the Juniper firewall System Configuration Using the CLI</a>  </li>
+<li> <a href="http://www.debianadmin.com/default-bigip-device-usename-and-password.html" title="Permanent link to Default BIGIP device Usename and Password">Default BIGIP device Usename and Password</a>  </li>
+<li> <a href="http://www.debianadmin.com/how-to-configure-juniper-ssgisg-devices-with-cisco-acs-5-x.html" title="Permanent link to How to configure Juniper SSG/ISG devices with Cisco ACS 5.x">How to configure Juniper SSG/ISG devices with Cisco ACS 5.x</a>  </li>
+<li> <a href="http://www.debianadmin.com/howto-remove-nsm-configuration-from-a-juniper-firewall.html" title="Permanent link to Howto remove NSM Configuration from a Juniper Firewall">Howto remove NSM Configuration from a Juniper Firewall</a>  </li>
+<li> <a href="http://www.debianadmin.com/howto-set-netscreen-ssg-model-firewall-into-transparent-mode.html" title="Permanent link to Howto set Netscreen SSG model firewall into Transparent Mode">Howto set Netscreen SSG model firewall into Transparent Mode</a>  </li>
+</ol></div></div><!-- KonaBody --><div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=qt4pY5-eYg0:-XXD8TPddRQ:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=qt4pY5-eYg0:-XXD8TPddRQ:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?i=qt4pY5-eYg0:-XXD8TPddRQ:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=qt4pY5-eYg0:-XXD8TPddRQ:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=qt4pY5-eYg0:-XXD8TPddRQ:l6gmwiTKsz0"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=l6gmwiTKsz0" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=qt4pY5-eYg0:-XXD8TPddRQ:gIN9vFwOqvQ"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?i=qt4pY5-eYg0:-XXD8TPddRQ:gIN9vFwOqvQ" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=qt4pY5-eYg0:-XXD8TPddRQ:TzevzKxY174"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=TzevzKxY174" border="0"></img></a>
+</div>

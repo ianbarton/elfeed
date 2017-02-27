@@ -1,0 +1,16 @@
+<p>Today:</p><pre class="real">alex@Megabombus:~$ emacs
+dyld: Library not loaded: /usr/local/opt/imagemagick/lib/libMagickWand-6.Q16.3.dylib
+  Referenced from: /usr/local/bin/emacs
+  Reason: image not found
+Abort trap: 6</pre><p>OK, reinstall…</p><pre class="real">alex@Megabombus:~$ brew reinstall emacs-mac
+==&gt; Reinstalling railwaycat/emacsmacport/emacs-mac --with-xml2 --with-official-icon --with-gnutls --with-imagemagick
+==&gt; Downloading https://bitbucket.org/mituharu/emacs-mac/get/emacs-25.1-mac-6.1.tar.gz
+Already downloaded: /Users/alex/Library/Caches/Homebrew/emacs-mac-emacs-25.1-z-mac-6.1.tar.gz
+==&gt; Downloading https://s3.amazonaws.com/emacs-mac-port/Emacs25.icns
+Already downloaded: /Users/alex/Library/Caches/Homebrew/emacs-mac--official-icon-25.icns
+==&gt; ./autogen.sh
+==&gt; ./configure --enable-locallisppath=/usr/local/share/emacs/site-lisp --infodir=/usr/local/Cellar/emacs-mac/emacs-25.1-z-mac-6.1/shar
+==&gt; make
+...
+==&gt; Summary
+🍺  /usr/local/Cellar/emacs-mac/emacs-25.1-z-mac-6.1: 4,067 files, 109.7M, built in 20 minutes 31 seconds</pre><p>Tags: <a class="outside tag" href="https://alexschroeder.ch/wiki?action=tag;id=Emacs" rel="tag" title="Tag">Emacs</a> <a class="outside tag" href="https://alexschroeder.ch/wiki?action=tag;id=Homebrew" rel="tag" title="Tag">Homebrew</a> <a class="outside tag" href="https://alexschroeder.ch/wiki?action=tag;id=OSX" rel="tag" title="Tag">OSX</a></p>

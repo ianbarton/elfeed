@@ -1,0 +1,26 @@
+<img class="img-thumbnail" src="http://jr0cket.co.uk/images/spacemacs-logo.png" />
+<p>By adding the <code>git</code> layer to <a href="https://spacemacs.org" rel="external" target="_blank">Spacemacs</a> you have the fully featured git client called magit.  The <code>github</code> layer allows you to clone repositories from <a href="https://github.com" rel="external" target="_blank">Github</a> and to create, list, update and delete <a href="https://gist.github.com" rel="external" target="_blank">gists</a></p>
+<p>Today I discovered <a href="https://melpa.org/#/magithub" rel="external" target="_blank">Magithub</a> which can create a new remote repository on Github from within Spacemacs, using the command line tool called <a href="https://hub.github.com/" rel="external" target="_blank">hub</a>. </p>
+<blockquote>
+<p>Previously I opened a shell inside Emacs and ran the <code>hub create</code> command to create a new remote Github repository for a project.  This worked, but not the same speed as having a feature built-in to Magit itself.</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="What-is-Magithub"><a class="headerlink" href="http://jr0cket.co.uk/categories/emacs/atom.xml#What-is-Magithub" title="What is Magithub"></a>What is Magithub</h2><p><a href="https://melpa.org/#/magithub" rel="external" target="_blank">Magithub</a> is an interface to GitHub using the `hub’ command line tool.  Its integrated into Magit workflows and allows very easy, very basic GitHub repository management.  Supported actions include:</p>
+<ul>
+<li>pushing brand-new local repositories up to GitHub</li>
+<li>creating forks of existing repositories</li>
+<li>submitting pull requests upstream</li>
+<li>viewing and creating issues</li>
+</ul>
+<p><img alt="Spacemacs - Magit Status - Magithub in action" src="https://github.com/vermiculus/magithub/raw/master/images/status.png" /></p>
+<h2 id="Adding-magithub-to-Spacemacs"><a class="headerlink" href="http://jr0cket.co.uk/categories/emacs/atom.xml#Adding-magithub-to-Spacemacs" title="Adding magithub to Spacemacs"></a>Adding magithub to Spacemacs</h2><p>As <a href="https://melpa.org/#/magithub" rel="external" target="_blank">Magithub.el</a> is not part of a layer, it can be added as an additional package in the <code>dotspacemacs/layers</code> of the <code>~/.spacemacs</code> file.</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dotspacemacs-additional-packages &amp;apos(magithub)</div></pre></td></tr></tbody></table></figure>
+<p>The <a href="https://melpa.org/#/magithub" rel="external" target="_blank">Magithub</a> package needs to be loaded into Spacemacs once magit has been loaded.  So we need to add a hook in the <code>dotspacemacs/user-config</code> section of the <code>~/.spacemacs</code> file</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(use-package magithub</div><div class="line">  :after magit</div><div class="line">  :config (magithub-feature-autoinject t))</div></pre></td></tr></tbody></table></figure>
+<h2 id="Using-Magithub"><a class="headerlink" href="http://jr0cket.co.uk/categories/emacs/atom.xml#Using-Magithub" title="Using Magithub"></a>Using Magithub</h2><p>Open magit status with <code>SPC g s</code> and then you have access to the magithub features.</p>
+<p>Press `H’ in the magit status buffer and you will see the following menu</p>
+<p><a href="http://jr0cket.co.uk/images/spacemacs-magit-status-magithub-menu.png"><img alt="Spacemacs - Magit Status - Magithub menu" src="http://jr0cket.co.uk/images/spacemacs-magit-status-magithub-menu.png" /></a></p>
+<p>Here is a simple example of taking an unversioned project, putting under Git version control with Magit and then creating a remote repository on Github with Magithub.</p>
+
+
+<p>Thank you.<br /><a href="https://twitter.com/jr0cket" rel="external" target="_blank">@jr0cket</a></p>

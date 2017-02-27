@@ -1,0 +1,1 @@
+<p>Actually this is completely a false alarm. I&#039;m not sure what was the actual issue because DNS and networking were not a problem (independently verified mounts via smb:// mounting in nautilus). I installed linux-lts and rebooted (worked), then rebooted into normal... and it works. Sorry for mucking up the boards.</p>

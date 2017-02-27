@@ -1,0 +1,87 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<p>updated all my packages to use lexical scope.</p>
+
+<p>you can see all my packages at
+<a href='xah_emacs_packages_panel_index.html'>Xah Emacs Packages Panel Index</a></p>
+
+<p>Here&apos;s functions updated that has a tutorial page:</p>
+
+<ul>
+<li><a href='emacs_shrink_whitespace.html'>Emacs: Delete Whitespace around Cursor</a></li>
+<li><a href='elisp_change_space-hyphen_underscore.html'>Emacs: Cycle Replace Space Hyphen Underscore</a></li>
+<li><a href='elisp_insert-date-time.html'>Emacs: Insert Date Time</a></li>
+<li><a href='modernization_mark-word.html'>Emacs: Select Line, between Quotes, Extend Selection</a></li>
+</ul>
+
+<p>to declare lexical binding, add this to the first line of your elisp file:</p>
+
+<p><code>;;; xyz.el --- xyz does xyz. -*- coding: utf-8; lexical-binding: t; -*-</code></p>
+
+<p>if your elisp package uses lexical binding, you also need to declare this:</p>
+
+<p><code>;; Package-Requires: ((emacs &quot;24.1&quot;))</code></p>
+
+<p>That&apos;s the convention of emacs version requirement declaration used by melpa package repository.</p>
+
+<p>lexical binding is introduced in emacs 24.1
+(24.4. is released in 2014-10)</p>
+
+<p>lexical binding makes elisp code run slightly faster, and elisp compiler will find more errors, such as unused local variable. And pave the way for the future of elisp. (e.g. concurrency)</p>
+
+<p>〔➤see <a href='emacs_byte_compile.html'>Emacs: Byte Compile Elisp Files</a>〕</p>
+
+<p>one interesting finding is that this form of function call:</p>
+
+<pre class='emacs-lisp'>((<span class='keyword'>lambda</span> (x) (+ x 1)) 3)</pre>
+
+<p>is deprecated. You should do:</p>
+
+<pre class='emacs-lisp'>(<span class='keyword'>funcall</span> (<span class='keyword'>lambda</span> (x) (+ x 1)) 3)</pre>
+
+<p>but actually, the funcall form is inferior. It introduces a new function. Most other langs don&apos;t need it. For example, scheme lisp, clojure, JavaScript, Wolfram Language and most other modern languages can directly call function in the form of normal function call, simply replace the function name by a function expression.</p>
+
+<p>For example,</p>
+
+<ul>
+<li>Scheme lisp <code>(<var class='d'>function_expression</var> <var class='d'>args</var>)</code></li>
+<li>JavaScript <code>((<var class='d'>function_expression</var>)(<var class='d'>args</var>))</code></li>
+</ul>
+
+<p>the problem with elisp is that a function doesn&apos;t just return a function.
+Instead, elisp has symbols, and a symbol has function cell and value cell.
+The value cell could potentially contain another symbol whose value is
+another function (i.e. symbol with function cell). In other words, a function
+isn&apos;t just a function, but could also be a variable, and the value of the
+variable could also be a function. So when you have <code>(<var class='d'>f</var> <var class='d'>arg</var>)</code>, that <var class='d'>f</var> could be a function itself, or could be a variable that holds a function.
+This is the same problem with Common Lisp.
+In the case of <code>((lambda …) <var class='d'>arg</var>)</code>, it works, but i suppose is deprecated because in general won&apos;t work with arbitrary expression for the head.
+</p>
+
+<ul>
+<li>〔➤see <a href='elisp_symbol.html'>Emacs Lisp Symbol (tutorial)</a>〕</li>
+<li>〔➤see <a href='lisp1_vs_lisp2.html'>What&apos;s Lisp-1, What&apos;s Lisp-2? Bad Jargon or Good Jargon?</a>〕</li>
+</ul>
+
+<p>another thing i never understood, is why emacs dev introduced a directive for lexical binding. I rather prefer a new function/macro, such as “lexical-let”.</p>
+
+<p>by the way, if you write code properly, for example, always use function without side-effect, and always use local variable, then you don&apos;t really need lexical binding. It has no effect.</p>
+
+<p>my stance was, am never going to add that lexical binding directive.
+It really should be part of the language. If it is “lexical-let”, then
+i&apos;d be happy to use it. But the thing is, usually you can&apos;t fight a trend
+in large society. When something becomes popular, that everyone is doing
+it, even if it is a stupid one, you can&apos;t simply stand aloof and to keep
+yourself of some superior way, because, when everyone is doing it, it has
+an effect on many other things and future change. Your “incompatible” superior
+way gradually gets in the way as things evolve with the inferior system.
+Example of such as QWERTY keyboard layout, unix, programing conventions,
+writing convention. For elisp lexical binding, it is the way things are
+and elisp is moving forward. If your code does not use such directive,
+your code will not be able to reap whatever advantages coming to it, will
+be left behind, and most coder don&apos;t understand will simply think your
+code is stupid.</p>
+
+</div>
+ 

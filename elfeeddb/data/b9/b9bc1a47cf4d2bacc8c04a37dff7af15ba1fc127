@@ -1,0 +1,37 @@
+<p>I take my <a href="https://github.com/manuel-uberti/.emacs.d">Emacs configuration</a> with
+me on every computer I use. I also plug a big external display —and the awesome
+Das Keyboard 4 Ultimate— during long coding sessions, so it is only natural that
+I have to tailor my setup to accommodate different font sizes.</p>
+
+<p>Being the customizable editor that Emacs is, it wasn’t hard to devise a neat
+trick to please my needs.</p>
+
+<p>First, a simple function to set the default fonts.</p>
+
+<div class="language-emacs-lisp highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="nb">defun</span> <span class="nv">mu-setup-main-fonts</span> <span class="p">(</span><span class="nv">default-height</span> <span class="nv">variable-pitch-height</span><span class="p">)</span>
+  <span class="s">"Set up default fonts.
+
+Use DEFAULT-HEIGHT for default face and VARIABLE-PITCH-HEIGHT
+for variable-pitch face."</span>
+  <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'default</span> <span class="no">nil</span>
+                      <span class="ss">:family</span> <span class="s">"Source Code Pro"</span>
+                      <span class="ss">:height</span> <span class="nv">default-height</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'variable-pitch</span> <span class="no">nil</span>
+                      <span class="ss">:family</span> <span class="s">"Fira Sans"</span>
+                      <span class="ss">:height</span> <span class="nv">variable-pitch-height</span>
+                      <span class="ss">:weight</span> <span class="ss">'regular</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<p>Now I just have to call this function with the proper values for <code class="highlighter-rouge">:height</code>
+according to the screen size.</p>
+
+<div class="language-emacs-lisp highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="nb">when</span> <span class="nv">window-system</span>
+  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">x-display-pixel-width</span><span class="p">)</span> <span class="mi">1800</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">mu-setup-main-fonts</span> <span class="mi">150</span> <span class="mi">160</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">mu-setup-main-fonts</span> <span class="mi">130</span> <span class="mi">140</span><span class="p">)))</span>
+</code></pre>
+</div>
+
+<p>Of course, more specific settings for various display resolutions are just a
+<code class="highlighter-rouge">cond</code> away.</p>

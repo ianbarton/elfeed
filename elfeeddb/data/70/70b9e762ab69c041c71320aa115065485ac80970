@@ -1,0 +1,9 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<p><a href='xah-lookup.html'>Emacs: xah-lookup.el, Lookup the Web</a></p>
+
+<p>Major new version. Now you can customize each lookup command&apos;s URL and which browser to use. Can also write your own command to lookup php, clojure, etc. New version should be in MELPA the next day.</p>
+
+</div>
+ 

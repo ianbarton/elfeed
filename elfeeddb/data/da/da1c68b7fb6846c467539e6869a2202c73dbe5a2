@@ -1,0 +1,1 @@
+<p>The support for RST is likely in the kernel module for the controller, so <strong>lspci -k</strong> is our best chance to find it.</p>

@@ -1,0 +1,20 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<h3>js2-mode error highlight problem</h3>
+
+<figure>
+<img src='i/emacs_js2-mode_syntax_error_highlight_problem_2016-12-15.png' alt='emacs js2 mode syntax error highlight problem 2016 12 15' width='709' height='695'/>
+<figcaption>emacs js2 mode syntax error highlight problem 2016-12-15</figcaption>
+</figure>
+
+<p>js2-mode got this annoying syntax error highlight problem.</p>
+
+<p>it sticks with the old school style of requiring semicolon. But thousands packages on npm follows new school style of no semicolon.</p>
+
+<p>〔➤see <a href='http://xahlee.info/js/js_semicolon.html'>JavaScript: Semicolon Rules</a>〕</p>
+
+<p>if you want js2-mode features, a solution is the derivative js3-mode.</p>
+
+</div>
+ 

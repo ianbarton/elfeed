@@ -1,0 +1,5 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+<p><a href='emacs_navigating_keys_for_brackets.html'>Emacs: Move Cursor to Brackets, Quotes</a>. new command <code class='elisp-ƒ'>xah-forward-quote-smart</code>.</p>
+</div>
+ 

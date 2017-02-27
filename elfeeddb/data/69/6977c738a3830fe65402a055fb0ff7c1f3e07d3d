@@ -1,0 +1,26 @@
+<p>Now that I have a decent workflow for writing, coding would be the next good thing to reintegrate into my life.</p>
+<p>I get about an hour or two of discretionary time a day, late at night once A-&#8216;s asleep. It&#8217;s not a solid chunk, since A- often wants to nurse, but I can usually get back to what I was doing without losing too much context. Sometimes A- takes a while to settle down, or wakes up midway. Sometimes I&#8217;m too sleepy to do much after A- goes to sleep. Still, I usually get a little time to update my journal, do some consulting, or even play video games with my husband.</p>
+<p>How does coding fit into the picture? It&#8217;s fun. I learn stuff. Sometimes I even build tools that make my life a little easier. It gives me non-baby things to talk about with W- and other people, too.</p>
+<p>The time needs to come from somewhere. What are the trade-offs I might make?</p>
+<ul class="org-ul">
+<li>Fewer drawings of non-journal thoughts, balanced by more writing time on phone. Can I figure out a good workflow for drawing on my phone? Not index cards, but maybe I can move my drawing practice to my phone for extra skill-building and mental variety.</li>
+<li>Less consulting, but more personal benefits to code; might also use this to expand my comfortable range for consulting</li>
+<li>Real-life kaizen vs virtual kaizen: shift by doing real-life kaizen while A- is awake</li>
+<li>Other tasks: still do as needed</li>
+</ul>
+<p>What could a good setup be like?</p>
+<ul class="org-ul">
+<li>I spend some reading time going through documentation, Q&amp;A, research, etc. This helps me improve my skills and work more efficiently.</li>
+<li>I have a dev environment set up for risk-free experimentation.</li>
+<li>I have a to-do list with prioritized ideas and notes.</li>
+<li>I work on tasks that might be 15-30m in size, ideally with tests.</li>
+</ul>
+<p>I think it&#8217;ll be worth learning how to properly set things up with Vagrant. Frequent rebuilds will force me to make sure all my dev environment assumptions are documented.</p>
+<p>It&#8217;ll also be worth cleaning up my technical notes and writing more things down, so I can get back up to speed after months or even years away.</p>
+<p>Then I&#8217;ll want to sort out my testing environment and get back to writing tests. I wonder if I can set things up so that I can even write tests on my phone. Maybe cucumber cases? It&#8217;ll be easier to write behaviour-driven tests than regular tests, since I don&#8217;t have to mess with punctuation.</p>
+<p>Then I can code, one small chunk at a time. Maybe I can even write pseudo code on my phone.</p>
+<p>I&#8217;d also like to get back to tweaking my environment and tools, since that pays off multiple ways for me: enjoyment, learning, efficiency, and notes to share.</p>
+<p>I can start by sorting out my dev environment and notes. We&#8217;ll see how that goes, or if this is something that will be mostly on the back burner until A- grows a little more. =)</p>
+<div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/sachac?a=PXefk3QvMn0:8aXWYVFqpS8:a8iZE8QBh80"><img src="http://feeds.feedburner.com/~ff/sachac?i=PXefk3QvMn0:8aXWYVFqpS8:a8iZE8QBh80" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/sachac?a=PXefk3QvMn0:8aXWYVFqpS8:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/sachac?d=yIl2AUoC8zA" border="0"></img></a>
+</div><img src="http://feeds.feedburner.com/~r/sachac/~4/PXefk3QvMn0" height="1" width="1" alt=""/>

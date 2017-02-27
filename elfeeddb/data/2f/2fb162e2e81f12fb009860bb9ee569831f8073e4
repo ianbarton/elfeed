@@ -1,0 +1,1 @@
+<p>I&#039;ve an AMD/Nvidia desktop, and an Intel/Intel laptop. Games seems to run better on the laptop (at least now that there&#039;s a HUGE lag on the nvidia system) than they do on the desktop, even though the desktop has a GTX1060. So it looks like the regression only manifests when using the nvidia driver.</p>

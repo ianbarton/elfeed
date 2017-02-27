@@ -1,0 +1,16 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<h3>ido-separator obsolete</h3>
+
+<p>in emacs 25.1, the variable
+<var class='elisp'>ido-separator</var>
+is now obsolete. Replaced by a element in
+<var class='elisp'>ido-decorations</var></p>
+
+<p>for new elisp code to config, see updated:</p>
+
+<p><a href='emacs_buffer_switching.html'>Emacs: Switch Buffer</a></p>
+
+</div>
+ 

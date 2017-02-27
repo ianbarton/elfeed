@@ -1,0 +1,14 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<h3>“lexical-binding: t” vs “lexical-let”?</h3>
+
+<p>What&apos;s the reason of introducing file variable “lexical-binding: t” instead of a macro/special-function such as “lexical-let”?</p>
+
+<ul>
+<li>reddit: <a class='sorc' href='https://www.reddit.com/r/emacs/comments/5j9qgz/lexicalbinding_t_vs_lexicallet/' data-accessed='2016-12-19'>https://www.reddit.com/r/emacs/comments/5j9qgz/lexicalbinding_t_vs_lexicallet/</a></li>
+<li><a class='sorc' href='https://twitter.com/ErgoEmacs/status/810987745187241985' data-accessed='2016-12-19'>https://twitter.com/ErgoEmacs/status/810987745187241985</a></li>
+</ul>
+
+</div>
+ 

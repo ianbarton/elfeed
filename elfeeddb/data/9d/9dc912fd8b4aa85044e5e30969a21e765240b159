@@ -1,0 +1,13 @@
+<p><img alt="" class="alignleft size-full wp-image-61006" height="364" src="https://insights.ubuntu.com/wp-content/uploads/f48e/Dell-Edge-Gateway-3000.jpg" width="547" /> </p>
+<p> See the small Dell Edge Gateway 3000 with Ubuntu Core at the Ubuntu booth at <strong> MWC 2017 – Hall P3 3K1 </strong></p>
+<p>Dell Technologies is today announcing the new Dell Edge Gateway 3000 series, at Mobile World Congress 2017.</p>
+<p>The latest in the line of its purpose built gateways, the 3000 Series includes three unique models designed to work in both fixed and mobile use cases requiring smaller sensor networks, tight spaces, and simpler analytics.</p>
+<p>Dell <a href="http://www.dell.com/learn/us/en/uscorp1/press-releases/2017-02-27-dell-introduces-edge-gateway-3k-series?c=us&amp;l=en&amp;s=corp">announced</a> that the Dell Gateway 3000 will be available in three different models:</p>
+<ul>
+<li> <strong> General Purpose Automation, Model 3001</strong>, supports uses like general-purpose industrial automation and energy management; flexible I/O includes programmable serial ports (RS-485/422/232) and a multi-function I/O port </li>
+<li> <strong> Transportation and Logistics, Model 3002 </strong>, optimized to fit under the dash of a truck leverages its micro GPS tracker chip and support for accelerometers and other MEMS devices; includes CAN bus to support land/marine protocols and to monitor things like speed, location and consistency of trucks and fleet vehicles. With integrated ZigBee to support mesh sensor networks, it is also well-suited for logistics use cases such as inside of a warehouse </li>
+<li> <strong> Digital Signage and Retail, Model 3003</strong>, for general purpose IoT applications and media use cases such as vending, point-of-sale, streaming video, etc. includes I/O for graphic displays 2560×1600, 3.5mm line in/line out audio </li>
+</ul>
+<p>Ubuntu Core is officially supported on the Dell Edge Gateway 3000 series. Ubuntu Core is an OS built entirely of snaps , the universal Linux packaging format. With snaps and their transactional update capabilities, enterprises can easily deploy new software onto their gateways with the certainty that their device will continue to operate whether the update is successful or not. Enterprises looking to deploy IoT solutions also benefit from the large number of developers and system integrators offering IoT solutions for Ubuntu. </p>
+<p>The Dell Edge Gateway 3000 Series will be available early summer 2017 in select countries, starting at $299 USD. For more information visit <a href="http://www.dell.com/uk/business/p/edge-gateway">here</a>. </p>
+<p><em> See the Dell Edge Gateway 3000 with Ubuntu Core at the Ubuntu booth at MWC 2017 – Hall P3 3K1 </em></p>

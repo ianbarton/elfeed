@@ -1,0 +1,11 @@
+<p>Thanks for the suggestions! Updated <strong>.xbindkeysrc</strong> to:</p><div class="codebox"><pre><code>&quot;pactl set-sink-mute @DEFAULT_SINK@ false; pactl set-sink-volume @DEFAULT_SINK@ -5%&quot;
+   XF86AudioLowerVolume
+
+&quot;pactl set-sink-mute @DEFAULT_SINK@ false; pactl set-sink-volume @DEFAULT_SINK@ +5%&quot;
+   XF86AudioRaiseVolume
+
+&quot;pactl set-sink-mute @DEFAULT_SINK@ toggle&quot;
+   XF86AudioMute
+
+&quot;pactl set-source-mute @DEFAULT_SOURCE@ toggle&quot;
+   XF86AudioMicMute</code></pre></div><p>For the default microphone, I found that one can use <strong>@DEFAULT_SOURCE@</strong>. It all works fine now.</p>

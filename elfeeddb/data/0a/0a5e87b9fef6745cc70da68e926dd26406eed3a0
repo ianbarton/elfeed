@@ -1,0 +1,43 @@
+<div><p>
+We can find the buffer with Chinese name efficiently by using the first character of <a href="https://en.wikipedia.org/wiki/Pinyin">pinyin</a>.
+</p>
+
+<p>
+Here is the code (<a href="https://github.com/abo-abo/swiper">ivy</a> and <a href="https://github.com/cute-jumper/pinyinlib.el">pinyinlib</a> is required):
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="lang-lisp">(defun ivy-switch-buffer-matcher-pinyin (regexp candidates)
+  (unless (featurep 'pinyinlib) (require 'pinyinlib))
+  (let* ((pys (split-string regexp "[ \t]+"))
+         (regexp (format ".*%s.*"
+                         (mapconcat 'pinyinlib-build-regexp-string pys ".*"))))
+    (ivy--switch-buffer-matcher regexp candidates)))
+
+(defun ivy-switch-buffer-by-pinyin ()
+  "Switch to another buffer."
+  (interactive)
+  (unless (featurep 'ivy) (require 'ivy))
+  (let ((this-command 'ivy-switch-buffer))
+    (ivy-read "Switch to buffer: " 'internal-complete-buffer
+              :matcher #'ivy-switch-buffer-matcher-pinyin
+              :preselect (buffer-name (other-buffer (current-buffer)))
+              :action #'ivy--switch-buffer-action
+              :keymap ivy-switch-buffer-map
+              :caller 'ivy-switch-buffer)))
+</code></pre>
+
+</div>
+
+<p>
+You can <code>M-x ivy-switch-buffer-by-pinyin</code> to switch buffer.
+</p>
+
+<p>
+The algorithm of pinyinlib is simple. We build a big lookup table to convert the a plain English string into a regular expression containing Chinese characters.
+</p>
+
+<p>
+You can apply the <b>same algorithm to other non-English languages</b>.
+</p></div>

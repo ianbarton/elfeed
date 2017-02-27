@@ -1,0 +1,8 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<p><a href='elisp-xah-find-text.html'>Emacs: xah-find.el, Find Replace in Pure Elisp</a>
+ (now you can customize face. Call <code class='elisp-ƒ'>customize-group</code>, then type xah-find.)</p>
+
+</div>
+ 

@@ -1,0 +1,13 @@
+<p>ExecStop= doesn&#039;t seem to wait for the process to finish (even on type=oneshot) so other units might kick in earlier. <br />Even though &#039;After=multi-user.target&#039; starts the unit very early in the shutdown process already the script invocation itself (*.sh) might need too much time so other (parallel started) units might come in too fast. Thus the &#039;sleep 1&#039; that keeps them away (oddly, this is not parallelized. The &#039;sleep&#039; properly blocks the whole systemd). <br />Just a dirty hack but i haven&#039;t found anything proper either.</p><p>Edit: Correction. Its not reliable. &#039;After=multi-user.target&#039; still starts it too late sometimes. <img src="https://bbs.archlinux.org/img/smilies/sad.png" width="15" height="15" alt="sad" /></p><div class="codebox"><pre><code>[Unit]
+Description=Unmount personal blocking mounts
+After=multi-user.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/true
+ExecStop=/etc/early-shutdown-script.sh
+ExecStop=/usr/bin/sleep 1
+
+[Install]
+WantedBy=multi-user.target</code></pre></div>

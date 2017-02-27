@@ -1,0 +1,33 @@
+<p>systemd 233 is scheduled to be released next week, and there is only
+<a href="https://github.com/systemd/systemd/issues?q=is%3Aopen+is%3Aissue+milestone%3Av233">a handful of small issues left</a>.
+As usual there are <a href="https://github.com/systemd/systemd/blob/master/NEWS">tons of improvements and fixes</a>,
+but the most intrusive one probably is another attempt to move from legacy cgroup v1
+to a “hybrid” setup where the new unified (cgroup v2) hierarchy is mounted at
+<code>/sys/fs/cgroup/unified/</code> and the legacy one stays at <code>/sys/fs/cgroup/</code> as
+usual. This should provide an easier path for software like Docker or LXC to
+migrate to the unified hiearchy, but even that hybrid mode broke some bits.</p>
+
+<p>While systemd 233 will not make it into Debian stretch or Ubuntu zesty, as both
+are in feature freeze, it will soon be available in Debian experimental, and in
+the next Ubuntu release after 17.04 gets released. Thus now is another good
+time to give this some thorough testing!</p>
+
+<p>To help with this, please give the
+<a href="https://launchpad.net/~pitti/+archive/ubuntu/systemd/">PPA with builds from upstream master</a>
+a spin. In addition to the usual packages for Ubuntu 16.10 I also uploaded a
+build for Ubuntu zesty, and a <a href="https://people.debian.org/~mpitt/tmp/systemd-master-20170225/">build for Debian stretch</a>
+(aka testing) which also works on Debian sid. You can use that URL as an apt source:</p>
+
+<pre><code>deb [trusted=yes] https://people.debian.org/~mpitt/tmp/systemd-master-20170225/ /
+</code></pre>
+
+<p>These packages pass our autopkgtests and I tested them manually too. LXC and
+LXD work fine, docker.io/runc <a href="https://github.com/opencontainers/runc/pull/1266">needs a fix</a>
+which I <a href="https://launchpad.net/ubuntu/+source/runc/1.0.0~rc2-0ubuntu3">uploaded to Ubuntu zesty</a>.
+(It’s not yet available in Debian, sorry.)</p>
+
+<p>Please file reports about regressions <a href="https://github.com/systemd/systemd/issues">on GitHub</a>,
+but please also le me know about successes on <a href="https://plus.google.com/+MartinPitti">my Google+ page</a>
+so that we can get some idea about how many people tested this.</p>
+
+<p>Thank you, and happy booting!</p>

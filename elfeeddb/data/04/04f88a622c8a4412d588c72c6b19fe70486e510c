@@ -1,0 +1,41 @@
+<div class="KonaBody"><p><!--adsense-->After almost 24 months of constant development the Debian project is proud to present its new stable version 8 (code name "Jessie"), which will be supported for the next 5 years thanks to the combined work of the Debian Security team and of the Debian Long Term Support team.<br />
+<span id="more-4368"></span><br />
+"Jessie" ships with a new default init system, systemd. The systemd suite provides many exciting features such as faster boot times, cgroups for services, and the possibility of isolating part of the services. The sysvinit init system is still available in "Jessie".</p>
+<p>The UEFI ("Unified Extensible Firmware Interface") support introduced in "Wheezy" has also been greatly improved in Jessie. This includes workarounds for many known firmware bugs, support for UEFI on 32-bit systems, and support for 64-bit kernels with 32-bit UEFI firmware (with the latter being included only on our amd64/i386 "multi-arch" installation media). </p>
+<p> This release includes numerous updated software packages, such as:</p>
+<p>    Apache 2.4.10<br />
+    Asterisk 11.13.1<br />
+    GIMP 2.8.14<br />
+    an updated version of the GNOME desktop environment 3.14<br />
+    GNU Compiler Collection 4.9.2<br />
+    Icedove 31.6.0 (an unbranded version of Mozilla Thunderbird)<br />
+    Iceweasel 31.6.0esr (an unbranded version of Mozilla Firefox)<br />
+    KDE Plasma Workspaces and KDE Applications 4.11.13<br />
+    LibreOffice 4.3.3<br />
+    Linux 3.16.7-ckt9<br />
+    MariaDB 10.0.16 and MySQL 5.5.42<br />
+    Nagios 3.5.1<br />
+    OpenJDK 7u75<br />
+    Perl 5.20.2<br />
+    PHP 5.6.7<br />
+    PostgreSQL 9.4.1<br />
+    Python 2.7.9 and 3.4.2<br />
+    Samba 4.1.17<br />
+    Tomcat 7.0.56 and 8.0.14<br />
+    Xen Hypervisor 4.4.1<br />
+    the Xfce 4.10 desktop environment<br />
+    more than 43,000 other ready-to-use software packages, built from nearly 20,100 source packages.</p>
+<p>With this broad selection of packages and its traditional wide architecture support, Debian once again stays true to its goal of being the universal operating system. It is suitable for many different use cases: from desktop systems to netbooks; from development servers to cluster systems; and for database, web, or storage servers. At the same time, additional quality assurance efforts like automatic installation and upgrade tests for all packages in Debian's archive ensure that "Jessie" fulfills the high expectations that users have of a stable Debian release.</p>
+<p>A total of ten architectures are supported: 32-bit PC / Intel IA-32 (i386), 64-bit PC / Intel EM64T / x86-64 (amd64), Motorola/IBM PowerPC (powerpc for older hardware and ppc64el for the new 64-bit (little-endian)), MIPS (mips (big-endian) and mipsel (little-endian)), IBM S/390 (64-bit s390x) and for ARM, armel and armhf for old and new 32-bit hardware, plus arm64 for the new 64-bit "AArch64" architecture.</p>
+<p><strong>Download Debian 8</strong></p>
+<blockquote><p>You can download Debian 8 from <a href="https://www.debian.org/CD/" target="_blank">here</a> </p></blockquote>
+<p><!--adsense#new--></p>
+<div class="betterrelated"><p><strong>Related content:</strong></p>
+<ol><li> <a href="http://www.debianadmin.com/debian-7-0-wheezy-released-and-download-links-included.html" title="Permanent link to Debian 7.0 "Wheezy" released and download links included">Debian 7.0 "Wheezy" released and download links included</a>  </li>
+<li> <a href="http://www.debianadmin.com/debian-6-0-squeeze-released-and-download-links-included.html" title="Permanent link to Debian 6.0 "Squeeze" released and download links included">Debian 6.0 "Squeeze" released and download links included</a>  </li>
+<li> <a href="http://www.debianadmin.com/upgrade-debian-7-wheezy-to-debian-8-jessie.html" title="Permanent link to Upgrade Debian 7 (Wheezy) to Debian 8 (Jessie)">Upgrade Debian 7 (Wheezy) to Debian 8 (Jessie)</a>  </li>
+<li> <a href="http://www.debianadmin.com/debian-8-jessie-screenshots-tour.html" title="Permanent link to Debian 8 (Jessie) Screenshots Tour">Debian 8 (Jessie) Screenshots Tour</a>  </li>
+<li> <a href="http://www.debianadmin.com/debian-40-etch-gnulinux-officially-released.html" title="Permanent link to Debian 4.0 (Etch) GNU/Linux Officially Released">Debian 4.0 (Etch) GNU/Linux Officially Released</a>  </li>
+</ol></div></div><!-- KonaBody --><div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=_q5JL1L5zuQ:ibR15wzxm_M:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=_q5JL1L5zuQ:ibR15wzxm_M:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?i=_q5JL1L5zuQ:ibR15wzxm_M:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=_q5JL1L5zuQ:ibR15wzxm_M:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=_q5JL1L5zuQ:ibR15wzxm_M:l6gmwiTKsz0"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=l6gmwiTKsz0" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=_q5JL1L5zuQ:ibR15wzxm_M:gIN9vFwOqvQ"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?i=_q5JL1L5zuQ:ibR15wzxm_M:gIN9vFwOqvQ" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=_q5JL1L5zuQ:ibR15wzxm_M:TzevzKxY174"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=TzevzKxY174" border="0"></img></a>
+</div>

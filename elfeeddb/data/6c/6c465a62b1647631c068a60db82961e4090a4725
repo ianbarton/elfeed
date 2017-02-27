@@ -1,0 +1,11 @@
+<p><a href="http://kubuntu.org/wp-content/uploads/2017/02/8b3e/Screenshot_20170223_194843.png" rel="lightbox[3062]"><img alt="" class="alignnone size-large wp-image-3097" height="506" src="http://www.kubuntu.org/wp-content/uploads/2017/02/8b3e/Screenshot_20170223_194843-1024x576.png" width="900" /></a></p>
+<p>Today the Kubuntu team is happy to announce that Kubuntu Zesty Zapus (17.04) Beta 1 is released . With this Beta 1 pre-release, you can see and test what we are preparing for 17.04, which we will be releasing in April.</p>
+<p>NOTE: This is Beta 1 Release. Kubuntu Beta Releases are NOT recommended for:</p>
+<p>* Regular users who are not aware of pre-release issues<br />
+* Anyone who needs a stable system<br />
+* Anyone uncomfortable running a possibly frequently broken system<br />
+* Anyone in a production environment with data or work-flows that need to be reliable</p>
+<p>Getting Kubuntu 17.04 Beta 1:<br />
+* Upgrade from 16.10: run `do-release-upgrade -d` from a command line.<br />
+* Download a bootable image (ISO) and put it onto a DVD or USB Drive : <a href="http://cdimage.ubuntu.com/kubuntu/releases/zesty/beta-1/">http://cdimage.ubuntu.com/kubuntu/releases/zesty/beta-1/</a></p>
+<p>Release notes: <a href="https://wiki.ubuntu.com/ZestyZapus/Beta1/Kubuntu">https://wiki.ubuntu.com/ZestyZapus/Beta1/Kubuntu</a></p>

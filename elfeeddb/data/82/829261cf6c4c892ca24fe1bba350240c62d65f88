@@ -1,0 +1,445 @@
+<p>In this post we are going to see how to make snap installation packages for a program called <em><strong>lolcat</strong></em>.</p>
+<p><strong>What you need</strong> for this tutorial? This tutorial is similar to <a href="https://tutorials.ubuntu.com/tutorial/snap-python-app">Snap a python application</a>. If you first follow that tutorial, then this one will reinforce what you have learned and expand to dealing with more programming languages than just Python.</p>
+<p><strong>What will you learn?</strong></p>
+<ol>
+<li>How to deal with different source code repositories and get into the process of snapping them in a snap (pun intended).</li>
+<li>How to use the Snapcraft plugins for Python, golang, Rust and C/C++.</li>
+<li>How to deal with confinement decisions and when to select <em><strong>strict confinement</strong></em> or <em><strong>classic confinement</strong></em>.</li>
+<li>How to test the quality of an app before releasing to the Ubuntu Store</li>
+<li>What is this <em><strong><span style="color: #ff6600;">true</span>–<span style="color: #00ccff;">color</span> <span style="color: #000080;">terminal</span> <span style="color: #800080;">emulator</span></strong></em> thing, what is <em><strong>lolcat</strong></em> and why it is cool (at least to a select few).</li>
+</ol>
+<h2>True-color terminal emulators</h2>
+<p>Terminal emulators like <a href="https://en.wikipedia.org/wiki/GNOME_Terminal">GNOME Terminal</a> support the facility to display text in different colors.</p>
+<p><a href="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/linux-terminal-standard-colors.png?ssl=1"><img alt="" class="alignnone size-full wp-image-1692" data-attachment-id="1692" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="linux-terminal-standard-colors" data-large-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/linux-terminal-standard-colors.png?resize=449%2C304&amp;ssl=1" data-medium-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/linux-terminal-standard-colors.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/linux-terminal-standard-colors.png?fit=732%2C438&amp;ssl=1" data-orig-size="732,438" data-permalink="https://blog.simos.info/?attachment_id=1692" data-recalc-dims="1" src="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/linux-terminal-standard-colors.png?resize=732%2C438&amp;ssl=1" /></a></p>
+<p>You know this already because by default in Ubuntu you can see filenames in different colors, depending on whether they are executable (green), a directory (blue), a symbolic link (cyan) and so on. If you go 20+ years in the past, even the Linux console supported since then 256 colors.</p>
+<p>What changed recently in terms of colors in the terminal emulators, is that newer terminal emulators support 16 million colors; what is described as <em><strong>true-color</strong></em>.</p>
+<p><a href="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/gnome-terminal-true-color.png?ssl=1"><img alt="" class="alignnone size-full wp-image-1693" data-attachment-id="1693" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="gnome-terminal-true-color" data-large-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/gnome-terminal-true-color.png?resize=449%2C285&amp;ssl=1" data-medium-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/gnome-terminal-true-color.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/gnome-terminal-true-color.png?fit=732%2C285&amp;ssl=1" data-orig-size="732,285" data-permalink="https://blog.simos.info/?attachment_id=1693" data-recalc-dims="1" src="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/gnome-terminal-true-color.png?resize=732%2C285&amp;ssl=1" /></a></p>
+<p>Here is an AWK script (of all scripting languages!) that shows a smooth gradient, from red to green to blue. In old terminal emulators and the Linux console, they were <a href="https://en.wikipedia.org/wiki/Escape_sequence">escape sequences</a> to specify the colors, and you had to specify them by name. With the recent improvement among terminal emulators, it is now possible to specify the color by RGB value, thus 256*256*256 ~= 16 million different colors. You can read more about this in the article <a href="https://gist.github.com/XVilka/8346728">True Colour (16 million colours) support in various terminal applications and terminals</a>. I found that AWK script there in this article. Try it one your Ubuntu as well!</p>
+<p>Now, there is this Unix command called <em><strong>cat</strong></em>, which is used to print the contents of a text file in the terminal. <em><strong>cat /etc/passwd</strong></em> would show the contents of /etc/passwd. So, <a href="https://github.com/busyloop/lolcat">some people wrote an improved <em><strong>cat</strong></em>, called <em><strong>lolcat</strong></em></a>, that shows the content of files in a rainbow of colors.</p>
+<p><a href="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-snapcraft-help.png?ssl=1"><img alt="" class="alignnone size-full wp-image-1696" data-attachment-id="1696" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="lolcat-snapcraft-help" data-large-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-snapcraft-help.png?resize=449%2C304&amp;ssl=1" data-medium-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-snapcraft-help.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-snapcraft-help.png?fit=732%2C438&amp;ssl=1" data-orig-size="732,438" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-snapcraft-help/" data-recalc-dims="1" src="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-snapcraft-help.png?resize=732%2C438&amp;ssl=1" /></a></p>
+<p>In the screenshot above, the utility <em><strong>lolcat</strong></em> (a version we made and call <em><strong>lolcat-go</strong></em>) is used as a filter to a command (<em><strong>snapcraft –help</strong></em>), and colorizes the text that it receives with a nice rainbow of colors.</p>
+<p>In practice, the <em><strong>lolcat</strong></em> utility merely sets the color for each character being printed. It starts with a random color and circles around the rainbow, heading diagonally towards the bottom-right. In the screenshot above, you can see the text <em><strong>snapcraft</strong></em> and <em><strong>Usage:</strong></em> in strong blue, and then diagonally (heading to bottom-right), the colors shift to green and then to orange.</p>
+<h2>Select which repositories to snap</h2>
+<p>The first implementation of <a href="https://github.com/busyloop/lolcat">the lolcat rainbow utility was probably by busyloop</a>, written in Ruby. Since then, several others re-implemented <em><strong>lolcat</strong></em> into more programming languages. In this post we are going to snap:</p>
+<ol>
+<li>The <a href="https://github.com/tehmaze/lolcat">Python lolcat by tehmaze</a>.</li>
+<li>The <a href="https://github.com/cezarsa/glolcat">golang lolcat by cezarsa</a>.</li>
+<li>The <a href="https://github.com/ur0/lolcat">Rust lolcat by ur0</a> (a version that uses Rust’s concurrency feature!)</li>
+<li>The <a href="https://github.com/jaseg/lolcat">C lolcat by jaseg</a> (a version optimized for speed!)</li>
+</ol>
+
+<a href="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-python-repo/"><img alt="" class="attachment-full size-full" data-attachment-id="1700" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="lolcat-python-repo" data-large-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-python-repo.png?resize=370%2C304&amp;ssl=1" data-medium-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-python-repo.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-python-repo.png?fit=370%2C660&amp;ssl=1" data-orig-size="370,660" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-python-repo/" height="660" src="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-python-repo.png?fit=370%2C660&amp;ssl=1" width="370" /></a>
+<a href="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-go-repo/"><img alt="" class="attachment-full size-full" data-attachment-id="1699" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="lolcat-go-repo" data-large-file="https://i0.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-go-repo.png?resize=370%2C304&amp;ssl=1" data-medium-file="https://i0.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-go-repo.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i0.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-go-repo.png?fit=370%2C660&amp;ssl=1" data-orig-size="370,660" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-go-repo/" height="660" src="https://i0.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-go-repo.png?fit=370%2C660&amp;ssl=1" width="370" /></a>
+<a href="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-rust-repo/"><img alt="" class="attachment-full size-full" data-attachment-id="1698" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="lolcat-rust-repo" data-large-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-rust-repo.png?resize=370%2C304&amp;ssl=1" data-medium-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-rust-repo.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-rust-repo.png?fit=370%2C660&amp;ssl=1" data-orig-size="370,660" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-rust-repo/" height="660" src="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-rust-repo.png?fit=370%2C660&amp;ssl=1" width="370" /></a>
+<a href="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-c-repo/"><img alt="lolcat repository details" class="attachment-full size-full" data-attachment-id="1697" data-comments-opened="1" data-image-description="&lt;p&gt;lolcat repository details&lt;/p&gt; " data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="lolcat repository details" data-large-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-c-repo.png?resize=370%2C304&amp;ssl=1" data-medium-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-c-repo.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-c-repo.png?fit=370%2C660&amp;ssl=1" data-orig-size="370,660" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-c-repo/" height="660" src="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-c-repo.png?fit=370%2C660&amp;ssl=1" width="370" /></a>
+
+<p>Here we can see a) the URL of the source code, the available b) branches and c) tags. This is useful in the next section when we instruct Snapcraft which version of the source code to use.</p>
+<p>In terms of versions among the four implementations, the Python lolcat has a recent tag <em><strong>0.44</strong></em>, therefore we are using this tag and specify a version <em><strong>0.44</strong></em>. For the rest, we are using the latest (<em><strong>master</strong></em>) checkout of their repositories, so we use the current date as a version number, in the form YYYYMMDD (for example, <em><strong>20170226</strong></em>).</p>
+<h2>Completing the snapcraft.yaml metadata</h2>
+<p>When creating a snap, we need to write up a nice snap summary (less than 80 characters) and a description (less than 100 words). The summary will look like <em><strong>lolcat-python utility written in Python</strong></em>, and the description <em><strong>lolcat is a utility similar to the Unix “cat” command. lolcat adds rainbow colors to the text output.</strong></em></p>
+<p>In addition, we need suitable names for the four snaps. We are going to use <em><strong>lolcat-python</strong></em>, <em><strong>lolcat-go</strong></em>, <em><strong>lolcat-rust</strong></em>, and <em><strong>lolcat-c </strong></em>for each one of the four snaps.</p>
+<p>All in all, here is the information we collected so far:</p>
+<ol>
+<li>Python: name is “<em><strong>lolcat-python</strong></em>“, version is “<em><strong>0.44</strong></em>“, summary: <em><strong>lolcat-python utility written in Python</strong></em>, description: <em><strong>lolcat-python is a utility similar to the Unix “cat” command. lolcat-python adds rainbow colors to the text output.</strong></em></li>
+<li>Go: name is “<em><strong>lolcat-go</strong></em>“, version is “<em><strong>20170226</strong></em>“, summary: <em><strong>lolcat-go utility written in Go</strong></em>, description: <em><strong>lolcat-go is a utility similar to the Unix “cat” command. lolcat-go adds rainbow colors to the text output.</strong></em></li>
+<li>Rush: name is “<em><strong>lolcat-rust</strong></em>“, version is “<em><strong>20170226</strong></em>“, summary: <em><strong>lolcat-rust utility written in Rust</strong></em>, description: <em><strong>lolcat-rust is a utility similar to the Unix “cat” command. lolcat-rust adds rainbow colors to the text output.</strong></em></li>
+<li>C: name is “<em><strong>lolcat-c</strong></em>“, version is “<em><strong>20170226</strong></em>“, summary: <em><strong>lolcat-c utility written in C,</strong></em> description: <em><strong>lolcat-c is a utility similar to the Unix “cat” command. lolcat-c adds rainbow colors to the text output.</strong></em><em><strong><br />
+</strong></em></li>
+</ol>
+<p>The final part in the metadata is the <em><strong>grade</strong></em> (whether it is <em><strong>devel</strong></em> or <em><strong>stable</strong></em>) and the <em><strong>confinement</strong></em> (whether it is <em><strong>devmode</strong></em>, <em><strong>classic</strong></em> or <em><strong>strict</strong></em>).</p>
+<p>We select <em><strong>stable</strong></em> as the <em><strong>grade</strong></em> because we aim to add these snaps to the Ubuntu Store. If the <em><strong>grade</strong></em> is specified as <em><strong>devel</strong></em>, then the corresponding snap cannot be added to the <em><strong>stable</strong></em> channel (publicly available to all) of the Ubuntu Store. There is a section below on testing the four lolcat implementations and we will set accordingly the grade to either <em><strong>stable</strong></em> or <em><strong>devel</strong></em>, depending on the outcome of these tests.</p>
+<p>We select initially <em><strong>devmode</strong></em> (DEVeloper MODE) as the <em><strong>confinement</strong></em> in order not to confine initially out snap. If our snap fails to run, we want to be sure it is some issue with our settings and not a byproduct of the choice of a stricter confinement. Once the snap can be built and run successfully, we change the <em><strong>confinement</strong></em> to either <em><strong>strict</strong></em> or <em><strong>classic</strong></em> and deal at that point with any issues that appear from there on.</p>
+<p><a href="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/snap-lolcat-python-metadata.png?ssl=1"><img alt="" class="alignnone size-full wp-image-1703" data-attachment-id="1703" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="snap-lolcat-python-metadata" data-large-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/snap-lolcat-python-metadata.png?resize=449%2C220&amp;ssl=1" data-medium-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/snap-lolcat-python-metadata.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/snap-lolcat-python-metadata.png?fit=732%2C220&amp;ssl=1" data-orig-size="732,220" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/snap-lolcat-python-metadata/" data-recalc-dims="1" src="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/snap-lolcat-python-metadata.png?resize=732%2C220&amp;ssl=1" /></a></p>
+<p>Here is how the metadata look in the snapcraft.yaml configuration file for the Python variant of the snap.</p>
+<p>Up to this point, all four snapcraft.yaml files, with metadata filled in, can be found at <a href="https://github.com/simos/lolcat-snap/tree/v1.0">https://github.com/simos/lolcat-snap/tree/v1.0</a></p>
+<h2>Working on the “parts” section in snapcraft.yaml</h2>
+<p>We completed the easy metadata section, now it is time to work on the <em><strong>parts:</strong></em> section of snapcraft.yaml. (After the <em><strong>parts:</strong></em> section work, we just need the <em><strong>apps:</strong></em> section, where we expose the generated executable to the users of the snap).</p>
+<p>Initially, <em><strong>snapcraft init</strong></em> will generate a stock snapcraft.yaml file, which has a stub <em><strong>parts:</strong></em> section. Here it how it looks,</p>
+<pre>parts:
+  my-part:
+    # See 'snapcraft plugins'
+    plugin: nil</pre>
+<p>It defines the start of the <em><strong>parts:</strong></em> section. Then, a name, <em><strong>my-part:</strong></em> (<em>we</em> choose this name) is defined. Finally, the contents of <em><strong>my-part:</strong></em> are listed, here in two lines. The first line of <em><strong>my-part:</strong></em> is a comment (starts with <em><strong>#</strong></em>) and the second specifies the <em><strong>plugin</strong></em>, which is <em><strong>nil</strong></em> (it is reserved, and does nothing).</p>
+<p>Note how these lines are aligned vertically. First is <em><strong>parts:</strong></em> at the start of the line, then two columns further, is <em><strong>my-part:</strong></em>. Then, two more columns further, we get the comment and the <em><strong>plugin:</strong></em> directive, both on the same column. We use spaces and not tabs. If you get any errors later on, check that you follow properly the formatting. You can have the levels separated by more than two columns, if you wish. But make sure that the same level lines are aligned on the same column.</p>
+<p>Let’s figure out the initial versions of the <em><strong>parts:</strong></em>. Let’s do Python first!</p>
+<pre>parts:
+  <em><strong>lolcat-python</strong></em>:
+    <em><strong>source</strong></em>: https://github.com/tehmaze/lolcat.git
+    <em><strong>source-tag</strong></em>: '0.44'
+    plugin: <em><strong>python</strong></em></pre>
+<p>We used the name <em><strong>lolcat-python:</strong></em> (our choice) for the name of this <em><strong>parts:</strong></em>. In there, we specify the <em><strong>source:</strong></em> for the source code repository, and any branches or tags that may be relevant. As we saw above, we work on the 0.44 tag. Finally, the source is written in Python, and we select the <em><strong>python</strong></em> plugin. (We will figure out later if we need to specify which of Python 2 or Python 3, if we get a relevant error).</p>
+<p>Here is the Go,</p>
+<pre>parts:
+  <em><strong>lolcat-go</strong></em>:
+    <em><strong>source</strong></em>: https://github.com/cezarsa/glolcat.git
+    plugin: <em><strong>go</strong></em></pre>
+<p>Fairly expected. We do not specify a version, therefore it will use the latest snapshot of the source at the time of running snapcraft. We chose the name <em><strong>locat-go</strong></em>, and <a href="https://snapcraft.io/docs/reference/plugins/">the golang plugin is called <em><strong>go</strong></em></a>.</p>
+<p>Time for Rust,</p>
+<pre>parts:
+  <em><strong>lolcat-rust</strong></em>:
+    <em><strong>source</strong></em>: https://github.com/ur0/lolcat.git
+    plugin: <em><strong>rust</strong></em></pre>
+<p>Again, very similar to the above. We do not specify a specific source code version (there isn’t any tag or stable branch in the repository). We chose the name <em><strong>lolcat-rust</strong></em>, and <a href="https://snapcraft.io/docs/reference/plugins/">the Rust plugin in snapcraft is called <em><strong>rust</strong></em></a>.</p>
+<p>Finally, the version written in C,</p>
+<pre>parts:
+  <em><strong>lolcat-c</strong></em>:
+    <em><strong>source</strong></em>: https://github.com/jaseg/lolcat.git
+    plugin: <em><strong>make</strong></em></pre>
+<p>Again, we chose a name for this part, and it’s <em><strong>lolcat-c</strong></em>. Then, specified the URL for the source code. As for the plugin, we wrote <em><strong>make</strong></em>, although the source is written in C. Actually, the <em><strong>plugin:</strong></em> directive specifies how to build the source code. <a href="https://snapcraft.io/docs/reference/plugins/">The <em><strong>make</strong></em> plugin</a> does the <em><strong>make; make install</strong></em> sequence for us, and it’s our first choice when we see an existing Makefile file in a repository.</p>
+<p>At this stage, we have four initial versions of configuration files. We are ready to try them out and deal with any errors that may appear.</p>
+<h3>Working on the Python version</h3>
+<p>Here is the configuration (snapcraft.yaml) for the Python variant up to this point,</p>
+<pre>name: lolcat-python
+version: '0.44'
+summary: lolcat utility written in Python
+description: |
+  lolcat-python is a utility similar to the Unix "cat" command. 
+  lolcat-python adds rainbow colors to the text output.
+  The source code is available at https://github.com/tehmaze/lolcat
+
+grade: stable
+confinement: devmode
+
+parts:
+  lolcat-python:
+    source: https://github.com/tehmaze/lolcat.git
+    source-tag: '0.44'
+    plugin: python</pre>
+<p>Let’s run <em><strong>snapcraft prime</strong></em>. The <em><strong>prime</strong></em> parameter will perform the necessary compilation and will put the result in the prime/ subdirectory. Since <em><strong>snapcraft prime</strong></em> does only the initial compilation steps, it is more convenient to use for repeated tests. Once it works with <em><strong>snapcraft prime</strong></em>, we would be ready in a single extra step to produce the final .snap file (by running <em><strong>snapcraft</strong></em>, no parameters).</p>
+<pre>$ <strong>snapcraft prime</strong>
+Preparing to pull lolcat-python 
+[...]
+Pulling lolcat-python 
+[...]
+Installing collected packages: pip, six, pyparsing, packaging, appdirs, setuptools, wheel
+[...]
+Successfully downloaded lolcat
+Preparing to build lolcat-python 
+Building lolcat-python 
+[...]
+Successfully built lolcat
+[...]
+Successfully installed lolcat-0.44
+Staging lolcat-python 
+Priming lolcat-python 
+$ _</pre>
+<p>It worked beautifully! Any result is in the <em><strong>prime/</strong></em> subdirectory, and we can identify even the executable.</p>
+<pre>$ <strong>ls prime/</strong>
+bin/  etc/  lib/  meta/  snap/  usr/
+$ <strong>ls prime/bin</strong>
+lolcat*
+$ _</pre>
+<p>We are now ready to create the <em><strong>apps:</strong></em> section of the snapcraft.yaml configuration file, in order to expose the executable to the users,</p>
+<pre><em><strong>apps</strong></em>:
+  <em><strong>lolcat-python</strong></em>:
+    command: <em><strong>lolcat</strong></em></pre>
+<p>The <em><strong>name:</strong></em> of this snap is <em><strong>lolcat-python</strong></em>, and the name we chose in the <em><strong>apps:</strong></em> section is the same, <em><strong>lolcat-python</strong></em>. Since they are the same, once we install the snap, the newly available command will be called <em><strong>lolcat-python</strong></em>. If there was a difference between the two (for example, <em><strong>name: lolcat-python</strong></em> and <em><strong>apps: lolcat: […]</strong></em>, then the command for the users would end up being something like lolcat-python.lolcat, which may not be desirable.</p>
+<h3>Working on the Go version</h3>
+<p>Here is the configuration (snapcraft.yaml) for the Go variant up to this point,</p>
+<pre>name: lolcat-go
+version: '20170226'
+summary: lolcat utility written in golang
+description: |
+  lolcat-go is a utility similar to the Unix "cat" command.
+  lolcat-go adds rainbow colors to the text output.
+  The source code is available at https://github.com/cezarsa/glolcat
+
+grade: devel
+confinement: devmode
+
+parts:
+  lolcat-go:
+    source: https://github.com/cezarsa/glolcat.git
+    plugin: go</pre>
+<p>Let’s run <em><strong>snapcraft prime</strong></em> and see how it goes.</p>
+<pre>$ <strong>snapcraft prime</strong>
+Preparing to pull lolcat-go 
+[...]
+Building lolcat-go 
+[...]Staging lolcat-go 
+Priming lolcat-go 
+$ <strong>ls prime/bin/</strong>
+glolcat.git
+$ _</pre>
+<p>Lovely! The <em><strong>go</strong></em> plugin managed to make sense of the repository and compile the Go version of lolcat. The generated executable is called <em><strong>glolcat.git</strong></em>. Therefore, the <em><strong>apps:</strong></em> section looks like</p>
+<pre><em><strong>apps</strong></em>:
+  <em><strong>lolcat-go</strong></em>:
+    command: <em><strong>glolcat.git</strong></em></pre>
+<p>In this way, once we install the Go snap of lolcat, there will be an executable <em><strong>lolcat-go</strong></em> exposed to the users. This executable will be the <em><strong>glolcat.git</strong></em> that was generated by the Snapcraft <em><strong>go</strong></em> plugin in <em><strong>prime/bin/</strong></em>. Snapcraft tries to find the final executable in either <em><strong>prime/</strong></em> or <em><strong>prime/bin/</strong></em>, therefore we do not need to specify specifically <em><strong>bin/glolcat.git</strong></em>.</p>
+<h3>Working on the Rust version</h3>
+<p>Here is the configuration (snapcraft.yaml) for the Rust variant up to this point,</p>
+<pre>name: lolcat-rust
+version: '20170226'
+summary: lolcat utility written in Rust
+description: |
+  lolcat-rust is a utility similar to the Unix "cat" command.
+  lolcat-rust adds rainbow colors to the text output.
+  The source code is available at https://github.com/ur0/lolcat
+
+grade: stable
+confinement: devmode
+
+parts:
+  lolcat-rust:
+    source: https://github.com/ur0/lolcat.git
+    plugin: rust</pre>
+<p>Let’s run <em><strong>snapcraft prime</strong></em> and see how it goes.</p>
+<pre>$ <strong>snapcraft prime</strong>
+Preparing to pull lolcat-rust 
+[...]
+Downloading 'rustup.sh'[================] 100%
+[...]
+Preparing to build lolcat-rust 
+Building lolcat-rust 
+[...]
+Staging lolcat-rust 
+Priming lolcat-rust 
+$ <strong>ls prime/bin/</strong>
+lolcat
+$ _</pre>
+<p>Without a hitch! The <em><strong>rust</strong></em> plugin noticed that we do not have the Rust compiler, and downloaded it for us! Then, it completed the compilation and the final executable is called <em><strong>lolcat</strong></em>. Therefore, the <em><strong>apps:</strong></em> section looks like</p>
+<pre><em><strong>apps</strong></em>:
+  <em><strong>lolcat-rust</strong></em>:
+    command: <em><strong>lolcat</strong></em></pre>
+<p>The <em><strong>apps:</strong></em> section will expose the generated <em><strong>lolcat</strong></em> executable by the name <em><strong>lolcat-rust</strong></em>. Since the <em><strong>name:</strong></em> field is also <em><strong>lolcat-rust</strong></em>, the resulting executable once we install the snap will be <em><strong>lolcat-rust</strong></em> as well. Again, Snapcraft looks by default into both <em><strong>prime/</strong></em> and <em><strong>prime/bin/</strong></em> for the <em><strong>command:</strong></em>, therefore it is not required to write specifically <em><strong>command: bin/lolcat</strong></em>.</p>
+<h3>Working on the C (make) version</h3>
+<p>Here is the configuration (snapcraft.yaml) for the C (using Makefile) variant up to this point,</p>
+<pre>name: lolcat-c
+version: '20170226'
+summary: lolcat utility written in C
+description: |
+  lolcat-c is a utility similar to the Unix "cat" command.
+  lolcat-c adds rainbow colors to the text output.
+  The source code is available at https://github.com/jaseg/lolcat
+
+grade: stable
+confinement: devmode
+
+parts:
+  lolcat-c:
+    source: https://github.com/jaseg/lolcat.git
+    plugin: make</pre>
+<p>Let’s run <em><strong>snapcraft prime</strong></em> and see how it goes.</p>
+<pre>$<strong> snapcraft prime</strong>
+Preparing to pull lolcat-c 
+Pulling lolcat-c 
+[...]
+Submodule 'memorymapping' (https://github.com/NimbusKit/memorymapping) registered for path 'memorymapping'
+Submodule 'musl' (git://git.musl-libc.org/musl) registered for path 'musl'
+Cloning into 'memorymapping'...
+[...]
+Cloning into 'musl'...
+[...]
+Building lolcat-c 
+make -j4
+"Using musl at musl"
+cd musl; ./configure
+[...]sh tools/musl-gcc.specs.sh "/usr/local/musl/include" "/usr/local/musl/lib" "/lib/ld-musl-x86_64.so.1" &gt; lib/musl-gcc.specs
+printf '#!/bin/sh\nexec "${REALGCC:-gcc}" "$@" -specs "%s/musl-gcc.specs"\n' "/usr/local/musl/lib" &gt; tools/musl-gcc
+chmod +x tools/musl-gcc
+make[1]: Leaving directory '/home/myusername/SNAPCRAFT/lolcat-snap/c/parts/lolcat-c/build/musl'
+Command '['/bin/sh', '/tmp/tmpetv6irll', 'make', '-j4']' <em><strong>returned non-zero exit status 2</strong></em>
+Exit 1
+$ _</pre>
+<p>Well, well. Finally an error!</p>
+<p>So, the C version of lolcat was written using <a href="https://www.musl-libc.org/">the musl libc library</a>. This library was referenced as a <em><strong>git submodule</strong></em>, and snapcraft followed the instructions of the Makefile to pull and compile musl!</p>
+<p>Then, for some reason, snapcraft fails to compile <em><strong>lolcat</strong></em> using a <em><strong>musl-gcc</strong></em> wrapper for this newly compiled musl libc. As if we need to specify that the <em><strong>make ; make install</strong></em> sequence should instead be <em><strong>make lolcat; make install</strong></em>. Indeed, looking at the instructions at <a href="https://github.com/jaseg/lolcat">https://github.com/jaseg/lolcat</a>, this appears to be the case.</p>
+<p>Therefore, how do we tell snapcraft that for <a href="https://snapcraft.io/docs/reference/plugins/make">the make plugin</a>, it should run <em><strong>make lolcat</strong></em> instead of the standard <em><strong>make</strong></em>?</p>
+<p>By reading the documentation of <a href="https://snapcraft.io/docs/reference/plugins/make">the Snapcraft make plugin</a>, we find that</p>
+<pre>- <em><strong>make-parameters</strong></em>:
+ (<span style="text-decoration: underline;"><strong>list</strong></span> of strings)
+ Pass the given parameters to the make command.</pre>
+<p>Therefore, the <em><strong>parts:</strong></em> should look like</p>
+<pre>parts:
+  lolcat-c:
+    source: https://github.com/jaseg/lolcat.git
+    plugin: make
+    <em><strong>make-parameters: [lolcat]</strong></em></pre>
+<p>We enclose <em><strong>lolcat</strong></em> in brackets (<em><strong>[lolcat]</strong></em>) because <em><strong>make-parameters</strong></em> accepts a <em><strong>list</strong></em> of strings. If it accepted just a string, we would not need those brackets.</p>
+<p>Let’s <em><strong>snap prime</strong></em> again!</p>
+<pre>$ <strong>snapcraft prime</strong>
+Preparing to pull lolcat-c 
+[...]
+Building lolcat-c 
+make lolcat -j4
+"Using musl at musl"
+[...]
+chmod +x tools/musl-gcc
+[...]
+gcc -c -std=c11 -Wall -g -Imusl/include -o lolcat.o lolcat.c
+[...]
+Staging lolcat-c 
+Priming lolcat-c 
+$ <em><strong>ls prime/bin</strong></em>
+ls: cannot access 'prime/bin': No such file or directory
+Exit 2
+$ <em><strong>ls prime/</strong></em>
+censor*  command-lolcat-c.wrapper*  <em><strong><span style="text-decoration: underline;">lolcat</span></strong></em>*  meta/  snap/
+$ _</pre>
+<p>Success! The <em><strong>lolcat</strong></em> executable has been generated, and in fact it is located in <em><strong>prime/</strong></em> (not in <em><strong>prime/bin/</strong></em> as in all three previous cases). Also, it took 1 minute and 40 seconds to produce the executable on my computer!</p>
+<p>Hmm, there is also a <em><strong>censor</strong></em> executable. I wonder, what does it do?</p>
+<pre>$ ls -l | ./censor 
+█▄█▄█ ██
+█▄▄▄▄█▄▄█▄ █ ▄▄▄▄ ▄▄▄▄ █████ ███  ██ ██:██ ▄▄▄▄▄▄
+█▄▄▄▄█▄▄█▄ █ ▄▄▄▄ ▄▄▄▄   ███ ███  ██ ██:██ ▄▄▄▄▄▄███▄█▄▄██▄.▄▄▄▄▄▄▄
+█▄▄▄▄█▄▄█▄ █ ▄▄▄▄ ▄▄▄▄ █████ ███  ██ ██:██ █▄█▄▄█
+█▄▄▄▄▄▄▄█▄ █ ▄▄▄▄ ▄▄▄▄  ████ ███  ██ ██:██ ▄▄█▄
+█▄▄▄▄▄▄▄█▄ █ ▄▄▄▄ ▄▄▄▄  ████ ███  ██ ██:██ ▄▄▄▄
+$ _</pre>
+<p>This <em><strong>censor</strong></em> executable is a filter, just like <em><strong>lolcat</strong></em>, and what it does is that it replaces any input letters with block characters. Like censoring the text. Let’s expose both <em><strong>lolcat</strong></em> and <em><strong>censor</strong></em> in this snap! Here is the <em><strong>apps:</strong></em> section,</p>
+<pre><em><strong>apps</strong></em>:
+  <em><strong>lolcat-c</strong></em>:
+    command: <em><strong>lolcat</strong></em>
+  <em><strong>censor</strong></em>:
+    command: <em><strong>censor</strong></em></pre>
+<p>For lolcat, since both the <em><strong>name:</strong></em> and the <em><strong>apps:</strong></em> command are named <em><strong>lolcat-c</strong></em>, the final executable will be <em><strong>lolcat-c</strong></em>. For censor, the executable will be named <em><strong>lolcat-c.censor</strong></em> (composed from the <em><strong>name:</strong></em> and the name we put in <em><strong>apps:</strong></em>).</p>
+<h2>Which confinement, strict or classic?</h2>
+<p>When we are about to publish a snap to the Ubuntu Store, we need to decide <a href="https://snapcraft.io/docs/reference/confinement">which confinement to apply, strict or classic</a>.</p>
+<p>The <em><strong>strict</strong></em> confinement will by default fully restrict the snap and it is up to us to specify what is allowed. For example, there will be no network connectivity, and we would need to explicitly specify it if we want to provide network connectivity.</p>
+<p>The <em><strong>strict</strong></em> confinement can be tricky if the snap needs to read files in general. If the snap were to read file only from the user’s home directory, then that’s easy because we can specify <em><strong>plugs: [home]</strong></em> and be done with it.</p>
+<p>In our case, lolcat can be used in two ways,</p>
+<div class="wp-caption alignnone" id="attachment_1708" style="width: 742px;"><a href="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-and-cat.png?ssl=1"><img class="wp-image-1708 size-full" data-attachment-id="1708" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="lolcat-and-cat" data-large-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-and-cat.png?resize=449%2C304&amp;ssl=1" data-medium-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-and-cat.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-and-cat.png?fit=732%2C438&amp;ssl=1" data-orig-size="732,438" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-and-cat/" data-recalc-dims="1" src="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-and-cat.png?resize=732%2C438&amp;ssl=1" /></a><p class="wp-caption-text">Note the different colors; the lolcat implementations start every time with a random initial rainbow color</p></div>
+<p>In the first command, lolcat-go requires read access for the file /etc/lsb-release. This would be tricky to specify with the <em><strong>strict</strong></em> confinement, and we would need to use the <em><strong>classic</strong></em> confinement instead.</p>
+<p>In the second command, lolcat-go is merely used as a filter. The executable is self-contained and does not read any files whatsoever. Because the <em><strong>cat</strong></em> command does the reading for <em><strong>lolcat</strong></em>.</p>
+<p>Therefore, we can select here the <em><strong>strict</strong></em> confinement as long as we <em>promise</em> to use <em><strong>lolcat</strong></em> as a filter only. That is, <em><strong>lolcat</strong></em> would run fully confined! And it will fail if we ask it to read a file like in the first command.</p>
+<h2>Final configuration files</h2>
+<p>Here are <a href="https://github.com/simos/lolcat-snap/tree/v3.0">the four final configuration files</a>! I highlight below what really changes between them (bold+italics).</p>
+<pre>$ <strong>cat python/snap/snapcraft.yaml</strong> 
+name: lolcat-python
+version: '0.44'
+summary: lolcat utility written in Python
+description: |
+  lolcat-python is a utility similar to the Unix "cat" command. 
+  lolcat-python adds rainbow colors to the text output.
+  The source code is available at https://github.com/tehmaze/lolcat
+
+grade: stable
+confinement: strict
+
+apps:
+  lolcat-<em><strong>python</strong></em>:
+    command: <em><strong>lolcat</strong></em>
+
+parts:
+  lolcat-<em><strong>python</strong></em>:
+    source: <em><strong>https://github.com/tehmaze/lolcat.git</strong></em>
+<em><strong>    source-tag: '0.44'</strong></em>
+    plugin: <em><strong>python</strong></em>
+
+$ <strong>cat go/snap/snapcraft.yaml</strong> 
+name: lolcat-go
+version: '20170226'
+summary: lolcat utility written in golang
+description: |
+  lolcat-go is a utility similar to the Unix "cat" command.
+  lolcat-go adds rainbow colors to the text output.
+  The source code is available at https://github.com/cezarsa/glolcat
+
+grade: devel
+confinement: strict
+
+apps:
+  lolcat-<em><strong>go</strong></em>:
+    command: <em><strong>glolcat.git</strong></em>
+
+parts:
+  lolcat-<em><strong>go</strong></em>:
+    source: <em><strong>https://github.com/cezarsa/glolcat.git</strong></em>
+    plugin: <em><strong>go</strong></em>
+
+$ <strong>cat rust/snap/snapcraft.yaml</strong> 
+name: lolcat-rust
+version: '20170226'
+summary: lolcat utility written in Rust
+description: |
+  lolcat-rust is a utility similar to the Unix "cat" command.
+  lolcat-rust adds rainbow colors to the text output.
+  The source code is available at https://github.com/ur0/lolcat
+
+grade: stable
+confinement: strict
+
+apps:
+  lolcat-<em><strong>rust</strong></em>:
+    command: <em><strong>lolcat</strong></em>
+
+parts:
+  lolcat-<em><strong>rust</strong></em>:
+    source: <em><strong>https://github.com/ur0/lolcat.git</strong></em>
+    plugin: <em><strong>rust</strong></em>
+
+$ <strong>cat c/snap/snapcraft.yaml</strong> 
+name: lolcat-c
+version: '20170226'
+summary: lolcat utility written in C
+description: |
+  lolcat-c is a utility similar to the Unix "cat" command.
+  lolcat-c adds rainbow colors to the text output.
+  The source code is available at https://github.com/jaseg/lolcat
+
+grade: stable
+confinement: strict
+
+apps:
+  lolcat-<em><strong>c</strong></em>:
+    command: <em><strong>lolcat</strong></em>
+<em><strong>  censor:</strong></em>
+<em><strong>    command: censor</strong></em>
+
+parts:
+  lolcat-<em><strong>c</strong></em>:
+    source: <em><strong>https://github.com/jaseg/lolcat.git</strong></em>
+    plugin: <em><strong>make</strong></em>
+<em><strong>    make-parameters: [lolcat]</strong></em>
+$ _</pre>
+<h2>Quality testing</h2>
+<p>We have four lolcat snaps available to upload to the Ubuntu Store. Let’s test them first to see which ones are actually good enough to make it today to the Ubuntu Store!</p>
+<p>A potential problem with filters like lolcat, is that they may not know how to deal with some UTF-8-encoded strings. In the UTF-8 encoding, text in English like what you read now, is encoded just like ASCII. Problems may occur when you have text in other scripts, where each Unicode character would occupy more than one byte. For example, each character in “Γεια σου κόσμε” is encoded as two bytes in the UTF-8 encoding. Furthermore, there are characters that are stored in <em>Plane 1</em> of Unicode (Emojis!) which require the maximum of <a href="https://en.wikipedia.org/wiki/UTF-8">four bytes to encode in UTF-8</a>. Here is an example of emoji characters, “<img alt="🐧" class="wp-smiley" src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f427.png" style="height: 1em;" /><img alt="🐨" class="wp-smiley" src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f428.png" style="height: 1em;" /><img alt="🐩" class="wp-smiley" src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f429.png" style="height: 1em;" /><img alt="🐷" class="wp-smiley" src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f437.png" style="height: 1em;" /><img alt="🐸" class="wp-smiley" src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f438.png" style="height: 1em;" /><img alt="🐹" class="wp-smiley" src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f439.png" style="height: 1em;" /><img alt="🐺" class="wp-smiley" src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f43a.png" style="height: 1em;" /><img alt="🐼" class="wp-smiley" src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f43c.png" style="height: 1em;" /><img alt="🏴" class="wp-smiley" src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f3f4.png" style="height: 1em;" /><img alt="👏" class="wp-smiley" src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f44f.png" style="height: 1em;" />” (if they appear as empty boxes, you do not have the proper fonts installed.</p>
+<p><a href="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-utf8-compatibility-1.png?ssl=1"><img alt="" class="alignnone size-full wp-image-1712" data-attachment-id="1712" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="lolcat-utf8-compatibility" data-large-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-utf8-compatibility-1.png?resize=449%2C255&amp;ssl=1" data-medium-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-utf8-compatibility-1.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-utf8-compatibility-1.png?fit=858%2C255&amp;ssl=1" data-orig-size="858,255" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-utf8-compatibility-2/" data-recalc-dims="1" src="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-utf8-compatibility-1.png?resize=858%2C255&amp;ssl=1" /></a></p>
+<p>What we are seeing here, is that the current implementations of lolcat for Python and Go do not work with non-ASCII encodings. At the moment, they can only colorize text in English.</p>
+<p>On the other hand, the Rust and C implementations work fine on all Unicode characters!</p>
+<p>There is another issue to watch for. Specifically,</p>
+<p><a href="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/unix-cat-redirect-ok.png?ssl=1"><img alt="" class="alignnone size-full wp-image-1713" data-attachment-id="1713" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="unix-cat-redirect-ok" data-large-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/unix-cat-redirect-ok.png?resize=437%2C204&amp;ssl=1" data-medium-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/unix-cat-redirect-ok.png?resize=290%2C204&amp;ssl=1" data-orig-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/unix-cat-redirect-ok.png?fit=437%2C204&amp;ssl=1" data-orig-size="437,204" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/unix-cat-redirect-ok/" data-recalc-dims="1" src="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/unix-cat-redirect-ok.png?resize=437%2C204&amp;ssl=1" /></a></p>
+<p>The Unix <em><strong>ls</strong></em> command takes care to understand when you are redirecting the output, and if you do so, by default it does not colorize the output. This is a very useful default for <em><strong>ls</strong></em> because in most cases you want clean text files with no escape sequences for the color. To further our testing, let’s see how well the remaining two <em><strong>lolcat</strong></em> implementations deal with content that happen to already have escape sequences (for example, for color),</p>
+<p><a href="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-color-on-escape-sequences.png?ssl=1"><img alt="" class="alignnone size-full wp-image-1714" data-attachment-id="1714" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="lolcat-color-on-escape-sequences" data-large-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-color-on-escape-sequences.png?resize=449%2C304&amp;ssl=1" data-medium-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-color-on-escape-sequences.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-color-on-escape-sequences.png?fit=858%2C438&amp;ssl=1" data-orig-size="858,438" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-color-on-escape-sequences/" data-recalc-dims="1" src="https://i1.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-color-on-escape-sequences.png?resize=858%2C438&amp;ssl=1" /></a></p>
+<p>We generated a text file (cat-color.txt) with color escape sequences. The Rust implementation choked on them, while the C implementation worked fine!</p>
+<p>We have a winner! The C implementation of <em><strong>lolcat</strong></em> will be published in the Ubuntu Store, in the <em><strong>stable</strong></em> channel (available to all). The Rust implementation will be published in the <em><strong>candidate</strong></em> channel (pending a fix when dealing with text that already has escape sequences), while the Python and Go implementations will be published in the <em><strong>edge</strong></em> channels. (Note: if the authors of these lolcat implementations are reading this, my aim here is to demonstrate the different channels. I plan to write a follow-up post on how to fix these issues in the source code and how to re-release all snaps to the <em><strong>stable</strong></em> channel.)</p>
+<h2>Let’s publish to the Ubuntu Store</h2>
+<p>The documentation page <a href="https://snapcraft.io/docs/build-snaps/publish">Publish your snap</a> from <a href="https://snapcraft.io/">snapcraft.io</a> explains the details on publishing a snap on the Ubuntu Store.</p>
+<p>In summary, when releasing a snap to the Ubuntu Store, you specify in which channel(s) you want it to be in:</p>
+<ol>
+<li><strong>stable</strong> channel, for publicly available snaps. These can be searched when running <em><strong>snap find</strong></em>, and will be installed when you run<em><strong> snap install</strong></em>.</li>
+<li><strong>candidate</strong> channel, for snaps that are very soon to be released to the stable channel. For this and the following channels, you need to specify explicitly the channel when you try to install. Otherwise, you will get the error that the snap is not found.</li>
+<li><strong>beta</strong> channel, for beta versions of snaps.</li>
+<li><strong>edge</strong> channel, for testing versions of snaps. This is the furthest away from <em><strong>stable</strong></em>.</li>
+</ol>
+<p>If you release a snap in the <em><strong>stable</strong></em> channel, it implies that it will be shown in those below. Or, if you release a snap in the <em><strong>beta</strong></em> channel, it will appear as well in the channel below (<em><strong>edge</strong></em>).</p>
+<p>Furthermore, when we were filling in the metadata of the snapcraft.yaml configuration files, there was a field called <em><strong>grade</strong></em>, with options for either <em><strong>stable</strong></em> or <em><strong>devel</strong></em>. If the grade has been specified as <em><strong>devel</strong></em>, then the snap can only be installed in either the <em><strong>beta</strong></em> or <em><strong>edge</strong></em> channels.</p>
+<p>So, this is what we are going to do:</p>
+<ol>
+<li>The C implementation, <em><strong>lolcat-c</strong></em>, will have <em><strong>grade: stable</strong></em>, and get published in the <em><strong>stable</strong></em> channel of the Ubuntu Store.</li>
+<li>The Rust implementation, <em><strong>lolcat-rust</strong></em>, will have <em><strong>grade: devel</strong></em>, and get published in the <em><strong>beta</strong></em> channel of the Ubuntu Store.</li>
+<li>The Go and Python implementations, <em><strong>lolcat-go</strong></em> and <em><strong>lolcat-python</strong></em>, will have the <em><strong>grade: devel</strong></em> and get published in the <em><strong>edge</strong></em> channel of the Ubuntu Store.</li>
+</ol>
+<p>We have already ran <em><strong>snapcraft login</strong></em>, and logged in with our Ubuntu Single SignOn (SSO) account.</p>
+<p><a href="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-register-and-push.png?ssl=1"><img alt="" class="alignnone size-full wp-image-1715" data-attachment-id="1715" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="lolcat-register-and-push" data-large-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-register-and-push.png?resize=449%2C304&amp;ssl=1" data-medium-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-register-and-push.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-register-and-push.png?fit=858%2C659&amp;ssl=1" data-orig-size="858,659" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-register-and-push/" data-recalc-dims="1" src="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-register-and-push.png?resize=858%2C659&amp;ssl=1" /></a></p>
+<p>We successfully <em><strong>register</strong></em>ed the names on the Ubuntu Store, and then we <em><strong>push</strong></em>ed the snap files. We note down the revision, which is <em><strong>Revision 1</strong></em> for each one of them.</p>
+<p>The <em><strong>snapcraft release</strong></em> command looks like</p>
+<pre>  snapcraft [options] release &lt;snap-name&gt; &lt;revision&gt; &lt;channel&gt;</pre>
+<p><a href="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-released-to-channels.png?ssl=1"><img alt="" class="alignnone size-full wp-image-1716" data-attachment-id="1716" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="lolcat-released-to-channels" data-large-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-released-to-channels.png?resize=449%2C304&amp;ssl=1" data-medium-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-released-to-channels.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-released-to-channels.png?fit=624%2C591&amp;ssl=1" data-orig-size="624,591" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-released-to-channels/" data-recalc-dims="1" src="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-released-to-channels.png?resize=624%2C591&amp;ssl=1" /></a></p>
+<p>The <em><strong>snapcraft release</strong></em> command instructs the Ubuntu Store to release the recently pushed .snap file into the specified channels.</p>
+<h2>How to install them</h2>
+<p>Here we install <em><strong>lolcat-c</strong></em>.</p>
+<p><a href="https://i0.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-c-released-installed.png?ssl=1"><img alt="" class="alignnone size-full wp-image-1718" data-attachment-id="1718" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="lolcat-c-released-installed" data-large-file="https://i0.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-c-released-installed.png?resize=449%2C304&amp;ssl=1" data-medium-file="https://i0.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-c-released-installed.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i0.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-c-released-installed.png?fit=624%2C744&amp;ssl=1" data-orig-size="624,744" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-c-released-installed/" data-recalc-dims="1" src="https://i0.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-c-released-installed.png?resize=624%2C744&amp;ssl=1" /></a></p>
+<p>First we perform a search for <em><strong>lolcat</strong></em>. The snap <em><strong>lolcat-c</strong></em> is found. There is a feature in the <em><strong>snap find</strong></em> command, that if we were to search for <em><strong>lolcat-c</strong></em>, it would show results for both <em><strong>lolcat</strong></em> and <em><strong>c</strong></em> (shows irrelevant results).</p>
+<p>We then run the <em><strong>snap info</strong></em> command to show the Ubuntu Store info for the snap <em><strong>lolcat-c</strong></em>.</p>
+<p>Then, we install <em><strong>lolcat-c</strong></em>, by running <em><strong>snap install lolcat-c</strong></em>.</p>
+<p>Finally, we run <em><strong>snap info</strong></em> again, and we can see more information since the snap has just been installed. In particular, we can see that there is the additional command <em><strong>lolcat-c.censor</strong></em>. Oh, and then snap is just 24kB in size.</p>
+<p>Let’s install the Rust implementation!</p>
+<p><a href="https://i0.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-rust-installed.png?ssl=1"><img alt="" class="alignnone size-full wp-image-1720" data-attachment-id="1720" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="lolcat-rust-installed" data-large-file="https://i0.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-rust-installed.png?resize=449%2C304&amp;ssl=1" data-medium-file="https://i0.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-rust-installed.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i0.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-rust-installed.png?fit=624%2C608&amp;ssl=1" data-orig-size="624,608" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-rust-installed/" data-recalc-dims="1" src="https://i0.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-rust-installed.png?resize=624%2C608&amp;ssl=1" /></a></p>
+<p>The Rust implementation of <em><strong>lolcat</strong></em> can be found in the <em><strong>beta</strong></em> and <em><strong>edge</strong></em> channels. In order to install it, we need to specify the correct channel (here, either <em><strong>beta</strong></em> or <em><strong>edge</strong></em>). And that’s it!</p>
+<p><a href="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-go-installed.png?ssl=1"><img alt="" class="alignnone size-full wp-image-1721" data-attachment-id="1721" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="lolcat-go-installed" data-large-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-go-installed.png?resize=449%2C304&amp;ssl=1" data-medium-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-go-installed.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-go-installed.png?fit=624%2C574&amp;ssl=1" data-orig-size="624,574" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-go-installed/" data-recalc-dims="1" src="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-go-installed.png?resize=624%2C574&amp;ssl=1" /></a></p>
+<p>The Go implementation of <em><strong>lolcat</strong></em> is in the <em><strong>edge</strong></em> channel. We install and test it successfully.</p>
+<p><a href="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-python-installed.png?ssl=1"><img alt="" class="alignnone size-full wp-image-1722" data-attachment-id="1722" data-comments-opened="1" data-image-description="" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="lolcat-python-installed" data-large-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-python-installed.png?resize=449%2C304&amp;ssl=1" data-medium-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-python-installed.png?resize=290%2C220&amp;ssl=1" data-orig-file="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-python-installed.png?fit=624%2C574&amp;ssl=1" data-orig-size="624,574" data-permalink="https://blog.simos.info/how-to-make-a-snap-package-for-lolcat-with-snapcraft-on-ubuntu/lolcat-python-installed/" data-recalc-dims="1" src="https://i2.wp.com/blog.simos.info/wp-content/uploads/2017/02/lolcat-python-installed.png?resize=624%2C574&amp;ssl=1" /></a></p>
+<p>Finally, the Python implementation of lolcat, installed from the <em><strong>edge</strong></em> channel.</p>
+<p>Hope you enjoyed the post!</p>

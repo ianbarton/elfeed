@@ -1,0 +1,60 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<h3>reddit: evil mode vs emacs keys</h3>
+
+<p><a class='sorc' href='https://www.reddit.com/r/emacs/comments/5k3rda/evil_vs_default_keybindings_comparison/' data-accessed='2016-12-24'>https://www.reddit.com/r/emacs/comments/5k3rda/evil_vs_default_keybindings_comparison/</a></p>
+
+<p>i&apos;ve researched this issue a lot.</p>
+
+<ul>
+<li><a href='http://xahlee.info/kbd/efficiency_of_keybinding_emacs_vs_vim.html'>Emacs vs vi: How to Compute Keybinding&apos;s Efficiency?</a></li>
+<li><a href='../misc/on_vi_keybinding.html'>on vi Keybinding vs Emacs Keybinding</a></li>
+<li><a href='http://xahlee.info/kbd/vi_emacs_keybinding_design.html'>vi, Emacs, Keybinding Design</a></li>
+</ul>
+
+<p>about your specific list, like /r/angelic_sedition, i think some items
+can be made more precise, while some items may not be relevant without
+a precise goal. For example, your 3rd item about “harder to create specific
+keybinding…”. Is your goal/question about emacs, or about generic context
+with a programable keyboard such as ergodox? They have different answers.
+For example, if it&apos;s about in emacs, best is to avoid defining a key in
+keyboard firmware to send a chord that emacs uses. Better is just to directly
+define a keybinding in emacs. (unless there&apos;s some other issue, doing this
+as a workaround)</p>
+
+<p>given a very flexible programable keyboard such as ergodox, and you
+want to program the keys, there&apos;s the choice of optimizing it for emacs,
+or optimizing for general use outside of emacs too. Or, somewhere in the
+middle ground. It depends on how much your time is spend in emacs. (for
+me, i optimize for emacs some 90%, because I almost type everything in
+emacs than paste it somewhere.) (if you optimize for emacs, there&apos;s of
+course also the question what key system you use, e.g. evil, or emacs default,
+or other.)</p>
+
+<p>For general question about programing keyboard firmware for utmost efficiency,
+Gergely Nagy wrote a great article. See</p>
+
+<p>〔<cite>Multi-purpose keys, and a case for small keyboards</cite> <time>2016-10-15</time> By Gergely Nagy. @ <a class='sorc' href='https://asylum.madhouse-project.org/blog/2016/10/15/multi-purpose-keys/' data-accessed='2016-12-23'>https://asylum.madhouse-project.org/blog/2016/10/15/multi-purpose-keys/</a>〕</p>
+
+<p>Gergely Nagy also programed several open source keyboard firmware. I&apos;d recommend his stuff. e.g. <a class='sorc' href='https://algernon.github.io/Akela/' data-accessed='2016-12-24'>https://algernon.github.io/Akela/</a></p>
+
+<p>in general, modal mode will save you key strokes, all thing considered (including the need to press a key to switch mode), i estimate that modal mode saves you about 10% count of key press.</p>
+
+<p>also, note that vim modal mode is not efficiently designed. The key choices are mostly historical, not based on command frequency.</p>
+
+<p>emacs default keys are also historical.</p>
+
+<p>Lastly, i&apos;d say, if you want the most efficient modal mode based on
+command frequency statistics and ergonomics, might try
+<a href='../misc/ergoemacs_vi_mode.html'>Emacs: Xah Fly Keys</a>
+you want the same but based on chords, then
+ergoemacs-mode
+<a class='sorc' href='http://ergoemacs.github.io/' data-accessed='2016-12-24'>http://ergoemacs.github.io/</a>.
+Evil mode is
+great in that it is fairly efficient, and have the advantage of also muscle
+memory of using vim, make it a good choice on wide range of computers one
+may need to type on without config.</p>
+
+</div>
+ 

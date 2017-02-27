@@ -1,0 +1,7 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+<p><a href='emacs_navigating_keys_for_brackets.html'>Emacs: Move Cursor to Brackets, Quotes</a></p>
+
+<p>updated code. Now <code class='elisp-ƒ'>xah-goto-matching-bracket</code> will jump to matching quote too. And fixed a bug in <code class='elisp-ƒ'>xah-forward-quote-smart</code>.</p>
+</div>
+ 

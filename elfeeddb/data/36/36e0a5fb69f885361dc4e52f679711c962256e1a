@@ -1,0 +1,16 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+<h3>emacs lisp completion problem</h3>
+
+<p>start emacs with -Q, open a new buffer, M-x emacs-lisp-mode, type defu, press C-M-i, do you get “defun” or “defun-”?</p>
+
+<p>vote here:</p>
+
+<ul>
+<li><a class='sorc' href='https://twitter.com/ErgoEmacs/status/804494732122464256' data-accessed='2016-12-01'>https://twitter.com/ErgoEmacs/status/804494732122464256</a></li>
+<li><a class='sorc' href='https://plus.google.com/113859563190964307534/posts/bYVdTpW9Nbx' data-accessed='2016-12-01'>https://plus.google.com/113859563190964307534/posts/bYVdTpW9Nbx</a></li>
+</ul>
+
+<p>if you did get the correct “defun” with your init, what did you do to fix this?</p>
+</div>
+ 

@@ -1,0 +1,81 @@
+<p>The first beta of the Zesty Zapus (to become 17.04) has now been released!</p>
+<p>This milestone features images for Kubuntu, Lubuntu, Ubuntu Budgie, Ubuntu GNOME, Ubuntu Kylin, Ubuntu Studio, and Xubuntu.</p>
+<p>Pre-releases of the Zesty Zapus are <strong>not</strong> encouraged for anyone needing a stable system or anyone who is not comfortable running into occasional, even frequent breakage. They are, however, recommended for Ubuntu flavor developers and those who want to help in testing, reporting, and fixing bugs as we work towards getting this release ready.</p>
+<p>Beta 1 includes a number of software updates that are ready for wider testing. This is still an early set of images, so you should expect some bugs.</p>
+<p>While these Beta 1 images have been tested and work, except as noted in the release notes, Ubuntu developers are continuing to improve the Zesty Zapus. In particular, once newer daily images are available, system installation bugs identified in the Beta 1 installer should be verified against the current daily image before being reported in Launchpad. Using an obsolete image to re-report bugs that have already been fixed wastes your time and the time of developers who are busy trying to make 17.04 the best Ubuntu release yet. Always ensure your system is up to date before reporting bugs.</p>
+<h4>Kubuntu</h4>
+<p>   Kubuntu is the KDE based flavor of Ubuntu. It uses the Plasma desktop and includes a wide selection of tools from the KDE project.</p>
+<p>   The Kubuntu 17.04 Beta 1 images can be downloaded from:</p>
+<ul>
+<li><a href="http://cdimage.ubuntu.com/kubuntu/releases/zesty/beta-1/">http://cdimage.ubuntu.com/kubuntu/releases/zesty/beta-1/</a></li>
+</ul>
+<p>   More information about Kubuntu 17.04 Beta 1 can be found here:</p>
+<ul>
+<li><a href="https://wiki.ubuntu.com/ZestyZapus/Beta1/Kubuntu">https://wiki.ubuntu.com/ZestyZapus/Beta1/Kubuntu</a></li>
+</ul>
+<h4>Lubuntu</h4>
+<p>   Lubuntu is a flavor of Ubuntu based on LXDE and focused on providing a very lightweight distribution.</p>
+<p>   The Lubuntu 17.04 Beta 1 images can be downloaded from:</p>
+<ul>
+<li><a href="http://cdimage.ubuntu.com/lubuntu/releases/zesty/beta-1/">http://cdimage.ubuntu.com/lubuntu/releases/zesty/beta-1/</a></li>
+</ul>
+<p>   More information about Lubuntu 17.04 Beta 1 can be found here:</p>
+<ul>
+<li><a href="https://wiki.ubuntu.com/ZestyZapus/Beta1/Lubuntu">https://wiki.ubuntu.com/ZestyZapus/Beta1/Lubuntu</a></li>
+</ul>
+<h4>Ubuntu Budgie</h4>
+<p>   Ubuntu Budgie is a flavor of Ubuntu featuring the Budgie desktop environment.</p>
+<p>   The Ubuntu Budgie 17.04 Beta 1 images can be downloaded from:</p>
+<ul>
+<li><a href="http://cdimage.ubuntu.com/ubuntu-budgie/releases/zesty/beta-1/">http://cdimage.ubuntu.com/ubuntu-budgie/releases/zesty/beta-1/</a></li>
+</ul>
+<p>   More information about Ubuntu Budgie 17.04 Beta 1 can be found here:</p>
+<ul>
+<li><a href="https://wiki.ubuntu.com/ZestyZapus/Beta1/UbuntuBudgie">https://wiki.ubuntu.com/ZestyZapus/Beta1/UbuntuBudgie</a></li>
+</ul>
+<h4>Ubuntu GNOME</h4>
+<p>   Ubuntu GNOME is a flavor of Ubuntu featuring the GNOME desktop environment.</p>
+<p>   The Ubuntu GNOME 17.04 Beta 1 images can be downloaded from:</p>
+<ul>
+<li><a href="http://cdimage.ubuntu.com/ubuntu-gnome/releases/zesty/beta-1/">http://cdimage.ubuntu.com/ubuntu-gnome/releases/zesty/beta-1/</a></li>
+</ul>
+<p>   More information about Ubuntu GNOME 17.04 Beta 1 can be found here:</p>
+<ul>
+<li><a href="https://wiki.ubuntu.com/ZestyZapus/Beta1/UbuntuGNOME">https://wiki.ubuntu.com/ZestyZapus/Beta1/UbuntuGNOME</a></li>
+</ul>
+<h4>Ubuntu Kylin</h4>
+<p>   Ubuntu Kylin is a flavor of Ubuntu that is more suitable for Chinese users.</p>
+<p>   The Ubuntu Kylin 17.04 Beta 1 images can be downloaded from:</p>
+<ul>
+<li><a href="http://cdimage.ubuntu.com/ubuntukylin/releases/zesty/beta-1/">http://cdimage.ubuntu.com/ubuntukylin/releases/zesty/beta-1/</a></li>
+</ul>
+<p>   More information about Ubuntu Kylin 17.04 Beta 1 can be found here:</p>
+<ul>
+<li><a href="https://wiki.ubuntu.com/ZestyZapus/Beta1/UbuntuKylin">https://wiki.ubuntu.com/ZestyZapus/Beta1/UbuntuKylin</a></li>
+</ul>
+<h4>Ubuntu Studio</h4>
+<p>   Ubuntu Studio is a flavor of Ubuntu configured for multimedia production.</p>
+<p>   The Ubuntu Studio 17.04 Beta 1 images can be downloaded from:</p>
+<ul>
+<li><a href="http://cdimage.ubuntu.com/ubuntustudio/releases/zesty/beta-1/">http://cdimage.ubuntu.com/ubuntustudio/releases/zesty/beta-1/</a></li>
+</ul>
+<p>   More information about Ubuntu Studio 17.04 Beta 1 can be found here:</p>
+<ul>
+<li><a href="https://wiki.ubuntu.com/ZestyZapus/Beta1/UbuntuStudio">https://wiki.ubuntu.com/ZestyZapus/Beta1/UbuntuStudio</a></li>
+</ul>
+<h4>Xubuntu</h4>
+<p>   Xubuntu is a flavor of Ubuntu based on the Xfce desktop environment.</p>
+<p>   The Xubuntu 17.04 Beta 1 images can be downloaded from:</p>
+<ul>
+<li><a href="http://cdimage.ubuntu.com/xubuntu/releases/zesty/beta-1/">http://cdimage.ubuntu.com/xubuntu/releases/zesty/beta-1/</a></li>
+</ul>
+<p>   More information about Xubuntu 17.04 Beta 1 can be found here:</p>
+<ul>
+<li><a href="http://wiki.xubuntu.org/releases/17.04/release-notes">http://wiki.xubuntu.org/releases/17.04/release-notes</a></li>
+</ul>
+<p>If you’re interested in following the changes as we further develop the Zesty Zapus, we suggest that you subscribe to the ubuntu-devel-announce list. This is a low-traffic list (a few posts a month or less) carrying announcements of approved specifications, policy changes, alpha releases, and other interesting events.</p>
+<ul>
+<li><a href="http://lists.ubuntu.com/mailman/listinfo/ubuntu-devel-announce">http://lists.ubuntu.com/mailman/listinfo/ubuntu-devel-announce</a></li>
+</ul>
+<p>A big thank you to the developers and testers for their efforts to pull together this Beta release!</p>
+<p><em>Originally <a href="https://lists.ubuntu.com/archives/ubuntu-devel-announce/2017-February/001203.html">posted</a> to the ubuntu-devel-announce mailing list on Fri Feb 24 00:34:19 UTC 2017 by Simon Quigley on behalf of the Ubuntu Release Team</em></p>

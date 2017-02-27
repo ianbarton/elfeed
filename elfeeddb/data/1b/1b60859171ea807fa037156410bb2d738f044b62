@@ -1,0 +1,51 @@
+<p><img alt="LXD logo" class="aligncenter" height="293" src="https://linuxcontainers.org/static/img/containers.png" width="318" /></p>
+<h2>LXD on other operating systems?</h2>
+<p>While LXD and especially its API have been designed in a mostly OS-agnostic way, the only OS supported for the daemon right now is Linux (and a rather recent Linux at that).</p>
+<p>However since all the communications between the client and daemon happen over a REST API, there is no reason why our default client wouldn’t work on other operating systems.</p>
+<p>And it does. We in fact gate changes to the client on having it build and pass unit tests on Linux, Windows and MacOS.</p>
+<p>This means that you can run one or more LXD daemons on Linux systems on your network and then interact with those remotely from any Linux, Windows or MacOS machine.</p>
+<h2>Setting up your LXD daemon</h2>
+<p>We’ll be connecting to the LXD daemon over the network, so you’ll need to make sure it’s listening and has a password configured so that new clients can add themselves to the trust store.</p>
+<p>This can be done with:</p>
+<pre>lxc config set core.https_address "[::]:8443"
+lxc config set core.trust_password "my-password"</pre>
+<p>In my case, that remote LXD can be reached with “djanet.maas.mtl.stgraber.net”, you’ll want to replace that with your LXD server’s FQDN or IP in the commands used below.</p>
+<h2>Windows client</h2>
+<h3>Pre-built native binaries</h3>
+<p>Our Windows CI service builds a tarball for every commit. You can grab the latest one here:<br />
+<a href="https://ci.appveyor.com/project/lxc/lxd/branch/master/artifacts">https://ci.appveyor.com/project/lxc/lxd/branch/master/artifacts</a></p>
+<p>Then unpack the archive and open a command prompt in the directory where you unpacked the lxc.exe binary.</p>
+<h3>Build from source</h3>
+<p>Alternatively, you can build it from source, by first installing Go using the latest MSI based installer from <a href="https://golang.org/dl/">https://golang.org/dl/</a> and then Git from <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a>.</p>
+<p>And then in a command prompt, run:</p>
+<pre>git config --global http.https://gopkg.in.followRedirects true
+go get -v -x github.com/lxc/lxd/lxc</pre>
+<h3>Use Ubuntu on Windows (“bash”)</h3>
+<p>For this, you need to use Windows 10 and have the Windows subsystem for Linux enabled.<br />
+With that done, start an Ubuntu shell by launching “bash”. And you’re done.<br />
+The LXD client is installed by default in the Ubuntu 16.04 image.</p>
+<h3>Interact with the remote server</h3>
+<p>Regardless of which method you picked, you’ve now got access to the “lxc” command and can add your remote server.</p>
+<p><a href="https://stgraber.org/wp-content/uploads/2017/02/Screenshot-from-2017-02-09-00-58-43.png"><img alt="" class="size-full wp-image-1198 aligncenter" height="624" src="https://stgraber.org/wp-content/uploads/2017/02/Screenshot-from-2017-02-09-00-58-43.png" width="1024" /></a></p>
+<p>Using the native build does have a few restrictions to do with Windows terminal escape codes, breaking things like the arrow keys and password hiding. The Ubuntu on Windows way uses the Linux version of the LXD client and so doesn’t suffer from those limitations.</p>
+<p><a href="https://stgraber.org/wp-content/uploads/2017/02/Screenshot-from-2017-02-09-00-52-06.png"><img alt="" class="size-full wp-image-1197 aligncenter" height="624" src="https://stgraber.org/wp-content/uploads/2017/02/Screenshot-from-2017-02-09-00-52-06.png" width="1024" /></a></p>
+<h2>MacOS client</h2>
+<p>Even though we do have MacOS CI through Travis, they don’t host artifacts for us and so don’t have prebuilt binaries for people to download.</p>
+<h3>Build from source</h3>
+<p>Similarly to the Windows instructions, you can build the LXD client from source, by first installing Go using the latest DMG based installer from <a href="https://golang.org/dl/">https://golang.org/dl/</a> and then Git from <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a>.</p>
+<p>Once that’s done, open a new Terminal window and run:</p>
+<pre>export GOPATH=~/go
+go get -v -x github.com/lxc/lxd/lxc
+sudo ln -s ~/go/bin/lxc /usr/local/bin/</pre>
+<p>At which point you can use the “lxc” command.</p>
+<p><a href="https://stgraber.org/wp-content/uploads/2017/02/Screenshot-from-2017-02-09-12-30-41.png"><img alt="" class="size-full wp-image-1201 aligncenter" height="822" src="https://stgraber.org/wp-content/uploads/2017/02/Screenshot-from-2017-02-09-12-30-41.png" width="1028" /></a></p>
+<h2>Conclusion</h2>
+<p>The LXD client can be built on all the main operating systems and on just about every architecture, this makes it very easy for anyone to interact with existing LXD servers, whether they’re themselves using a Linux machine or not.</p>
+<p>Thanks to our pretty strict backward compatibility rules, the version of the client doesn’t really matter. Older clients can talk to newer servers and newer clients can talk to older servers. Obviously in both cases some features will not be available, but normal container workflow operations will work fine.</p>
+<h2>Extra information</h2>
+<p>The main LXD website is at: <a href="https://linuxcontainers.org/lxd">https://linuxcontainers.org/lxd<br />
+</a>Development happens on Github at: <a href="https://github.com/lxc/lxd">https://github.com/lxc/lxd</a><br />
+Mailing-list support happens on: <a href="https://lists.linuxcontainers.org/">https://lists.linuxcontainers.org</a><br />
+IRC support happens in: #lxcontainers on irc.freenode.net<br />
+Try LXD online: <a href="https://linuxcontainers.org/lxd/try-it">https://linuxcontainers.org/lxd/try-it</a></p>
+<p><a href="https://stgraber.org/2017/02/09/lxd-client-on-windows-and-macos/">Original article</a></p>

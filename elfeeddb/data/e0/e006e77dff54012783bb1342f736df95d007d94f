@@ -1,0 +1,14 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<p>all syntax coloring on the site are redone, based on the latest version of <a href='xah-elisp-mode.html'>Emacs: Xah Emacs Lisp Mode</a>
+(that is, if you use xah-elisp-mode, the coloring in emacs buffer would be the same as on the website.)
+</p>
+
+<p>notable is that the coloring are based on the “types” of symbol,
+as detailed here: <a href='../misc/elisp_list_function_type_syntax_coloring.html'>Meaning of Lisp List, Function Type, and Syntax Coloring</a></p>
+
+<p>still to do, is the tooltips for variables.</p>
+
+</div>
+ 

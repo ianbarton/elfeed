@@ -1,0 +1,38 @@
+<p>For some time now I have been working with <a href="http://www.hackerone.com">HackerOne</a> to help them shape and grow their hacker community. It has been a pleasure working with the team: they are doing great work, have fantastic leadership (including my friend, Mårten Mickos), are seeing consistent growth, and recently closed <a href="https://techcrunch.com/2017/02/08/hackerone-scores-40-million-investment-as-bug-bounty-programs-mainstream/">a $40 million round of funding</a>. It is all systems go.</p>
+
+<p>For those of you unfamiliar with HackerOne, they provide a powerful vulnerability coordination platform and a global community of hackers. Put simply, a company or project (such as <a href="https://hackerone.com/starbucks">Starbucks</a>, <a href="https://hackerone.com/uber">Uber</a>, <a href="https://hackerone.com/github">GitHub</a>, the <a href="https://hackerone.com/hackthearmy">US Army</a>, etc) invite hackers to hack their products/services to find security issues, and HackerOne provides a platform for the submission, coordination, dupe detection, and triage of these issues, and other related functionality.</p>
+
+<p>You can think of HackerOne in two pieces: a powerful platform for managing security vulnerabilities and a global community of hackers who use the platform to make the Internet safer and in many cases, make money. This effectively crowd-sources security using the same “with enough eyeballs are shallow” principle in open source: <em>with enough eyeballs all security issues are shallow</em> too.</p>
+
+<h1>HackerOne and Open Source</h1>
+
+<p>HackerOne unsurprisingly are big fans of open source. The CEO, Mårten Mickos, has led a number of successful open source companies including MySQL and Eucalyptus. The platform itself is built on top of chunks of open source, and HackerOne is a key participant in the <a href="https://internetbugbounty.org/">Internet Bug Bounty</a> program that helps to ensure core pieces of technology that power the Internet are kept secure.</p>
+
+<p>One of the goals I have had in my work with HackerOne is to build an even closer bridge between HackerOne and the open source community. I am delighted to share the next iteration of this.</p>
+
+<h1>HackerOne for Open Source Projects</h1>
+
+<p>While not formally announced yet (this is coming soon), I am pleased to share the availability of <a href="https://www.hackerone.com/product/community">HackerOne Community Edition</a>.</p>
+
+<p>Put simply, HackerOne is providing their <a href="https://www.hackerone.com/product/professional">HackerOne Professional</a> service for <strong>free</strong> to open source projects.</p>
+
+<p>This provides features such as a security page, vulnerability submission/coordination, duplicate detection, hacker reputation, a comprehensive API, analytics, CVEs, and more.</p>
+
+<p>This not only provides a great platform for open source projects to gather vulnerability report and manage them, but also opens your project up to thousands of security researchers who can help identify security issues and make your code more secure.</p>
+
+<h2>Which projects are eligible?</h2>
+
+<p>To be eligible for this free service projects need to meet the following criteria:</p>
+
+<ol>
+<li><strong>Open Source projects</strong> – projects in scope must only be Open Source projects that are covered by an <a href="https://opensource.org/licenses">OSI license</a>.</li>
+<li><strong>Be ready</strong> – projects must be active and at least 3 months old (age is defined by shipped releases/code contributions).</li>
+<li><strong>Create a policy</strong> – you add a <code>SECURITY.md</code> in your project root that provides details for how to submit vulnerabilities (<a href="https://github.com/discourse/discourse/blob/master/docs/SECURITY.md">example</a>).</li>
+<li><strong>Advertise your program</strong> – display a link to your HackerOne profile from either the primary or secondary navigation on your project’s website.</li>
+<li><strong>Be active</strong> – you maintain an initial response to new reports of less than a week.</li>
+</ol>
+
+<p>If you meet these criteria and would like to apply, just see the <a href="https://www.hackerone.com/product/community">HackerOne Community Edition</a> page and click the button to apply.</p>
+
+<p>Of course, let me know if you have any questions!</p>
+<p>The post <a href="http://www.jonobacon.org/2017/02/09/hackerone-professional-free-open-source-projects/" rel="nofollow">HackerOne Professional, Free for Open Source Projects</a> appeared first on <a href="http://www.jonobacon.org" rel="nofollow">Jono Bacon</a>.</p>

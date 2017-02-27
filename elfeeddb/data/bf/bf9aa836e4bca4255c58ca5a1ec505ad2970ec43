@@ -1,0 +1,16 @@
+<h2>RX460 Woes</h2>
+<p>I finally <a href="https://forum.manjaro.org/t/driver-support-on-amd-rx-4xx-series-on-manjaro/14115/39" target="_blank">found a solution</a> to getting my RX460 to work in Manjaro. Since I did something a little different, I am recording it here for myself and anybody else who finds this post.</p>
+<p>While this is written using Manjaro, it should work with Arch and other distributions (some files might be in a different location, though). It should also work with any supported card.</p>
+<p>I use </p><pre class="crayon-plain-tag">nano</pre> to edit the files below. Use whatever you are most comfortable with, but remember to run it with sudo.<p></p>
+<h2>The Process</h2>
+<p>First, will need these:<sup class="footnote_plugin_tooltip_text" id="footnote_plugin_tooltip_3030_1">1)</sup><span class="footnote_tooltip" id="footnote_plugin_tooltip_text_3030_1">Pacman will fail if you don’t have an up-to-date repository.</span></p><pre class="crayon-plain-tag">sudo pacman -S "xorg-server&gt;=1.18" "linux&gt;=4.9" xf86-video-amdgpu xf86-input-libinput</pre><p></p>
+<p>Then, edit </p><pre class="crayon-plain-tag">/etc/default/grub</pre>, changing:<p></p><pre class="crayon-plain-tag">GRUB_CMDLINE_LINUX=""</pre><p>to:</p><pre class="crayon-plain-tag">GRUB_CMDLINE_LINUX="amdgpu.exp_hw_support=1"</pre><p></p>
+<p>After this, run:</p><pre class="crayon-plain-tag">sudo update-grub</pre><p></p>
+<p>Then edit </p><pre class="crayon-plain-tag">/etc/modprobe.d/radeon_blacklist.conf</pre> (it might create a new file) and add:<p></p><pre class="crayon-plain-tag">blacklist radeon</pre><p></p>
+<p>Next, inside of </p><pre class="crayon-plain-tag">/etc/X11/xorg.conf.d/90-mhwd.conf</pre>, delete everything in the file and add:<sup class="footnote_plugin_tooltip_text" id="footnote_plugin_tooltip_3030_2">2)</sup><span class="footnote_tooltip" id="footnote_plugin_tooltip_text_3030_2">Confession: I didn’t empty out 90-mhwd.conf.</span><p></p><pre class="crayon-plain-tag">Section "Device"
+    Identifier    "RX460"
+    Driver        "amdgpu"
+EndSection</pre><p></p>
+<p>Finally, I restarted and booted into the latest linux kernel (<code>4.10.0-1-MANJARO</code>) with <code>amdgpu</code> support!</p>
+<p>I hope this helps others!</p>
+<div class="footnote_container_prepare">	<p><span></span><span style="display: none;">   [ <a id="footnote_reference_container_collapse_button" style="cursor: pointer;">+</a> ]</span></p></div><div id="footnote_references_container">	<table class="footnote-reference-container">		<tbody>		<tr>	<td class="footnote_plugin_index"><span id="footnote_plugin_reference_3030_1">1.</span></td>	<td class="footnote_plugin_link"><span>⇡</span></td>	<td class="footnote_plugin_text">Pacman will fail if you don’t have an up-to-date repository.</td></tr><tr>	<td class="footnote_plugin_index"><span id="footnote_plugin_reference_3030_2">2.</span></td>	<td class="footnote_plugin_link"><span>⇡</span></td>	<td class="footnote_plugin_text">Confession: I didn’t empty out 90-mhwd.conf.</td></tr>		</tbody>	</table></div><p>The post <a href="https://sina.mashek.xyz/rx460-amdgpu-working-manjaro-linux/" rel="nofollow">RX 4XX: Getting AMDGPU to work in Manjaro Linux</a> appeared first on <a href="https://sina.mashek.xyz" rel="nofollow">Sina Mashek</a>.</p>

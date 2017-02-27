@@ -1,0 +1,1 @@
+<p>I&#039;ve reinstalled the system from scratch but the problem still exists. I cannot boot the system. I&#039;ve used IPMI provided by OVH to connect to the server but the console mode stucked on boot options and I can&#039;t pick any of them. The Java (graphical) mode shows black screen.</p>

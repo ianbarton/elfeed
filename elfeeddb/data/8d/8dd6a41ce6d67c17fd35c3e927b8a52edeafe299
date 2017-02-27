@@ -1,0 +1,25 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+<h3>keyboard efficiency tip: never mouse aim to close tab</h3>
+
+<p>keyboard efficiency tip: never mouse aim to close tab. too much effort. Middle click tab also takes aim. Set Pause key to close it.</p>
+
+<p>also, set F11 F12 to switch prev/next tab. Make use of all your Function Keys F1 F2…</p>
+
+<p>see how to here:
+<a href='http://xahlee.info/kbd/keyboard_function_keys.html'>What&apos;s the Use of Function Keys F1 F2…?</a></p>
+
+<p>in emacs, do the same. close buffer, next/prev user buffer, all single, one, key.</p>
+
+<p>when kill buffer, stop emacs from confirming. also, a key to reopen last closed.
+see how to here:
+<a href='elisp_close_buffer_open_last_closed.html'>Emacs: Open Last Closed File</a></p>
+
+<p>command to switch to Next/Previous User Buffer. Skipping scratch, info, shell out, etc buffers.
+<a href='elisp_next_prev_user_buffer.html'>Emacs: Next/Previous User Buffer</a></p>
+
+<p>if you have a numpad, best is to set keys / * - to prev buffer, next buffer, close buffer.
+ here&apos;s how:
+ <a href='emacs_bind_number_pad_keys.html'>Emacs: Bind Number Pad Keys</a></p>
+</div>
+ 

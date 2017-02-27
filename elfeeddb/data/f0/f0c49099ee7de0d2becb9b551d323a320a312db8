@@ -1,0 +1,3 @@
+<p>Neither CAVA nor cli-visualizer responds unless they&#039;re started simultaneously as their selected source is outputting audio (or data in the case of mpd.fifo).&#160; Reloading the config file has them responding. Below is my configuration for CAVA, stripped of comments and default values. Nothing is modified but the input source, which in addition to pulseaudio I have also tried using mpd.fifo.</p><div class="codebox"><pre><code>[input]
+ method = pulse
+ source = auto</code></pre></div><p>What I&#039;m trying to do is to set CAVA to load on boot. If what I&#039;m experiencing is intended functionality, how else might I go about loading it?</p><p>Please let me know if I need to add anything else,</p><p>Thanks</p>

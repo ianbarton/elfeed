@@ -1,0 +1,14 @@
+<p>The upgrade to OpenVPN 2.4.0 makes changes that are incompatible with
+previous configurations. Take <strong>special care</strong> if you depend on VPN
+connectivity for <strong>remote access</strong>! Administrative interaction is required:</p>
+<ul>
+<li>Configuration is expected in sub directories now. Move your files
+  from <code>/etc/openvpn/</code> to <code>/etc/openvpn/server/</code> or <code>/etc/openvpn/client/</code>.</li>
+<li>The plugin lookup path changed, remove extra <code>plugins/</code> from relative
+  paths.</li>
+<li>The systemd unit <code>openvpn@.service</code> was replaced with
+  <code>openvpn-client@.service</code> and <code>openvpn-server@.service</code>. Restart and
+  reenable accordingly.</li>
+</ul>
+<p>This does not affect the functionality of <code>networkmanager</code>, <code>connman</code>
+or <code>qopenvpn</code>.</p>

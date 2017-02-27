@@ -1,0 +1,27 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<h3>emacs abbrev setup: using emacs commands vs using elisp code</h3>
+
+<p>after trying to use emacs abbrev commands to build list of abbrevs for a year, don&apos;t like it. Am reverting back to using elisp code for abbrev in my emacs init.</p>
+
+<p>The advantage of just following emacs abbrev commands to create edit
+save abbrev is that, you have a tally of how many times you used each abbre.
+Sounds useful, but after 3 months, i find that the info isn&apos;t useful at
+all. I find that just a handful of abbrev i use daily, but i still want
+the rest abbrevs. The idea that i&apos;ll modify my abbrev based on the statistics
+of usage, didn&apos;t work out.</p>
+
+<p>But mostly, the problem with
+following emacs abbrev command to create edit save abbrev is that, you have less control.</p>
+
+<p>with abbrev as elisp code in my init file, i can control the regex used, the expansion function, the hook after expansion, for each abbrev. And, i can just edit it as easily.</p>
+
+<p>Compare, using emacs abbrev commands:
+<a href='emacs_abbrev_mode.html'>Emacs: Abbrev Mode Tutorial</a>
+vs using elisp code
+<a href='elisp_abbrev.html'>Emacs Lisp: Create Abbrev and Templates for Major Mode</a>
+</p>
+
+</div>
+ 

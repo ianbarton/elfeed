@@ -1,0 +1,3 @@
+<p>I just wanted to report that I&#039;m experiencing the same problem with pulseaudio 10.0-2 but with different hardware than merc68k, leading me to exclude hardware specific issues.</p><div class="codebox"><pre><code>lspci | grep -i audio
+00:03.0 Audio device: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor HD Audio Controller (rev 06)
+00:1b.0 Audio device: Intel Corporation 8 Series/C220 Series Chipset High Definition Audio Controller (rev 04)</code></pre></div>

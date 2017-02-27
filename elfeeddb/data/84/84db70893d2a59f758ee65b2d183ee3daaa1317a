@@ -1,0 +1,139 @@
+<p>
+A few months back I came across this <a href="https://www.youtube.com/watch?v=93StqtQ92WM">video</a>  showing how to control a DSLR with a foot pedal.  This re-ignited a long time project I've wanted to try: <i>adding foot pedal control to emacs</i>.  How cool would it be to control emacs with not only 10 fingers, but your feet!</p>
+
+<p>
+Looking more into this, I learned that such an idea was both totally doable and relatively inexpensive. Here's a recipe for exactly what I'd need to realize this dream: <a href="https://learn.adafruit.com/usb-foot-switch/overview">USB Foot Switch</a>. The parts were easy enough to order off of Adafruit's website. I'd needed only a <a href="https://www.adafruit.com/products/423">$7.00 foot switch</a> and a <a href="https://www.adafruit.com/products/2000">$10.00 microcontroller</a>.</p>
+
+<p>
+The <a href="https://learn.adafruit.com/usb-foot-switch/overview">instructions</a> promised a build time of less than an hour, however, I was skeptical.  My area of expertise is in the software side of things, so clipping wires, soldering and such seems awfully intimidating.</p>
+
+<p>
+To get around this, I decided to follow the instructions in reverse. First I'd program the chip. Then I'd see if I could get the keyboard behavior working. Then I'd plunge into the soldering side of things. It would take longer, but I'd get to start in my comfort zone.</p>
+
+<p>
+I figured the best place to start was to get the hello world of programs running on the Trinket Pro chip, an LED blinker. To accomplish this, I followed the tutorial <a href="https://learn.adafruit.com/introducing-trinket/setting-up-with-arduino-ide">here</a>.</p>
+
+<p>
+Being an emacs snob, I completely skipped over the IDE instructions and jumped right into using <a href="https://learn.adafruit.com/introducing-trinket/programming-with-avrdude">AVRDude</a>.  Heck, a simple brew command line installed <tt>avrdude</tt>. I was on a roll. And then things came to a screeching halt when my attempts to use <tt>avrdude</tt> gave me various error messages. I googled for solutions, but it was beginning to look hopeless.</p>
+
+<p>
+So, plan B: I returned to the <a href="https://learn.adafruit.com/introducing-trinket/setting-up-with-arduino-ide">IDE Instructions</a>. While I had a couple of false starts, the instructions were really quite accurate. Everything seemed to work. I loaded up the blinker program:</p>
+
+<pre>int led = 1; // blink 'digital' pin 1 - AKA the built in red LED
+
+// the setup routine runs once when you press reset:
+void setup() {
+  // initialize the digital pin as an output.
+  pinMode(led, OUTPUT);
+
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+    digitalWrite(led, HIGH); 
+    delay(1000);
+    digitalWrite(led, LOW);
+    delay(1000);
+}
+</pre>
+
+<p>
+Hit the upload button, and poof, I successfully loaded the program into the chip. It was so effortless that I actually dug around and turned on verbose messages just to confirm that it was truly working.</p>
+
+<p>
+There was only one problem: the program appeared to load, yet the LED on the board didn't blink.  What the heck?!</p>
+
+<p>
+On a whim, I brought up the pin-out of the <a href="https://learn.adafruit.com/introducing-pro-trinket/pinouts">Trinket Pro 5v</a>:</p>
+
+<a href="https://3.bp.blogspot.com/-wSwPiXnt4b4/WJCh4JAX-2I/AAAAAAAGCDg/4i0BEYUuK7gpCUkCs5BhoaxbKxrtOap7ACLcB/s1600/adafruit_products_pro5.png"><img border="0" height="480" src="https://3.bp.blogspot.com/-wSwPiXnt4b4/WJCh4JAX-2I/AAAAAAAGCDg/4i0BEYUuK7gpCUkCs5BhoaxbKxrtOap7ACLcB/s640/adafruit_products_pro5.png" width="640" /></a>
+
+<p>
+Upon closer inspection I realized that the red LED I was after was labeled as <tt>#13</tt>. Aha! I updated my program to set 'led' to 13 and uploaded it to the device. And just like that, I had a blinking Trinket. Whoo!</p>
+
+<p>
+OK, so I can get my code to run on the Trinket. Next up to was to do something with the <a href="https://learn.adafruit.com/pro-trinket-keyboard/library">keyboard library</a>. I altered my blinking program to be like so:</p>
+
+
+<pre>#include &lt;cmdline_defs.h&gt;
+#include &lt;ProTrinketKeyboard.h&gt;
+#include &lt;ProTrinketKeyboardC.h&gt;
+#include &lt;usbconfig.h&gt;
+
+const int PIN_SWITCH = 0;    // Trinket pin to connect to switch 
+int led = 13;
+
+void setup()
+{
+  pinMode(led, OUTPUT);
+  TrinketKeyboard.begin();  // initialize keyboard library
+}
+
+void loop()
+{
+  TrinketKeyboard.poll();
+  digitalWrite(led, HIGH);
+  TrinketKeyboard.print("Hello World!"); // use for string instead of char
+  delay(5000);
+  digitalWrite(led, LOW);
+  delay(3000);
+} 
+</pre>
+
+<p>
+Along with toggling the LED, it spits out the text <tt>Hello World</tt> every 8 seconds.</p>
+
+<p>
+I pushed the program the Trinket, and lo-and-behold, it worked!  Now, it was a particularly useful program, but it did show that I was able to get the Trinket to simulate a keyboard action.</p>
+
+<p>
+The final task I wanted to try was to have the board generate  <tt>Hello World</tt> in response to a circuit being closed. After all, the switch is just a fancy way of  grounding pin #1.  At this point, any hardware geek would have busted out their soldering iron and gotten to work on finishing this project. But I wasn't quite ready to go there. I grabbed a few short lengths of wire and crudely attached them to the board by winding them into place:</p>
+
+<a href="https://4.bp.blogspot.com/-V7wQyd5Uh2M/WJCjoJYvsHI/AAAAAAAGCDs/M_rsXPWAfH4VTKhHz6u2aGE0mz1ieJztACKgB/s1600/20170131_091028.jpg"><img border="0" height="388" src="https://4.bp.blogspot.com/-V7wQyd5Uh2M/WJCjoJYvsHI/AAAAAAAGCDs/M_rsXPWAfH4VTKhHz6u2aGE0mz1ieJztACKgB/s640/20170131_091028.jpg" width="640" /></a>
+
+<p>
+I then installed the following program on the Trinket:</p>
+
+<pre>#include &lt;cmdline_defs.h&gt;
+#include &lt;ProTrinketKeyboard.h&gt;
+#include &lt;ProTrinketKeyboardC.h&gt;
+#include &lt;usbconfig.h&gt;
+
+const int PIN_SWITCH = 0;    // Trinket pin to connect to switch 
+const int LED        = 13;
+void setup()
+{
+  // Set button pin as input with an internal pullup resistor
+  // The button is active-low, they read LOW when they are not pressed
+  pinMode(PIN_SWITCH, INPUT_PULLUP);
+
+  TrinketKeyboard.begin();  // initialize keyboard library
+}
+
+void loop()
+{
+  TrinketKeyboard.poll();
+
+  if (digitalRead(PIN_SWITCH) == LOW)  // If the foot switch grounds the pin
+  {
+    TrinketKeyboard.print("Hello World!"); // use for string instead of char
+    digitalWrite(LED, HIGH); 
+    delay(3000);
+    digitalWrite(LED, LOW);
+  }
+}
+</pre>
+
+<p>
+With the Trinket plugged into my Mac via the USB cable, I ever so carefully touched the two exposed wires together. And to my amazement, <tt>Hello World</tt> blurted out on the screen. I tried again. And again. Success!</p>
+
+<p>
+The end of the project is now in sight: I need to wire in the foot pedal switch and update the program to send a keystroke rather than a chunk of text. And then I need to figure out what bit of magic I want emacs to do when I hit the foot pedal. Hopefully that will be the hardest part.</p>
+
+<p>
+Man, this Arduino hacking stuff is fun!</p>
+
+
+
+<p>
+<font color="red">Update:</font> While I had visions of using the pedal to power emacs, my first real use was a <a href="http://www.blogbyben.com/2017/02/foot-powered-macos-monitor-hopping.html">macOS hack</a>.</p>

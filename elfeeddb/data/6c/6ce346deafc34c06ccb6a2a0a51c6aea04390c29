@@ -1,0 +1,1 @@
+<p> To add or remove a tag from multiple headlines in an org-mode file, select a region containing multiple headlines and then run <code>M-x org-change-tag-in-region</code>. You’ll be prompted for a tag and asked if you want to add or remove it from the selected headlines. </p>

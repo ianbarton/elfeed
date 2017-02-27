@@ -1,0 +1,52 @@
+<div class="KonaBody"><p><!--adsense-->After almost 24 months of constant development the Debian project is proud to present its new stable version 8 (code name "Jessie"), which will be supported for the next 5 years thanks to the combined work of the Debian Security team and of the Debian Long Term Support team.</p>
+<p>"Jessie" ships with a new default init system, systemd. The systemd suite provides many exciting features such as faster boot times, cgroups for services, and the possibility of isolating part of the services. The sysvinit init system is still available in "Jessie".<br />
+<span id="more-4370"></span></p>
+<p><strong>Before Upgrading</strong></p>
+<p>1) You need check the <a href="https://www.debian.org/releases/stable/i386/release-notes/ch-information.en.html" target="_blank">know issues in Debian 8</a> </p>
+<p>2) Backup of your data on the server you are going to upgrade</p>
+<p>3) Arrange downtime with all the required teams</p>
+<p><strong>Upgrade Process</strong></p>
+<p>First you need to make sure your existing debian system is up-to-date using the following commands</p>
+<blockquote><p>#apt-get update &#038;&#038; apt-get upgrade</p></blockquote>
+<p>Now you need to edit the /etc/apt/sources.list file </p>
+<blockquote><p>#vi /etc/apt/sources.list</p></blockquote>
+<p>Change the following lines From</p>
+<blockquote><p>deb http://debian.osuosl.org/debian wheezy main non-free contrib<br />
+deb-src http://debian.osuosl.org/debian wheezy main non-free contrib</p>
+<p>deb http://security.debian.org/ wheezy/updates main contrib non-free<br />
+deb-src http://security.debian.org/ wheezy/updates main contrib non-free</p>
+<p># wheezy-updates, previously known as &#8216;volatile'<br />
+deb http://debian.osuosl.org/debian wheezy-updates main contrib non-free<br />
+deb-src http://debian.osuosl.org/debian wheezy-updates main contrib non-free</p></blockquote>
+<p>To</p>
+<blockquote><p>deb http://debian.osuosl.org/debian jessie main non-free contrib<br />
+deb-src http://debian.osuosl.org/debian jessie main non-free contrib</p>
+<p>deb http://security.debian.org/ jessie/updates main contrib non-free<br />
+deb-src http://security.debian.org/ jessie/updates main contrib non-free</p>
+<p># jessie-updates, previously known as &#8216;volatile'<br />
+deb http://debian.osuosl.org/debian jessie-updates main contrib non-free<br />
+deb-src http://debian.osuosl.org/debian jessie-updates main contrib non-free</p></blockquote>
+<p>Save and exit the file</p>
+<p>Update source list </p>
+<blockquote><p>#apt-get update</p></blockquote>
+<p>Update minimal base system</p>
+<blockquote><p>#apt-get upgrade</p></blockquote>
+<p>Update rest of the system</p>
+<blockquote><p>#apt-get dist-upgrade</p></blockquote>
+<p>Finally you can reboot your server</p>
+<p>Once restarted you can check the current version using the following command</p>
+<blockquote><p>lsb_release -a</p></blockquote>
+<p>or</p>
+<blockquote><p>cat /etc/debian_version</p></blockquote>
+<p>You can check the kernel version using the following command</p>
+<blockquote><p>uname -a</p></blockquote>
+<p><!--adsense#new--></p>
+<div class="betterrelated"><p><strong>Related content:</strong></p>
+<ol><li> <a href="http://www.debianadmin.com/howto-upgrade-from-debian-etch-40-to-lenny-50.html" title="Permanent link to HowTo upgrade from Debian Etch (4.0 ) to Lenny (5.0)">HowTo upgrade from Debian Etch (4.0 ) to Lenny (5.0)</a>  </li>
+<li> <a href="http://www.debianadmin.com/upgrade-multiple-debian-systems-with-approx.html" title="Permanent link to Upgrade multiple debian systems with Approx">Upgrade multiple debian systems with Approx</a>  </li>
+<li> <a href="http://www.debianadmin.com/debian-apt-source-mirror-using-apt-mirror.html" title="Permanent link to Debian apt Source mirror using apt-mirror">Debian apt Source mirror using apt-mirror</a>  </li>
+<li> <a href="http://www.debianadmin.com/how-to-install-adobe-flash-in-debian-etchlennysid.html" title="Permanent link to How to Install Adobe Flash in Debian Etch/Lenny/Sid">How to Install Adobe Flash in Debian Etch/Lenny/Sid</a>  </li>
+<li> <a href="http://www.debianadmin.com/debian-7-5-released.html" title="Permanent link to Debian 7.5 released">Debian 7.5 released</a>  </li>
+</ol></div></div><!-- KonaBody --><div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=yMkjRwd_SA0:deAPDvQwOUs:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=yMkjRwd_SA0:deAPDvQwOUs:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?i=yMkjRwd_SA0:deAPDvQwOUs:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=yMkjRwd_SA0:deAPDvQwOUs:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=yMkjRwd_SA0:deAPDvQwOUs:l6gmwiTKsz0"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=l6gmwiTKsz0" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=yMkjRwd_SA0:deAPDvQwOUs:gIN9vFwOqvQ"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?i=yMkjRwd_SA0:deAPDvQwOUs:gIN9vFwOqvQ" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=yMkjRwd_SA0:deAPDvQwOUs:TzevzKxY174"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=TzevzKxY174" border="0"></img></a>
+</div>

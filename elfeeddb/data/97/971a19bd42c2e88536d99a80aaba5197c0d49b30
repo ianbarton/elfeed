@@ -1,0 +1,7 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<p><a href='emacs_CSS_colors.html'>Emacs: Working with CSS Color Values</a> (updated code. calls <code class='elisp-ƒ'>font-lock-flush</code> instead of <code class='elisp-ƒ'>font-lock-fontify-buffer</code>)</p>
+
+</div>
+ 

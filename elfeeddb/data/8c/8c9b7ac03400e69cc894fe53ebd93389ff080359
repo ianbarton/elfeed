@@ -1,0 +1,5 @@
+<p><a href="https://www.archlinux.org/packages/extra/any/ttf-dejavu/">ttf-dejavu</a> 2.37 will change the way fontconfig configuration is installed. In previous versions the configuration was symlinked from post_install/post_upgrade, the new version will place the files inside the package like it is done in fontconfig now.</p>
+<p>For more information about this change:
+<a href="https://bugs.archlinux.org/task/32312">https://bugs.archlinux.org/task/32312</a></p>
+<p>To upgrade to <a href="https://www.archlinux.org/packages/extra/any/ttf-dejavu/">ttf-dejavu</a> 2.37 it's recommended to upgrade the package on its own:
+<code>pacman -S --force ttf-dejavu</code></p>

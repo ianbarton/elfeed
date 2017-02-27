@@ -1,0 +1,46 @@
+<p>It’s been about two weeks since the last Remacs status update, but
+development continues apace!</p>
+
+<p>For readers who use Arch Linux, Remacs is now available as a
+<a href="https://aur.archlinux.org/packages/remacs-git/">remacs-git package on AUR</a>.</p>
+
+<p>We’ve seen a lot of work on builds recently. Thanks to a heroic effort
+from some OS X developers, Remacs now
+<a href="https://github.com/Wilfred/remacs/issues/38">builds on OS X</a>! A
+particular thanks to @pnkfelix who
+<a href="https://github.com/Wilfred/remacs/pull/112">wrote a custom allocator</a>
+to ensure <code class="highlighter-rouge">unexec</code> works with Remacs using
+<a href="https://github.com/rust-lang/rfcs/blob/master/text/1398-kinds-of-allocators.md">Rust RFC 1398</a>.</p>
+
+<p>Our CI has improved too. We now run
+<a href="https://github.com/Wilfred/remacs/pull/102">almost the entire Emacs test suite</a>
+on Travis, for both 64-bit Linux and OS X. The few failing tests are
+being skipped, though in several cases
+<a href="https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25534">they’re legitimate upstream issues that we’ve reported</a>.</p>
+
+<p>Work continues on other platforms: we’ve found that
+<a href="https://github.com/Wilfred/remacs/issues/95">Remacs won’t compile on 32-bit systems</a>
+due to
+<a href="https://github.com/rust-lang/rust/issues/39394">inappropriate use of tuple structs</a>. This
+is currently being worked on, but we hope the
+<a href="https://github.com/rust-lang/rfcs/pull/1758/files?short_path=01fbc76">#[repr(transparent)] Rust RFC</a>
+will eventually give us a cleaner solution.</p>
+
+<p>Contributors have also been looking at using Rust crates to replace C
+code included in Emacs. Work is underway for
+<a href="https://github.com/Wilfred/remacs/issues/80">SHA checksums</a>,
+<a href="https://github.com/Wilfred/remacs/issues/117">MD5 checksums</a> and
+<a href="https://github.com/Wilfred/remacs/issues/103">generating temporary files</a>.</p>
+
+<p>Finally, Remacs now
+<a href="https://github.com/Wilfred/remacs/blob/master/CONTRIBUTING.md">has a CONTRIBUTING.md</a>,
+which GitHub shows when creating a new issue or PR. This should make
+it easier for new contributors, as it teaches them how to contribute effectively.</p>
+
+<p>If you’re interested in contributing, our
+<a href="https://github.com/Wilfred/remacs#help-needed">help needed</a> list
+is regularly updated with interesting ways to contribute. We also have
+<a href="https://github.com/Wilfred/remacs/labels/help%20wanted">issues tagged ‘Help Wanted’</a>
+on GitHub.</p>
+
+<p>Onwards and upwards!</p>

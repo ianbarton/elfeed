@@ -1,0 +1,19 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+<h3>reading emacs manual vs elisp manual?</h3>
+
+<p>if you want to read emacs manual and want to be efficient in learning, read the elisp manual instead. </p>
+
+<p>because emacs really is just lisp interpreter with a user interface. ie the GUI or TUI in terminal</p>
+
+<p>this emacs lisp interpreter environment, is beyond repl. You can eval any buffer, or code, anytime, as in a interactive notebook.</p>
+
+<p>emacs has a repl on top of emacs lisp environment, M-x ielm</p>
+
+<p>〔➤see <a href='elisp_eval_lisp_code.html'>How to Evaluate Emacs Lisp Code</a>〕</p>
+
+<p>elisp manual is hard to read. You have to go thru hundred pages just to cover elisp basics. GNU Emacs Lisp Reference Manual <span class='ref'><a href='../emacs_manual/elisp/index.html'>(info &quot;(elisp) index&quot;)</a></span></p>
+
+<p>the hundred pages of elisp manual is summarized just by 10 pages here <a href='elisp_basics.html'>Emacs Lisp Basics</a></p>
+</div>
+ 

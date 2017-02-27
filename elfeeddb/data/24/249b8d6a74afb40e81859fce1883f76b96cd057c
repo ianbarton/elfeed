@@ -1,0 +1,14 @@
+<p> I <a href="http://pragmaticemacs.com/emacs/use-your-digits-and-a-personal-key-map-for-super-shortcuts/">wrote recently</a> about setting up a custom key map, and there are a couple of shortcuts for mu4e functions that I use very often with that key map. </p>
+<p> With the following code I define <code>c</code> in my key map to compose a new email. Since I previously set <code>C-1</code> to be the prefix for my map, then <code>C-1 c</code> is the full keybinding. This works globally so I can start a new email from anywhere in Emacs with <code>C-1 c</code>. </p>
+<p> I then supercharge the keybinding by using it to add a CC to an email if I am already composing one. This is done by binding <code>C-1 c</code> in the <code>mu4e-compose-mode-map</code> to <code>message-goto-cc</code>. So now <code>C-1 c</code> starts a new email unless I am already writing an email in which case it adds a CC instead. </p>
+<p> While I am at it, I also add <code>s</code> to my keymap for <code>mu4e-headers-search</code> so I can use <code>C-1 s</code> to launch a search of my emails from anywhere in Emacs. </p>
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #719071;">;; </span><span style="color: #7e9e7e;">bjm-map is already  bound to the prefix C-1</span>
+<span style="color: #719071;">;; </span><span style="color: #7e9e7e;">use C-1 c to compose a new email</span>
+<span style="color: #dadaca;">(</span>define-key bjm-map <span style="color: #b3d4b2;">(</span>kbd <span style="color: #cd9494;">"c"</span><span style="color: #b3d4b2;">)</span> 'mu4e-compose-new<span style="color: #dadaca;">)</span>
+<span style="color: #719071;">;; </span><span style="color: #7e9e7e;">use C-1 c for add cc if already in composition mode</span>
+<span style="color: #dadaca;">(</span>define-key mu4e-compose-mode-map <span style="color: #b3d4b2;">(</span>kbd <span style="color: #cd9494;">"C-1 c"</span><span style="color: #b3d4b2;">)</span> 'message-goto-cc<span style="color: #dadaca;">)</span>
+<span style="color: #719071;">;; </span><span style="color: #7e9e7e;">add search</span>
+<span style="color: #dadaca;">(</span>define-key bjm-map <span style="color: #b3d4b2;">(</span>kbd <span style="color: #cd9494;">"s"</span><span style="color: #b3d4b2;">)</span> 'mu4e-headers-search<span style="color: #dadaca;">)</span>
+</pre>
+</div>

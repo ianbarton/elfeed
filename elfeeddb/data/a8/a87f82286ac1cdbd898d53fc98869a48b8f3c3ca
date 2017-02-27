@@ -1,0 +1,29 @@
+<p>I&#039;ve been scratching my head over this one lately! I&#039;ve rebooted to find wicd not connecting, and stating that no wireless networks were available. After some fiddling, I checked `ip link` to find that my interface, which has been the same for at least 1.5-2yrs... was changed! It&#039;s always been wlp62s0 and upon a reboot changed to wlp621s0. I initially thought this was a systemd bug; according to its <a href="https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/" rel="nofollow">predictable network interface names</a>:</p><div class="quotebox"><blockquote><div><p>We believe it is a good default choice to generalize the scheme pioneered by &quot;biosdevname&quot;. Assigning fixed names based on firmware/topology/location information has the big advantage that the names are fully automatic, fully predictable, that they stay fixed even if hardware is added or removed (i.e. no reenumeration takes place) and that broken hardware can be replaced seamlessly.</p></div></blockquote></div><p>The point is that the network name is supposed to be <em>hardware</em> based to prevent names from changing. My hardware clearly wasn&#039;t changing, so it must be their bug, right? To my surprise, it appears the reported bus/device location has been changing lately! So, I conclude that systemd is naming things correctly based on hardware location, but somehow my system thinks my hardware is changing... here&#039;s 3 instances of a flip-flopping name:</p><div class="codebox"><pre><code>Feb 19 16:07:12 lilarch kernel: iwlwifi 0000:3d:00.0 wlp61s0: renamed from wlan0
+Feb 24 11:20:49 lilarch kernel: iwlwifi 0000:3e:00.0 wlp62s0: renamed from wlan0
+Feb 24 15:05:36 lilarch kernel: iwlwifi 0000:3d:00.0 wlp61s0: renamed from wlan0</code></pre></div><p>Note that the location is changing from 0000:3d to 0000:3e. Could someone suggest where I can look to see what&#039;s causing this?</p><p>As a possible culprit, I have three hard drives installed:<br />- one m2.sata running win7 (main drive that came on the computer)<br />- a secondary SSD in the upgrade bay<br />- a third SSD in the DVD slot</p><p>I&#039;ve noticed that when I reboot and press F9 (HP laptop) to get to the boot devices, sometimes the m2.sata doesn&#039;t show up in the list. When I <em>do</em> want to boot to Windows, sometimes it powers up (lights turn on but screen is sort of backlight but blank), I press nothing to get it to pick the default which should be the unlisted m2.sata, then it blips off for a second, turns back on and boots Windows. Other times it auto boots to Arch even though that&#039;s not the default drive...</p><p>Here&#039;s the list of devices:</p><div class="codebox"><pre><code>$ lspci
+00:00.0 Host bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor DRAM Controller (rev 06)
+00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor PCI Express x16 Controller (rev 06)
+00:02.0 VGA compatible controller: Intel Corporation 4th Gen Core Processor Integrated Graphics Controller (rev 06)
+00:14.0 USB controller: Intel Corporation 8 Series/C220 Series Chipset Family USB xHCI (rev 04)
+00:16.0 Communication controller: Intel Corporation 8 Series/C220 Series Chipset Family MEI Controller #1 (rev 04)
+00:16.3 Serial controller: Intel Corporation 8 Series/C220 Series Chipset Family KT Controller (rev 04)
+00:19.0 Ethernet controller: Intel Corporation Ethernet Connection I217-LM (rev 04)
+00:1a.0 USB controller: Intel Corporation 8 Series/C220 Series Chipset Family USB EHCI #2 (rev 04)
+00:1b.0 Audio device: Intel Corporation 8 Series/C220 Series Chipset High Definition Audio Controller (rev 04)
+00:1c.0 PCI bridge: Intel Corporation 8 Series/C220 Series Chipset Family PCI Express Root Port #1 (rev d4)
+00:1c.6 PCI bridge: Intel Corporation 8 Series/C220 Series Chipset Family PCI Express Root Port #7 (rev d4)
+00:1d.0 USB controller: Intel Corporation 8 Series/C220 Series Chipset Family USB EHCI #1 (rev 04)
+00:1f.0 ISA bridge: Intel Corporation QM87 Express LPC Controller (rev 04)
+00:1f.2 SATA controller: Intel Corporation 8 Series/C220 Series Chipset Family 6-port SATA Controller 1 [AHCI mode] (rev 04)
+00:1f.3 SMBus: Intel Corporation 8 Series/C220 Series Chipset Family SMBus Controller (rev 04)
+01:00.0 VGA compatible controller: NVIDIA Corporation GK106GLM [Quadro K2100M] (rev a1)
+3b:00.0 PCI bridge: Pericom Semiconductor Device 2404 (rev 05)
+3c:01.0 PCI bridge: Pericom Semiconductor Device 2404 (rev 05)
+3c:02.0 PCI bridge: Pericom Semiconductor Device 2404 (rev 05)
+3c:03.0 PCI bridge: Pericom Semiconductor Device 2404 (rev 05)
+3d:00.0 Network controller: Intel Corporation Wireless 7260 (rev 6b)
+5f:00.0 Unassigned class [ff00]: Realtek Semiconductor Co., Ltd. RTS5249 PCI Express Card Reader (rev 01)</code></pre></div><p>I disable ata7, my m2.sata, via my kernel line to prevent it from trying to read the drive at all (windows encrypted), and I noticed that I&#039;m on wlp61s0 at present and my dmesg says nothing about ata7... this would suggest that Arch isn&#039;t even seeing it to disable. Here&#039;s a typical boot message when it is seen:</p><div class="codebox"><pre><code>$ journalctl
+Feb 24 11:20:40 localhost kernel: ata7: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Feb 24 11:20:40 localhost kernel: ata7.00: FORCE: horkage modified (disable)
+Feb 24 11:20:40 localhost kernel: ata7.00: unsupported device, disabling
+Feb 24 11:20:40 localhost kernel: ata7.00: disabled</code></pre></div><p>Note this is also from the boot where my wifi interface was assigned wlp62s0.</p><p>Any way to track this down? I suppose I could remove my disabling ata command from my append line to try it. Any other suggestions?</p>

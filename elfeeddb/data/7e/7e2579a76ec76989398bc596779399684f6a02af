@@ -1,0 +1,13 @@
+<p>One neat feature of <a href="http://orgmode.org/manual/Agenda-Views.html">org-mode agenda</a> is ability to display appointments in Emacs calendar. Sadly, this isn't obvious nor enabled by default - I discovered it accidentally by browsing through Emacs themes screenshots.</p><p>In screenshot below, you can see highlighted days with planned meetings and scheduled work in my calendar.</p><p><img alt="emacs-calendar" src="https://c1.staticflickr.com/3/2082/32109271913_31d143b549.jpg" /></p><p>Setup is very easy. First, set <em>calendar-mark-diary-entries-flag</em> with:</p><pre><code class="elisp">(setq calendar-mark-diary-entries-flag t)
+</code></pre><p>Then create <em>$HOME/diary</em> file, if not present, and add this line:</p><pre><code class="elisp">%%(org-diary)
+</code></pre><p>Now in Emacs, open agenda view with <em>(org-agenda)</em> and open calendar with <code>c</code>; you will get highlighted all important dates. Alternatively, calling</p><pre><code class="elisp">M-x calendar
+</code></pre><p>will essentially do the same (open calendar) with fewer strokes.</p><p>Reverse action will also work - to see what is scheduled for particular highlighted day, just point cursor to that day and hit key <code>c</code> - Emacs will open <em>org-mode</em> agenda view and place cursor under correct entry.</p><h3><a name="using_with_appointments_(appt)"></a>Using with appointments (appt)</h3><p>In case you use <em>org-mode</em> with <a href="http://sachachua.com/blog/2007/11/setting-up-appointment-reminders-in-org/">appointments</a> to get visual reminders, be aware that calling <code>(appt-activate 1)</code> will run diary and making this call in your Emacs configuration will display diary window at Emacs startup, which I didn't like. To circumvent this behavior, <em>appt-display-diary</em> variable should be used.</p><p>In short, my appointments setup looks like this:</p><pre><code class="elisp">(add-hook 'org-finalize-agenda-hook
+  (lambda ()
+    (setq appt-message-warning-time 10        ;; warn 10 min in advance
+          appt-display-diary nil              ;; do not display diary when (appt-activate) is called
+          appt-display-mode-line t            ;; show in the modeline
+          appt-display-format 'window         ;; display notification in window
+          calendar-mark-diary-entries-flag t) ;; mark diary entries in calendar
+    (org-agenda-to-appt)                      ;; copy all agenda schedule to appointments
+    (appt-activate 1)))                       ;; active appt (appointment notification)
+</code></pre>

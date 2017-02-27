@@ -1,0 +1,63 @@
+<p>As of a few weeks ago, I’ve become part of <a class="reference external" href="https://github.com/orgs/emacs-evil/people">Evil’s new maintainer
+team</a>.  Most of the bugs we get are not quite Evil’s fault, but
+rather that of other components it relies upon, such as Emacs.  <a class="reference external" href="https://github.com/emacs-evil/evil/pull/785">#785</a>
+is a perfect example of this observation.  Take a look at <a class="reference external" href="http://git.savannah.gnu.org/cgit/emacs.git/tree/src/keymap.c?id=6b6cc56e728a4d8b5ccac86ac393be7cd29207e2#n1198">the
+sources</a> of the function responsible for the reported behavior and
+see whether you can find what’s wrong about it:</p>
+<pre class="code c literal-block"><span class="n">DEFUN</span> <span class="p">(</span><span class="s">"lookup-key"</span><span class="p">,</span> <span class="n">Flookup_key</span><span class="p">,</span> <span class="n">Slookup_key</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+       <span class="nl">doc</span><span class="p">:</span> <span class="p">...)</span>
+  <span class="p">(</span><span class="n">Lisp_Object</span> <span class="n">keymap</span><span class="p">,</span> <span class="n">Lisp_Object</span> <span class="n">key</span><span class="p">,</span> <span class="n">Lisp_Object</span> <span class="n">accept_default</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">ptrdiff_t</span> <span class="n">idx</span><span class="p">;</span>
+  <span class="n">Lisp_Object</span> <span class="n">cmd</span><span class="p">;</span>
+  <span class="n">Lisp_Object</span> <span class="n">c</span><span class="p">;</span>
+  <span class="kt">ptrdiff_t</span> <span class="n">length</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">t_ok</span> <span class="o">=</span> <span class="o">!</span><span class="n">NILP</span> <span class="p">(</span><span class="n">accept_default</span><span class="p">);</span>
+
+  <span class="n">keymap</span> <span class="o">=</span> <span class="n">get_keymap</span> <span class="p">(</span><span class="n">keymap</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+  <span class="n">length</span> <span class="o">=</span> <span class="n">CHECK_VECTOR_OR_STRING</span> <span class="p">(</span><span class="n">key</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">keymap</span><span class="p">;</span>
+
+  <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">c</span> <span class="o">=</span> <span class="n">Faref</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">make_number</span> <span class="p">(</span><span class="n">idx</span><span class="o">++</span><span class="p">));</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">CONSP</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">lucid_event_type_list_p</span> <span class="p">(</span><span class="n">c</span><span class="p">))</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">Fevent_convert_list</span> <span class="p">(</span><span class="n">c</span><span class="p">);</span>
+
+      <span class="cm">/* Turn the 8th bit of string chars into a meta modifier.  */</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">STRINGP</span> <span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">XINT</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x80</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">STRING_MULTIBYTE</span> <span class="p">(</span><span class="n">key</span><span class="p">))</span>
+        <span class="n">XSETINT</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="p">(</span><span class="n">XINT</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">|</span> <span class="n">meta_modifier</span><span class="p">)</span> <span class="o">&amp;</span> <span class="o">~</span><span class="mh">0x80</span><span class="p">);</span>
+
+      <span class="cm">/* Allow string since binding for `menu-bar-select-buffer'
+         includes the buffer name in the key sequence.  */</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">INTEGERP</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">SYMBOLP</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">CONSP</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">STRINGP</span> <span class="p">(</span><span class="n">c</span><span class="p">))</span>
+        <span class="n">message_with_string</span> <span class="p">(</span><span class="s">"Key sequence contains invalid event %s"</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+      <span class="n">cmd</span> <span class="o">=</span> <span class="n">access_keymap</span> <span class="p">(</span><span class="n">keymap</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">t_ok</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="n">length</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cmd</span><span class="p">;</span>
+
+      <span class="n">keymap</span> <span class="o">=</span> <span class="n">get_keymap</span> <span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">CONSP</span> <span class="p">(</span><span class="n">keymap</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">make_number</span> <span class="p">(</span><span class="n">idx</span><span class="p">);</span>
+
+      <span class="n">maybe_quit</span> <span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+<p>If you haven’t spotted it, the function never signals an exception for
+the exceptional case of an invalid key sequence.  Instead, it returns
+one of the few types that aren’t allowed in a definition, namely an
+integer.  It’s up to the caller to handle this case on their own,
+something the majority of Emacs packages rightfully neglect to do as
+even <tt class="docutils literal">+</tt> informs you about invalid input.  This design decision
+reeks of <a class="reference external" href="http://www.tedunangst.com/flak/post/to-errno-or-to-error">the many ways of signalling errors in C</a> and worse, cannot
+be properly fixed as there’s code inside Emacs relying on the integer
+return type.  There is even a <tt class="docutils literal"><span class="pre">lookup-key-ignore-too-long</span></tt> in Emacs
+core that looks a lot like what I wrote, but it’s part of
+<tt class="docutils literal"><span class="pre">menu-bar.el</span></tt> for whatever reason and not advertised at all.</p>
+<p>tl;dr: In-band signalling sucks big time.</p>

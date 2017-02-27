@@ -1,0 +1,47 @@
+<p>I am always looking for new ways to improve my Emacs experience. Months ago, it
+happened to my spell-checking configuration thanks to the work
+of <a href="https://github.com/NicolasPetton">Nicolas Petton</a>.</p>
+
+<div class="language-emacs-lisp highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="nb">defvar</span> <span class="nv">mu-languages-ring</span> <span class="no">nil</span> <span class="s">"Languages ring for Ispell"</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">languages</span> <span class="o">'</span><span class="p">(</span><span class="s">"en_GB"</span> <span class="s">"it_IT"</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nv">validate-setq</span> <span class="nv">mu-languages-ring</span> <span class="p">(</span><span class="nv">make-ring</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">languages</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">elem</span> <span class="nv">languages</span><span class="p">)</span> <span class="p">(</span><span class="nv">ring-insert</span> <span class="nv">mu-languages-ring</span> <span class="nv">elem</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">mu-cycle-ispell-languages</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">language</span> <span class="p">(</span><span class="nv">ring-ref</span> <span class="nv">mu-languages-ring</span> <span class="mi">-1</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">ring-insert</span> <span class="nv">mu-languages-ring</span> <span class="nv">language</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">ispell-change-dictionary</span> <span class="nv">language</span><span class="p">)))</span>
+</code></pre>
+</div>
+
+<p>This handy code lets me cycle quickly through the languages I need in
+Flyspell. However, wouldn’t it be easier if Emacs was capable of automatic
+language detection?</p>
+
+<p>That’s the hole
+the <a href="https://github.com/tmalsburg/guess-language.el">guess-language</a> package
+fills.</p>
+
+<div class="language-emacs-lisp highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="nb">use-package</span> <span class="nv">guess-language</span>         <span class="c1">; Automatically detect language for Flyspell</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:defer</span> <span class="no">t</span>
+  <span class="ss">:init</span> <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'text-mode-hook</span> <span class="nf">#'</span><span class="nv">guess-language-mode</span><span class="p">)</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">guess-language-langcodes</span> <span class="o">'</span><span class="p">((</span><span class="nv">en</span> <span class="o">.</span> <span class="p">(</span><span class="s">"en_GB"</span> <span class="s">"English"</span><span class="p">))</span>
+                                   <span class="p">(</span><span class="nv">it</span> <span class="o">.</span> <span class="p">(</span><span class="s">"it_IT"</span> <span class="s">"Italian"</span><span class="p">)))</span>
+        <span class="nv">guess-language-languages</span> <span class="o">'</span><span class="p">(</span><span class="nv">en</span> <span class="nv">it</span><span class="p">)</span>
+        <span class="nv">guess-language-min-paragraph-length</span> <span class="mi">45</span><span class="p">)</span>
+  <span class="ss">:diminish</span> <span class="nv">guess-language-mode</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Notice how I set <code class="highlighter-rouge">guess-language-langcodes</code>. It has to be set this way to make
+<code class="highlighter-rouge">guess-language</code> work with my setup
+for
+<a href="https://manuel-uberti.github.io/emacs/2016/06/06/spellchecksetup/">Hunspell</a>.</p>
+
+<p>Support for different languages and language detection for multiple languages in
+the same document are provided out of the box. <code class="highlighter-rouge">guess-language</code> is still young,
+but it’s already making spell-checking in Emacs so much easier.</p>

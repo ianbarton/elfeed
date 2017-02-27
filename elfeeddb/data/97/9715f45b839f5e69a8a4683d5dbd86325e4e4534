@@ -1,0 +1,22 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<figure>
+<img src='i/emacs_lisp_doc_tack_symbol.png' alt='emacs lisp doc tack symbol' width='805' height='770'/>
+<figcaption>
+emacs lisp doc use tack symbol
+</figcaption>
+</figure>
+
+<p>nice to see math symbol used in emacs.</p>
+
+<p>the symbol used is
+<mark class='unicode' title='U+22A3: LEFT TACK'>⊣</mark>
+(U+22A3: LEFT TACK)
+</p>
+
+<p>See also:
+<a href='http://xahlee.info/comp/unicode_math_operators.html'>Unicode Math Symbols ∑ ∞ ∫ π ∈ ℝ²</a></p>
+
+</div>
+ 

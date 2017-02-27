@@ -1,0 +1,40 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<h3>emacs lisp completion problem</h3>
+
+<p>start emacs with -Q, open a new buffer, M-x emacs-lisp-mode, type defu, press C-M-i, do you get “defun” or “defun-”?</p>
+
+<p>vote here:</p>
+
+<ul>
+<li><a class='sorc' href='https://twitter.com/ErgoEmacs/status/804494732122464256' data-accessed='2016-12-01'>https://twitter.com/ErgoEmacs/status/804494732122464256</a></li>
+<li><a class='sorc' href='https://plus.google.com/113859563190964307534/posts/bYVdTpW9Nbx' data-accessed='2016-12-01'>https://plus.google.com/113859563190964307534/posts/bYVdTpW9Nbx</a></li>
+</ul>
+
+<p>poll results:</p>
+
+<figure>
+<img src='i/emacs_lisp_completion_2016-12-01_poll_gplus.png' alt='emacs lisp completion 2016 12 01 poll gplus' width='520' height='237'/>
+<img src='i/emacs_lisp_completion_2016-12-01_poll_twitter.png' alt='emacs lisp completion 2016 12 01 poll twitter' width='545' height='180'/>
+<figcaption>
+</figcaption>
+</figure>
+
+<p>this is quite odd. I remember it was working.</p>
+
+<p>but apparently, about half of people, they don&apos;t get proper completion. (nor me. I&apos;m on emacs 25.1.1)</p>
+
+<p>it&apos;s interesting because:</p>
+
+<ul>
+<li>How could this basic functionality not work properly? it&apos;s emacs lisp in emacs we are talking about.</li>
+<li>How could there be different results? I asked people to start emacs with -Q, not loading init. So, perhaps this is the difference between emacs 24.5 and 25.1.1</li>
+<li>if it&apos;s indeed 25.1.1 issue, it&apos;s interesting how could emacs screw this up?</li>
+</ul>
+
+<p>if you did get the correct behavior, did you actually start emacs with -Q? What emacs version are you using?
+(post comment on twitter or gplus.)</p>
+
+</div>
+ 

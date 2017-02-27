@@ -1,0 +1,43 @@
+<div class="KonaBody"><p><!--adsense-->asql is a simple console shell which allows you to run SQL queries against an Apache logfile, something that can be very useful -- especially at getting information which is not easily available via static logfile analysers.<br />
+<span id="more-4507"></span><br />
+When asql starts up it creates a temporary SQLite database to hold the contents of the parsed logfile(s) you might load. This temporary database may then be queried directly via SQL.</p>
+<p><strong>Install asql on Debian 8</strong></p>
+<p>Open the terminal and run the following command</p>
+<blockquote><p>sudo apt-get install asql</p></blockquote>
+<p><strong>Using aSql</strong></p>
+<p>Once installed, either via the package or via the source download, please start the shell by typing "asql".</p>
+<p>Once the shell starts you have several commands available to you, enter help for a complete list. The three most commonly used commands would be:</p>
+<p><strong>load</strong></p>
+<p>This will load an Apache logfile into the temporary database which is created at startup. Single files, or globs are accepted so you may run something like this:</p>
+<p>load /var/log/apache2/acces*</p>
+<p>To save time parsing the input files more than once you may saving the resulting database with save and later restore it.</p>
+<p><strong>select</strong></p>
+<p>This allows you to run an actual query.</p>
+<p><strong>show</strong></p>
+<p>This shows the table structure the logfile was parsed into.</p>
+<p><strong>aSql Examples</strong></p>
+<p>The following sample session provides a demonstration of typical usage of the shell, it demonstrates the use of the alias command which may be used to create persistent aliases:</p>
+<p>asql v0.6 -- type &#8216;help' for help.</p>
+<p>asql> load /home/skx/hg/engaging/logs/access.log</p>
+<p>Loading: /home/skx/hg/engaging/logs/access.log</p>
+<p>sasql> select COUNT(id) FROM logs</p>
+<p>46</p>
+<p>asql> alias hits SELECT COUNT(id) FROM logs</p>
+<p>ALIAS hits SELECT COUNT(id) FROM logs</p>
+<p>asql> alias ips SELECT DISTINCT(source) FROM logs;</p>
+<p>ALIAS ips SELECT DISTINCT(source) FROM logs;</p>
+<p>asql> hits</p>
+<p>46</p>
+<p>asql> alias</p>
+<p>ALIAS hits SELECT COUNT(id) FROM logs</p>
+<p>ALIAS ips SELECT DISTINCT(source) FROM logs;<br />
+<!--adsense#new--></p>
+<div class="betterrelated"><p><strong>Related content:</strong></p>
+<ol><li> <a href="http://www.debianadmin.com/realtime-apache-monitoring-with-apachetop.html" title="Permanent link to Realtime Apache monitoring with apachetop">Realtime Apache monitoring with apachetop</a>  </li>
+<li> <a href="http://www.debianadmin.com/how-to-split-apache-logs-with-vlogger-in-debian-etch.html" title="Permanent link to How to Split apache Logs With vlogger in debian etch">How to Split apache Logs With vlogger in debian etch</a>  </li>
+<li> <a href="http://www.debianadmin.com/how-to-split-lighttpd-logs-with-vlogger-in-debian-etch.html" title="Permanent link to How to Split lighttpd Logs With vlogger in Debian Etch">How to Split lighttpd Logs With vlogger in Debian Etch</a>  </li>
+<li> <a href="http://www.debianadmin.com/providing-root-privileges-for-users-using-sudo.html" title="Permanent link to Providing root privileges for users Using SUDO">Providing root privileges for users Using SUDO</a>  </li>
+<li> <a href="http://www.debianadmin.com/apache-log-file-analyzer-using-awstats-in-debian.html" title="Permanent link to Apache Log file analyzer Using Awstats in Debian">Apache Log file analyzer Using Awstats in Debian</a>  </li>
+</ol></div></div><!-- KonaBody --><div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=lv5MPiLiFu8:JSaPzu948Lk:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=lv5MPiLiFu8:JSaPzu948Lk:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?i=lv5MPiLiFu8:JSaPzu948Lk:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=lv5MPiLiFu8:JSaPzu948Lk:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=lv5MPiLiFu8:JSaPzu948Lk:l6gmwiTKsz0"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=l6gmwiTKsz0" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=lv5MPiLiFu8:JSaPzu948Lk:gIN9vFwOqvQ"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?i=lv5MPiLiFu8:JSaPzu948Lk:gIN9vFwOqvQ" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=lv5MPiLiFu8:JSaPzu948Lk:TzevzKxY174"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=TzevzKxY174" border="0"></img></a>
+</div>

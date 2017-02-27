@@ -1,0 +1,35 @@
+<div class="KonaBody"><p><!--adsense-->Hiawatha is an open source webserver with a focus on security. I started Hiawatha in January 2002. Before that time, I had used several webservers, but I didn't like them. They had unlogical, almost cryptic configuration syntax and none of them gave me a good feeling about their security and robustness. So, I decided it was time to write my own webserver. I never thought that my webserver would become what it is today, but I enjoyed working on it and liked to have my own open source project. In the years that followed, Hiawatha became a fully functional webserver.<br />
+<span id="more-4531"></span></p>
+<p><strong>Hiawatha Features</strong></p>
+<p><strong>Secure</strong></p>
+<p>Hiawatha has been written with security in mind. This resulted in a highly secure webserver in both code and features. Hiawatha can stop SQL injections, XSS and CSRF attacks and exploit attempts. Via a specially crafted monitoring tool, you can keep track of all your webservers.</p>
+<p><strong>Easy to use</strong></p>
+<p>You don't need to be a HTTP or CGI expert to get Hiawatha up and running. Its configuration syntax is easy to learn. The documentation and examples you can find on this website will give you all the information you need to configure your webserver within minutes.</p>
+<p><strong>Lightweight</strong></p>
+<p>Although Hiawatha has everything a modern webserver needs, it's nevertheless a small and lightweight webserver. This makes Hiawatha ideal for older hardware or embedded systems. Special techniques are being used to keep the usage of resources as low as possible.</p>
+<p><strong>Install Hiawatha on Debian 8</strong></p>
+<p>Open the terminal and run the following commands as root user</p>
+<p>Get the repository's public key:</p>
+<blockquote><p>#apt-key adv --recv-keys --keyserver keys.gnupg.net 79AF54A9</p></blockquote>
+<p>Edit the sources.list file</p>
+<blockquote><p>#vi /etc/apt/sources.list</p></blockquote>
+<p>Add the following line</p>
+<blockquote><p>deb http://mirror.tuxhelp.org/debian/ squeeze main</p></blockquote>
+<p>Save and exit the file</p>
+<p>Update the source list</p>
+<blockquote><p>#apt-get update</p></blockquote>
+<p>Install Hiawatha </p>
+<blockquote><p>#apt-get install hiawatha</p></blockquote>
+<p>Now you can ope the web browser and test</p>
+<blockquote><p>http://server-ip</p></blockquote>
+<p>You should see an "Installation Successful" webpage </p>
+<p><!--adsense#new--></p>
+<div class="betterrelated"><p><strong>Related content:</strong></p>
+<ol><li> <a href="http://www.debianadmin.com/how-to-install-apache-mysql-and-php-on-debian-7-0.html" title="Permanent link to How To Install Apache, MySQL and PHP on Debian 7.0">How To Install Apache, MySQL and PHP on Debian 7.0</a>  </li>
+<li> <a href="http://www.debianadmin.com/how-to-install-4pane-file-manager-in-debian-squeezelenny.html" title="Permanent link to How to install 4pane file manager in debian Squeeze/Lenny">How to install 4pane file manager in debian Squeeze/Lenny</a>  </li>
+<li> <a href="http://www.debianadmin.com/how-to-install-packetfence-on-debian-squeeze.html" title="Permanent link to How to install PacketFence on Debian squeeze">How to install PacketFence on Debian squeeze</a>  </li>
+<li> <a href="http://www.debianadmin.com/install-webmin-on-debian-7-6-wheezy.html" title="Permanent link to Install webmin on debian 7.6 (wheezy)">Install webmin on debian 7.6 (wheezy)</a>  </li>
+<li> <a href="http://www.debianadmin.com/select-fastest-debian-mirror-using-netselect-apt.html" title="Permanent link to Select fastest Debian mirror using netselect-apt">Select fastest Debian mirror using netselect-apt</a>  </li>
+</ol></div></div><!-- KonaBody --><div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=T0NC2WTeiGE:vG9tOkjDi8s:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=T0NC2WTeiGE:vG9tOkjDi8s:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?i=T0NC2WTeiGE:vG9tOkjDi8s:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=T0NC2WTeiGE:vG9tOkjDi8s:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=T0NC2WTeiGE:vG9tOkjDi8s:l6gmwiTKsz0"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=l6gmwiTKsz0" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=T0NC2WTeiGE:vG9tOkjDi8s:gIN9vFwOqvQ"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?i=T0NC2WTeiGE:vG9tOkjDi8s:gIN9vFwOqvQ" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=T0NC2WTeiGE:vG9tOkjDi8s:TzevzKxY174"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=TzevzKxY174" border="0"></img></a>
+</div>

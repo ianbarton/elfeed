@@ -1,0 +1,22 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<p>the emacs manual mirrored on my site, is also updated to version 25.1. see
+<span class='ref'><a href='../emacs_manual/emacs/index.html'>(info &quot;(emacs) index&quot;)</a></span></p>
+
+<p>though, i rarely link to it. Because, if you want to learn emacs, there are quite a lot approaches that&apos;s more efficient than
+reading emacs manual.</p>
+
+<p>i recommend:</p>
+
+<ol>
+<li>Just use emacs. Use and use, profusely. When you have a issue, seek answer, on the web, on xah tutorial, or ask stackoverflow, reddit.</li>
+<li>When you have leisure time, start learning emacs lisp.</li>
+<li>To learn emacs lisp, my advice is just to read my elisp tutorial. <a href='elisp.html'>Practical Emacs Lisp</a>. There&apos;s not much material elsewhere.</li>
+<li>While you are learning elisp, write helpful commands you need. And in the process, you&apos;ll have questions, then, seek answer.</li>
+<li>You will start to read parts of elisp manual now and then. This is real progress, making you understand emacs.</li>
+<li>Soon, you&apos;ll want to write a non-trivial package. This is when, you start want to read the elisp manual thoroughly.</li>
+</ol>
+
+</div>
+ 

@@ -1,0 +1,32 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+<div class='date-xl'><time>2016-11-09</time></div>
+
+<h3>emacs spell checking tips</h3>
+
+<p>Call <code class='elisp-ƒ'>flyspell-mode</code> to turn on spell checker as you type.
+Call again to turn off.</p>
+
+<p>Call
+<code class='elisp-ƒ'>flyspell-buffer</code>
+to spell check whole buffer.</p>
+
+<p>Call
+<code class='elisp-ƒ'>flyspell-goto-next-error</code>
+【<kbd>Ctrl</kbd>+<kbd>,</kbd>】
+to move cursor to next error.
+(only when <code class='elisp-ƒ'>flyspell-mode</code> is on.)
+</p>
+
+<p>Call
+<code class='elisp-ƒ'>flyspell-auto-correct-word</code>
+【<kbd>Ctrl</kbd>+<kbd>.</kbd>】
+to correct the word under cursor.
+Press the key again to swap to next suggestion.</p>
+
+<p>Call
+<code class='elisp-ƒ'>ispell-word</code>
+【<kbd>Alt</kbd>+<kbd>$</kbd>】
+to check spelling of current word.</p>
+</div>
+ 

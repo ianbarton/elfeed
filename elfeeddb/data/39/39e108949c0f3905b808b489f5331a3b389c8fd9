@@ -1,0 +1,7 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<p><a href='elisp_dired_rename_space_to_underscore.html'>Emacs: Rename File from Space to Hyphen/Underscore</a> (bug fix. Now will also rename the buffer if open.)</p>
+
+</div>
+ 

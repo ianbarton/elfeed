@@ -1,0 +1,32 @@
+<div class="KonaBody"><p><!--adsense-->Easily view, navigate, search and use your command history with shell history suggest box for Bash and Zsh.</p>
+<p>Are you looking for a command that you used recently? Do you want to avoid the need to write long commands over and over again despite you used them recently? Are you looking for a tool that is able to manage your favorite commands?<br />
+<span id="more-4358"></span><br />
+HSTR is a command line utility that brings improved BASH command completion from the history. It aims to make completion easier and more efficient than Ctrl-r.</p>
+<p>Apart to the completion, history can be managed (you can remove commands that e.g. contain sensitive information like passwords) and bookmark your favorite commands.</p>
+<p><strong>Install htsr on Debian</strong></p>
+<p>Open the terminal and run the following commands</p>
+<blockquote><p>
+#wget www.clfh.de/frankh.asc</p>
+<p>#apt-key add frankh.asc</p></blockquote>
+<p>adding the repository to /etc/apt/sources.list</p>
+<blockquote><p>deb http://www.clfh.de/debian wheezy main<br />
+deb-src http://www.clfh.de/debian wheezy main</p></blockquote>
+<p>Save and exit the file</p>
+<p>Update source list</p>
+<blockquote><p>#apt-get update</p></blockquote>
+<p>Install hstr using the following command</p>
+<blockquote><p>#apt-get install hh</p></blockquote>
+<p>Optionally configure hh:</p>
+<blockquote><p>#hh --show-configuration >> ~/.bashrc</p></blockquote>
+<p><strong>Video Tutorial</strong></p>
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/sPF29NyXe2U" frameborder="0" allowfullscreen></iframe><br />
+<!--adsense#new--></p>
+<div class="betterrelated"><p><strong>Related content:</strong></p>
+<ol><li> <a href="http://www.debianadmin.com/install-webmin-on-debian-7-6-wheezy.html" title="Permanent link to Install webmin on debian 7.6 (wheezy)">Install webmin on debian 7.6 (wheezy)</a>  </li>
+<li> <a href="http://www.debianadmin.com/how-to-add-date-and-time-to-your-bash-history-file.html" title="Permanent link to How to Add Date And Time To Your Bash History file">How to Add Date And Time To Your Bash History file</a>  </li>
+<li> <a href="http://www.debianadmin.com/upgrade-debian-7-wheezy-to-debian-8-jessie.html" title="Permanent link to Upgrade Debian 7 (Wheezy) to Debian 8 (Jessie)">Upgrade Debian 7 (Wheezy) to Debian 8 (Jessie)</a>  </li>
+<li> <a href="http://www.debianadmin.com/how-to-install-liquorix-kernel-in-debian-7-0.html" title="Permanent link to How to install Liquorix Kernel in debian 7.0">How to install Liquorix Kernel in debian 7.0</a>  </li>
+<li> <a href="http://www.debianadmin.com/how-to-install-4pane-file-manager-in-debian-squeezelenny.html" title="Permanent link to How to install 4pane file manager in debian Squeeze/Lenny">How to install 4pane file manager in debian Squeeze/Lenny</a>  </li>
+</ol></div></div><!-- KonaBody --><div class="feedflare">
+<a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=g_BjsemqDEc:z6CrKIMNXCY:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=yIl2AUoC8zA" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=g_BjsemqDEc:z6CrKIMNXCY:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?i=g_BjsemqDEc:z6CrKIMNXCY:V_sGLiPBpWU" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=g_BjsemqDEc:z6CrKIMNXCY:qj6IDK7rITs"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=qj6IDK7rITs" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=g_BjsemqDEc:z6CrKIMNXCY:l6gmwiTKsz0"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=l6gmwiTKsz0" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=g_BjsemqDEc:z6CrKIMNXCY:gIN9vFwOqvQ"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?i=g_BjsemqDEc:z6CrKIMNXCY:gIN9vFwOqvQ" border="0"></img></a> <a href="http://feeds.feedburner.com/~ff/debiansystemadmin?a=g_BjsemqDEc:z6CrKIMNXCY:TzevzKxY174"><img src="http://feeds.feedburner.com/~ff/debiansystemadmin?d=TzevzKxY174" border="0"></img></a>
+</div>

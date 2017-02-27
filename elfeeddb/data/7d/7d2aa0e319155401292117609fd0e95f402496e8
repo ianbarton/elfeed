@@ -1,0 +1,14 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<p>#emacs skeeto (chris wellons, author of elfeed, skewer, etc) answers about lexical binding.
+<a class='sorc' href='https://www.reddit.com/r/emacs/comments/5j9qgz/lexicalbinding_t_vs_lexicallet/dbevk2j/' data-accessed='2016-12-20'>https://www.reddit.com/r/emacs/comments/5j9qgz/lexicalbinding_t_vs_lexicallet/dbevk2j/</a></p>
+
+<p>read his comment for detail. But the reason he gave that convinced me that why a file directive for lexical binding is the proper choice instead of a special function such as “lexical-let”. That reason is:</p>
+
+<blockquote>
+<p>It [lexical binding file variable] applies not just to let, but to all forms that create local bindings, such as function parameters, condition-case, and any macros that expand to let.</p>
+</blockquote>
+
+</div>
+ 

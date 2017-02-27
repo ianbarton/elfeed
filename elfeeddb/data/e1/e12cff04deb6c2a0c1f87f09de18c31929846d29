@@ -1,0 +1,27 @@
+<pre class="code elisp literal-block"><span class="p">(</span><span class="nb">defface</span> <span class="nv">w3m-history-current-url</span>
+  <span class="c1">;; The following strange code compounds the attributes of the</span>
+  <span class="c1">;; `secondary-selection' face and the `w3m-arrived-anchor' face,</span>
+  <span class="c1">;; and generates the new attributes for this face.</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">base</span> <span class="ss">'secondary-selection</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fn</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">featurep</span> <span class="ss">'xemacs</span><span class="p">)</span>
+                <span class="ss">'face-custom-attributes-get</span>
+              <span class="ss">'custom-face-attributes-get</span><span class="p">))</span><span class="c1">;; What a perverseness it is.</span>
+        <span class="c1">;; Both `face-custom-attributes-get' in XEmacs and</span>
+        <span class="c1">;; `custom-face-attributes-get' in CUSTOM 1.9962 attempt to</span>
+        <span class="c1">;; require `font' in Emacs/w3 and `cl' arbitrarily. :-/</span>
+        <span class="p">(</span><span class="nv">features</span> <span class="p">(</span><span class="nf">cons</span> <span class="ss">'font</span> <span class="nv">features</span><span class="p">))</span>
+        <span class="nv">base-attributes</span> <span class="nv">attributes</span> <span class="nv">attribute</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">base-attributes</span> <span class="p">(</span><span class="nf">funcall</span> <span class="nv">fn</span> <span class="nv">base</span> <span class="no">nil</span><span class="p">)</span>
+          <span class="nv">attributes</span> <span class="p">(</span><span class="nf">funcall</span> <span class="nv">fn</span> <span class="ss">'w3m-arrived-anchor</span> <span class="no">nil</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">while</span> <span class="nv">base-attributes</span>
+      <span class="p">(</span><span class="k">setq</span> <span class="nv">attribute</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">base-attributes</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nf">memq</span> <span class="nv">attribute</span> <span class="o">'</span><span class="p">(</span><span class="nb">:foreground</span> <span class="nb">:underline</span><span class="p">))</span>
+        <span class="p">(</span><span class="k">setq</span> <span class="nv">attributes</span> <span class="p">(</span><span class="nf">plist-put</span> <span class="nv">attributes</span> <span class="nv">attribute</span>
+                                    <span class="p">(</span><span class="nv">cadr</span> <span class="nv">base-attributes</span><span class="p">))))</span>
+      <span class="p">(</span><span class="k">setq</span> <span class="nv">base-attributes</span> <span class="p">(</span><span class="nv">cddr</span> <span class="nv">base-attributes</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nf">list</span> <span class="p">(</span><span class="nf">list</span> <span class="no">t</span> <span class="nv">attributes</span><span class="p">)))</span>
+  <span class="s">"Face used to highlight the current url in the \"about://history/\" page."</span>
+  <span class="nb">:group</span> <span class="ss">'w3m-face</span><span class="p">)</span>
+</pre>
+<p>These days one would simply use <tt class="docutils literal">:inherit</tt> for both
+<tt class="docutils literal"><span class="pre">w3m-arrived-anchor</span></tt> and <tt class="docutils literal"><span class="pre">secondary-selection</span></tt>.</p>

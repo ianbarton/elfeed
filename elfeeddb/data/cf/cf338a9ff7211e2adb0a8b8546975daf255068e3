@@ -1,0 +1,23 @@
+<p>Packages of the new major version of PHP have been released into the stable repositories. Besides the new <a href="http://php.net/archive/2015.php#id2015-12-03-1">PHP 7 features</a> there are the following packaging changes. In general the package configuration is now closer to what was intended by the PHP project. Also refer to the <strong><a href="http://php.net/manual/en/migration70.php">PHP 7 migration guide</a></strong> for upstream improvements.</p>
+<h4>Removed packages</h4>
+<ul>
+<li><strong>php-pear</strong></li>
+<li><strong>php-mssql</strong></li>
+<li><strong>php-ldap</strong> The module is now included in the <a href="https://www.archlinux.org/packages/extra/x86_64/php/">php</a> package</li>
+<li><strong>php-mongo</strong> The new <strong><a href="https://www.archlinux.org/packages/community/x86_64/php-mongodb/">php-mongodb</a></strong> might provide an alternative even though it is not a compatible drop-in replacement</li>
+<li><strong>php-xcache</strong> Consider using the included <a href="http://php.net/opcache">OPcache</a> and optionally <a href="https://www.archlinux.org/packages/extra/x86_64/php-apcu/">APCu</a> for user data cache</li>
+<li><strong><a href="https://www.archlinux.org/packages/extra/x86_64/graphviz/">graphviz</a></strong> The PHP bindings had to be removed</li>
+</ul>
+<h4>New packages</h4>
+<ul>
+<li><strong><a href="https://www.archlinux.org/packages/extra/x86_64/php-apcu-bc/">php-apcu-bc</a></strong> Install and enable this module if the <strong>apc_</strong>* functions are needed</li>
+<li><strong><a href="https://www.archlinux.org/packages/community/x86_64/php-mongodb/">php-mongodb</a></strong></li>
+</ul>
+<h4>Configuration changes</h4>
+<ul>
+<li><strong>open_basedir</strong> is no longer set by default</li>
+<li><strong>openssl</strong>, <strong>phar</strong> and <strong>posix</strong> extensions are now built in</li>
+<li><a href="https://www.archlinux.org/packages/extra/x86_64/php-fpm/">php-fpm</a> does no longer provide a <strong>logrotate</strong> configuration. Instead syslog/journald is used by default</li>
+<li><a href="https://www.archlinux.org/packages/extra/x86_64/php-fpm/">php-fpm</a>'s service file does no longer set <strong>PrivateTmp=true</strong></li>
+<li>The configuration and module of <a href="https://www.archlinux.org/packages/extra/x86_64/php-apache/">php-apache</a> have been renamed to <strong>php7_module.conf</strong> and <strong>libphp7.so</strong></li>
+</ul>

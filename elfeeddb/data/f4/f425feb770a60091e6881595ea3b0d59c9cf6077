@@ -1,0 +1,23 @@
+
+ <div xmlns='http://www.w3.org/1999/xhtml'>
+
+<h3>new tooltips</h3>
+
+<p>the tooltips are regenerated, from emacs 25.1</p>
+
+<p>now ALL functions mentioned in elisp manual have tooltips.
+try <span class='ref'><a href='../emacs_manual/elisp/Point.html'>(info &quot;(elisp) Point&quot;)</a></span>
+and <a href='elisp_function_types.html'>Emacs Lisp: What&apos;s Function</a>.
+(goto the page, hover mouse over a function name, or touch it in phone/tablet.)
+</p>
+
+<p>though, it turns out, quite a lot commonly used functions are not in elisp manual.
+For example, <code class='elisp-ƒ'>eval-last-sexp</code>,
+<code class='elisp-ƒ'>ielm</code>,
+<code class='elisp-ƒ'>describe-function</code>.
+</p>
+
+<p>Am working on that. Also, variable will also have tooltip soon.</p>
+
+</div>
+ 

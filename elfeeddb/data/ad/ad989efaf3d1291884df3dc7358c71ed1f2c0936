@@ -1,0 +1,57 @@
+Design patterns in programming are when engineers find themselves writing the same code over and over to solve the same problems. Design patterns for statically typed object oriented languages (C++ and Java) were cataloged and enshrined in the famous book, "<span class="wikiexternallink"><a href="http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612">Design Patterns: Elements of Reusable Object-Oriented Software</a></span>" by Erich Gamma, John Vlissides, Ralph Johnson, and Richard Helm. The authors are lovingly called, <a href="http://c2.com/cgi/wiki?GangOfFour">The Gang of Four</a>, or the GOF and the book is often referred to as the GOF book.<br />
+<br />
+The subset of SystemVerilog used in writing testbenches is a statically typed object oriented language (it's most similar to Java). As people started using SystemVerilog to write testbenches, frameworks for writing testbenches quickly became popular. These frameworks all provide code that implements design patterns from the GOF book. The various frameworks were similar because they were all essentially implementing the same design patterns. Eventually the various frameworks all coalesced into one, the humbly named, Universal Verification Methodology, or UVM.<br />
+<br />
+Below is a table that matches up GOF design patterns with their UVM implementation. This was adapted from <a href="http://www.ensilica.com/wordpress_live/wp-content/uploads/DesignPatterns-DVCON.pdf">this presentation</a>:<br />
+<br />
+<table><tbody>
+<tr><th scope="col">GOF Pattern Name </th><th scope="col">UVM name </th></tr>
+<tr><td>Factory Method, Abstract Factory </td><td>uvm_factory, inheriting from uvm base classes </td></tr>
+<tr><td>Singleton </td><td>UVM Pool, UVM Global report server, etc. </td></tr>
+<tr><td>Composite </td><td>UVM Component Hierarchy, UVM Sequence Hierarchy </td></tr>
+<tr><td>Facade </td><td>TLM Ports, UVM scoreboards </td></tr>
+<tr><td>Adapter </td><td>UVM Reg Adapter </td></tr>
+<tr><td>Bridge </td><td>UVM sequencer, UVM driver </td></tr>
+<tr><td>Observer </td><td>UVM Subscriber, UVM Monitor, UVM Coverage </td></tr>
+<tr><td>Template Method </td><td>UVM Transaction (do_copy, do_compare), UVM Phase </td></tr>
+<tr><td>Command </td><td>UVM Sequence Item </td></tr>
+<tr><td>Strategy </td><td>UVM Sequence, UVM Driver </td></tr>
+<tr><td>Mediator </td><td>UVM Virtual Sequencer </td></tr>
+</tbody></table>
+<br />
+If we switched from SystemVerilog to Python for writing our testbenches, would we need to re-implement each of those parts of the UVM? Python is not a statically typed object oriented language like Java and SystemVerilog. It is a dynamically typed language. Prominent and well respected computer scientist Peter Norvig <a href="http://www.norvig.com/design-patterns/design-patterns.pdf">explored this topic for us already</a>. He did this when Python was still a very young language, so he examined other dynamic languages instead (Dylan and Lisp) and he concluded that of the 23 design patterns from the GOF book, 16 of them are either invisible or greatly simplified due to the nature of dynamic languages and their built-in features. As an example to explain how this could be, he points out that a defining a function and calling it used to be design patterns.  Higher-level languages came along and made the pattern of defining and calling a function a part of the language.<br />
+<br />
+This is essentially what has happened with dynamic languages. Many design patterns from GOF are now simply part of the language.  According to Dr. Norvig, the patterns that dynamic languages obsolete are:<br />
+<br />
+<ul>
+<li>Abstract-Factory</li>
+<li>Flyweight</li>
+<li>Factory-Method</li>
+<li>State</li>
+<li>Proxy</li>
+<li>Chain-Of-Responsibility</li>
+<li>Command</li>
+<li>Strategy</li>
+<li>Template-Method</li>
+<li>Visitor</li>
+<li>Interpreter</li>
+<li>Iterator</li>
+<li>Mediator</li>
+<li>Observer</li>
+<li>Builder</li>
+<li>Facade</li>
+</ul>
+<br />
+That reduces the above table to:<br />
+<br />
+<table><tbody>
+<tr><th scope="col">GOF Pattern Name </th><th scope="col">UVM name </th></tr>
+<tr><td>Singleton </td><td>UVM Pool, UVM Global report server, etc. </td></tr>
+<tr><td>Composite </td><td>UVM Component Hierarchy, UVM Sequence Hierarchy </td></tr>
+<tr><td>Adapter </td><td>UVM Reg Adapter </td></tr>
+<tr><td>Bridge </td><td>UVM sequencer, UVM driver </td></tr>
+</tbody></table>
+<br />
+Trusting that, if we were to write a pure Python testbench we can see that we would still likely implement a few design patterns. Thinking about this, it makes sense that we'd still probably have classes dedicated to transforming high-level sequence items to pin wiggles, just like the sequencer and driver work together to do in the UVM. It also makes sense that we'd have a class hierarchy to organize and relate components (such as the sequencer and driver equivalents) and sequences (high-level stimulus generation).  Thing like that.<br />
+<br />
+The more striking thing is the amount of code we would <b>not</b> need.
