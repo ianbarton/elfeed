@@ -1,0 +1,68 @@
+*  Ian Barton                                                          :tech:
+ :PROPERTIES:
+ :ID: elfeed
+ :END:
+** entry-title: \(emacs\|outdoors\|arch\|media\|bbc\|linux\|phones\|weather\|chromebook\|cycling\)
+** Emacs                                                     :emacs:mustread:
+*** entry-title: \(emacs\|org-mode\)
+*** http://planet.emacsen.org/atom.xml
+*** http://feeds.feedburner.com/sachac
+*** http://ergoemacs.org/emacs/blog.xml
+
+** Outdoors                                                        :outdoors:
+*** http://alanhalewood.blogspot.com/feeds/posts/default
+*** http://www.alphamountaineering.co.uk/feed.xml
+*** http://blogpackinglight.wordpress.com/feed/
+*** http://feeds.feedburner.com/DaveMacleod
+*** http://footlesscrow.blogspot.com/feeds/posts/default
+*** http://glencoemountaineer.blogspot.com/feeds/posts/default
+*** http://huwgilbert.blogspot.com/feeds/posts/default
+*** http://ianparnellphotography.blogspot.com/feeds/posts/default
+*** http://mountainplan.blogspot.com/feeds/posts/default
+*** http://www.petesy.co.uk/?feed=rss2
+*** http://www.summitandvalley.com/feeds/posts/default
+*** http://armchair-adventurer.blogspot.com/feeds/posts/default
+*** http://tohatchacrow.blogspot.com/feeds/posts/default?alt=rss
+*** http://tracksterman.tumblr.com/rss
+*** http://www.ukclimbing.com/forums/rss.php?id=85815
+*** http://www.ukclimbing.com/articles/rss.php
+*** http://www.ukclimbing.com/gear/rss.php
+*** http://www.ukclimbing.com/news/rss.php
+
+
+** Archlinux                                                           :arch:
+
+*** https://bbs.archlinux.org/extern.php?action=feed&fid=32&type=atom
+
+*** https://bbs.archlinux.org/extern.php?action=feed&fid=8&type=atom
+
+*** https://bbs.archlinux.org/extern.php?action=feed&fid=23&type=atom
+
+*** http://www.archlinux.org/feeds/news/
+** Media                                                              :media:
+** BBC                                                                  :bbc:
+*** http://feeds.bbc.co.uk/iplayer/categories/drama/tv/list
+*** http://feeds.bbc.co.uk/iplayer/categories/entertainment/tv/list
+*** http://downloads.bbc.co.uk/podcasts/radio4/r4sandel/rss.xml
+
+** Linux                                                              :linux:
+*** http://feeds.feedburner.com/debiansystemadmin
+*** http://debian-news.net/backend.php
+*** http://planet.ubuntu.com/rss20.xml
+*** http://feeds.twit.tv/floss_video_large
+*** http://rss.accuweather.com/rss/liveweather_rss.asp?metric=1&locCode=EUR%7CUK%7CUK208%7CMarket%20Drayton
+
+** Phones                                                            :phones:
+*** https://www.androidbeat.com/feed/atom/
+
+** Weather                                                          :weather:
+** Chromebook                                                    :chromebook:
+** Cycling                                                          :cycling:
+*** http://feeds.feedburner.com/BikeRadar/feeds
+*** http://www.cyclechat.net/forums/cyclechat-and-recreational-rides.47/index.rss
+*** http://www.cyclechat.net/forums/general-cycling-discussions.55/index.rss
+*** http://www.cyclechat.net/forums/touring-and-expedition.8/index.rss
+*** http://www.masteringemacs.org/feed/
+    :PROPERTIES:
+    :ID:       f5c04098-e8f2-4c4e-a36a-c5fc09cbba47
+    :END:
