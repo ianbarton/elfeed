@@ -1,14 +1,12 @@
-*  Ian Barton                                                          :tech:
+*  Ian Barton                                                          :ian:
  :PROPERTIES:
  :ID: elfeed
  :END:
-** entry-title: \(emacs\|outdoors\|arch\|media\|bbc\|linux\|phones\|weather\|chromebook\|cycling\)
-** Emacs                                                     :emacs:mustread:
-*** entry-title: \(emacs\|org-mode\)
+
+** Emacs                                                              :emacs:
 *** http://planet.emacsen.org/atom.xml
 *** http://feeds.feedburner.com/sachac
 *** http://ergoemacs.org/emacs/blog.xml
-
 ** Outdoors                                                        :outdoors:
 *** http://alanhalewood.blogspot.com/feeds/posts/default
 *** http://www.alphamountaineering.co.uk/feed.xml
@@ -29,6 +27,12 @@
 *** http://www.ukclimbing.com/gear/rss.php
 *** http://www.ukclimbing.com/news/rss.php
 
+*** http://www.trek-lite.com/index.php?forums/general-chat.8/index.rss
+*** http://www.trek-lite.com/index.php?forums/packs-accessories.11/index.rss
+*** http://www.trek-lite.com/index.php?forums/shelters-accessories.12/index.rss
+*** http://www.trek-lite.com/index.php?forums/clothing-footwear.24/index.rss
+*** http://www.trek-lite.com/index.php?forums/gadgets-tech.32/index.rss
+*** http://www.trek-lite.com/index.php?forums/sleep-mats.21/index.rss
 
 ** Archlinux                                                           :arch:
 
@@ -39,7 +43,6 @@
 *** https://bbs.archlinux.org/extern.php?action=feed&fid=23&type=atom
 
 *** http://www.archlinux.org/feeds/news/
-** Media                                                              :media:
 ** BBC                                                                  :bbc:
 *** http://feeds.bbc.co.uk/iplayer/categories/drama/tv/list
 *** http://feeds.bbc.co.uk/iplayer/categories/entertainment/tv/list
@@ -58,11 +61,3 @@
 ** Weather                                                          :weather:
 ** Chromebook                                                    :chromebook:
 ** Cycling                                                          :cycling:
-*** http://feeds.feedburner.com/BikeRadar/feeds
-*** http://www.cyclechat.net/forums/cyclechat-and-recreational-rides.47/index.rss
-*** http://www.cyclechat.net/forums/general-cycling-discussions.55/index.rss
-*** http://www.cyclechat.net/forums/touring-and-expedition.8/index.rss
-*** http://www.masteringemacs.org/feed/
-    :PROPERTIES:
-    :ID:       f5c04098-e8f2-4c4e-a36a-c5fc09cbba47
-    :END:
