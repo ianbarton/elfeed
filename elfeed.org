@@ -7,6 +7,10 @@
 *** http://planet.emacsen.org/atom.xml
 *** http://feeds.feedburner.com/sachac
 *** http://ergoemacs.org/emacs/blog.xml
+*** http://pragmaticemacs.com/feed/
+*** https://www.reddit.com/r/emacs/.rss
+*** http://mp.vv.si/blog/feed/
+*** https://www.reddit.com/r/orgmode/.rss
 ** Outdoors                                                        :outdoors:
 *** http://alanhalewood.blogspot.com/feeds/posts/default
 *** http://www.alphamountaineering.co.uk/feed.xml
@@ -61,3 +65,7 @@
 ** Weather                                                          :weather:
 ** Chromebook                                                    :chromebook:
 ** Cycling                                                          :cycling:
+*** http://feeds.feedburner.com/BikeRadar/feeds
+*** http://www.cyclechat.net/forums/cyclechat-and-recreational-rides.47/index.rss
+*** http://www.cyclechat.net/forums/general-cycling-discussions.55/index.rss
+*** http://www.cyclechat.net/forums/touring-and-expedition.8/index.rss
