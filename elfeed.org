@@ -53,12 +53,11 @@
 *** http://downloads.bbc.co.uk/podcasts/radio4/r4sandel/rss.xml
 
 ** Linux                                                              :linux:
-*** http://feeds.feedburner.com/debiansystemadmin
-*** http://debian-news.net/backend.php
-*** http://planet.ubuntu.com/rss20.xml
 *** http://feeds.twit.tv/floss_video_large
 *** http://rss.accuweather.com/rss/liveweather_rss.asp?metric=1&locCode=EUR%7CUK%7CUK208%7CMarket%20Drayton
-
+*** http://www.linuxjournal.com/node/feed
+*** http://www.linuxjournal.com/blog/feed
+*** http://www.linuxjournal.com/taxonomy/term/19/0/feed
 ** Phones                                                            :phones:
 *** https://www.androidbeat.com/feed/atom/
 
